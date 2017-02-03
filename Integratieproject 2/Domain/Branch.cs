@@ -13,7 +13,8 @@ namespace Leisurebooker.Business.Domain
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
 
-        public ICollection<Room> Rooms { get; set; } 
+        public ICollection<Room> Rooms { get; set; }
+        public ICollection<OpeningHour> OpeningHours { get; set; }
 
     }
 }
