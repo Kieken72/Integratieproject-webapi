@@ -1,0 +1,5 @@
+language: csharp
+solution: "Integratieproject 2/Integratieproject 2.sln"
+install:
+  - sudo apt-get install -y gtk-sharp2
+  - nuget restore "Integratieproject 2/Integratieproject 2.sln"

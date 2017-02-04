@@ -1,8 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Leisurebooker.Business.Domain
 {
     //Makkelijk zoekbaar op adress!!! Index? + Makkelijk zoekbaar van plek vrij!
@@ -13,7 +9,9 @@ namespace Leisurebooker.Business.Domain
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
 
-        public ICollection<Room> Rooms { get; set; } 
+        public ICollection<Room> Rooms { get; set; }
+        public ICollection<OpeningHour> OpeningHours { get; set; }
+        public ICollection<AdditionalInfo> AdditionalInfos { get; set; }
 
     }
 }

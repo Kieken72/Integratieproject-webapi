@@ -11,11 +11,11 @@ namespace Leisurebooker.Business.Domain
 
     public abstract class IntEntity : IEntity<int>
     {
-        public virtual int Id { get; set; }
+        public int Id { get; set; }
     }
 
     public abstract class GuidEntity : IEntity<Guid>
     {
-        public virtual Guid Id { get; set; }
+        public Guid Id { get; set; }
     }
 }
