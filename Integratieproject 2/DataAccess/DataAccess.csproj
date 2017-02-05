@@ -7,8 +7,8 @@
     <ProjectGuid>{B9290EB8-B98D-433F-85C6-7929076CB8D3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DataAccess</RootNamespace>
-    <AssemblyName>DataAccess</AssemblyName>
+    <RootNamespace>Leisurebooker.DataAccess</RootNamespace>
+    <AssemblyName>Leisurebooker.DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -49,7 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="EF\Configuration.cs" />
+    <Compile Include="EF\Context.cs" />
+    <Compile Include="EF\ContextFactory.cs" />
+    <Compile Include="EF\Initialiser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

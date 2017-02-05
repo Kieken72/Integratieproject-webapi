@@ -48,6 +48,7 @@
     <Compile Include="Company.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="Guest.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="OpeningHour.cs" />

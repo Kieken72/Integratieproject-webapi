@@ -6,8 +6,8 @@
     <ProjectGuid>{9F088FC5-400D-4ECD-AA09-0399F9AE9FCA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Business.Tests</RootNamespace>
-    <AssemblyName>Business.Tests</AssemblyName>
+    <RootNamespace>Leisurebooker.Business.Tests</RootNamespace>
+    <AssemblyName>Leisurebooker.Business.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

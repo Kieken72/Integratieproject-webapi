@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Leisurebooker.Business.Domain
 {
-    class Account
+    public class Account : GuidEntity
     {
+        public string Email { get; set; }
+        public string Secret { get; set; }
     }
 }

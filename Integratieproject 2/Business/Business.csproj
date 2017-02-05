@@ -7,8 +7,8 @@
     <ProjectGuid>{4EA47960-6287-4E4D-9418-C3C32413C00D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Business</RootNamespace>
-    <AssemblyName>Business</AssemblyName>
+    <RootNamespace>Leisurebooker.Business</RootNamespace>
+    <AssemblyName>Leisurebooker.Business</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
