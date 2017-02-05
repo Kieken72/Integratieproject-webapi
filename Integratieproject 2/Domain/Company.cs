@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Leisurebooker.Business.Domain
 {
-    public class Company : GuidEntity
+    public class Company : Entity
     {
         public string Name { get; set; }
         public string VATNumber { get; set; }

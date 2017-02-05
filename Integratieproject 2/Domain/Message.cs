@@ -2,7 +2,7 @@ using System;
 
 namespace Leisurebooker.Business.Domain
 {
-    public class Message : IntEntity
+    public class Message : Entity
     {
         //Aan welke reservatie hangt dit,
 

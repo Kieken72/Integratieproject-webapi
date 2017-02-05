@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Leisurebooker.Business.Domain
 {
-    public class Room : GuidEntity
+    public class Room : Entity
     {
         public string Name { get; set; }
         public bool Enabled { get; set; }

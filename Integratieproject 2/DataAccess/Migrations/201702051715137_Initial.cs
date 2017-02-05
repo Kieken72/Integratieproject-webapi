@@ -3,7 +3,7 @@ namespace Leisurebooker.DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class PrimaryKey : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -14,7 +14,7 @@ namespace Leisurebooker.DataAccess.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Type = c.Int(nullable: false),
                         Value = c.String(),
-                        Branch_Id = c.Guid(),
+                        Branch_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Branch", t => t.Branch_Id)
@@ -24,7 +24,7 @@ namespace Leisurebooker.DataAccess.Migrations
                 "dbo.Branch",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Adress_Street = c.String(),
                         Adress_Number = c.String(),
@@ -33,11 +33,11 @@ namespace Leisurebooker.DataAccess.Migrations
                         Adress_City = c.String(),
                         PhoneNumber = c.String(),
                         Email = c.String(),
-                        Company_Id = c.Guid(),
+                        CompanyId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Company", t => t.Company_Id)
-                .Index(t => t.Company_Id);
+                .ForeignKey("dbo.Company", t => t.CompanyId)
+                .Index(t => t.CompanyId);
             
             CreateTable(
                 "dbo.OpeningHour",
@@ -45,7 +45,7 @@ namespace Leisurebooker.DataAccess.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Day = c.Byte(nullable: false),
-                        Branch_Id = c.Guid(),
+                        Branch_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Branch", t => t.Branch_Id)
@@ -55,12 +55,12 @@ namespace Leisurebooker.DataAccess.Migrations
                 "dbo.Room",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Enabled = c.Boolean(nullable: false),
                         Width = c.Int(nullable: false),
                         Height = c.Int(nullable: false),
-                        Branch_Id = c.Guid(),
+                        Branch_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Branch", t => t.Branch_Id)
@@ -70,12 +70,12 @@ namespace Leisurebooker.DataAccess.Migrations
                 "dbo.Space",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Enabled = c.Boolean(nullable: false),
                         Persons = c.Int(nullable: false),
                         MinPersons = c.Int(nullable: false),
-                        Room_Id = c.Guid(),
+                        Room_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Room", t => t.Room_Id)
@@ -85,7 +85,7 @@ namespace Leisurebooker.DataAccess.Migrations
                 "dbo.Company",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         VATNumber = c.String(),
                         Adress_Street = c.String(),
@@ -131,7 +131,7 @@ namespace Leisurebooker.DataAccess.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Branch", "Company_Id", "dbo.Company");
+            DropForeignKey("dbo.Branch", "CompanyId", "dbo.Company");
             DropForeignKey("dbo.Room", "Branch_Id", "dbo.Branch");
             DropForeignKey("dbo.Space", "Room_Id", "dbo.Room");
             DropForeignKey("dbo.OpeningHour", "Branch_Id", "dbo.Branch");
@@ -139,7 +139,7 @@ namespace Leisurebooker.DataAccess.Migrations
             DropIndex("dbo.Space", new[] { "Room_Id" });
             DropIndex("dbo.Room", new[] { "Branch_Id" });
             DropIndex("dbo.OpeningHour", new[] { "Branch_Id" });
-            DropIndex("dbo.Branch", new[] { "Company_Id" });
+            DropIndex("dbo.Branch", new[] { "CompanyId" });
             DropIndex("dbo.AdditionalInfo", new[] { "Branch_Id" });
             DropTable("dbo.Review");
             DropTable("dbo.Reservation");

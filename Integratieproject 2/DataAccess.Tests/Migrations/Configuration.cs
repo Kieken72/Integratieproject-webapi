@@ -1,18 +1,18 @@
-namespace Leisurebooker.DataAccess.Migrations
+namespace Leisurebooker.DataAccess.Tests.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Leisurebooker.DataAccess.EF.Connection.Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<Leisurebooker.DataAccess.Tests.Fakes.FakeContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Leisurebooker.DataAccess.EF.Connection.Context context)
+        protected override void Seed(Leisurebooker.DataAccess.Tests.Fakes.FakeContext context)
         {
             //  This method will be called after migrating to the latest version.
 

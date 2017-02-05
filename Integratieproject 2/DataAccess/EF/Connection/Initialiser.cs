@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace Leisurebooker.DataAccess.EF
+namespace Leisurebooker.DataAccess.EF.Connection
 {
     public class Initialiser : DropCreateDatabaseAlways<Context>
     {

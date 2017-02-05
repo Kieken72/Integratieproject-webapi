@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Leisurebooker.Business.Domain
 {
-    public class Event : IntEntity
+    public class Event : Entity
     {
         public EventType EventType { get; set; }
         //Toadd

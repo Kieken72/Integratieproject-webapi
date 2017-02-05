@@ -2,7 +2,7 @@
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.SqlServer;
 
-namespace Leisurebooker.DataAccess.EF
+namespace Leisurebooker.DataAccess.EF.Connection
 {
     public class Configuration : DbConfiguration
     {

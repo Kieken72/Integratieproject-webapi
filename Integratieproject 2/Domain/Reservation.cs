@@ -2,7 +2,7 @@
 
 namespace Leisurebooker.Business.Domain
 {
-    public class Reservation : IntEntity
+    public class Reservation : Entity
     {
         public int AmountOfPersons { get; set; }
         public DateTime DateTime { get; set; }

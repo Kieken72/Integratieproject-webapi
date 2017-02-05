@@ -1,6 +1,6 @@
 ﻿namespace Leisurebooker.Business.Domain
 {
-    public class Review : IntEntity
+    public class Review : Entity
     {
         //Koppel aan reservatie
 

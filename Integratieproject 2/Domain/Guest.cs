@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Leisurebooker.Business.Domain
 {
-    public class Guest : IntEntity
+    public class Guest : Entity
     {
         //Klant gegevens apart van login? (Makkelijker opslaanbaar?)
     }

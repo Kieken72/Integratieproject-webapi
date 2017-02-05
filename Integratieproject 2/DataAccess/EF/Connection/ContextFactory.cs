@@ -1,4 +1,4 @@
-﻿namespace Leisurebooker.DataAccess.EF
+﻿namespace Leisurebooker.DataAccess.EF.Connection
 {
     public static class ContextFactory
     {

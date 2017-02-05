@@ -1,6 +1,6 @@
 ﻿namespace Leisurebooker.Business.Domain
 {
-    public class OpeningHour : IntEntity
+    public class OpeningHour : Entity
     {
         public Day Day { get; set; }
 

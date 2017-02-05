@@ -1,7 +1,7 @@
-﻿using Leisurebooker.DataAccess.EF;
+﻿using Leisurebooker.DataAccess.EF.Connection;
 using NUnit.Framework;
 
-namespace Leisurebooker.DataAccess.Tests.EF
+namespace Leisurebooker.DataAccess.Tests.EF.Connection
 {
     [TestFixture]
     public class ContextFactoryTests

@@ -2,7 +2,7 @@
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Leisurebooker.Business.Domain;
 
-namespace Leisurebooker.DataAccess.EF
+namespace Leisurebooker.DataAccess.EF.Connection
 {
     [DbConfigurationType(typeof(Configuration))]
     public class Context : DbContext
@@ -39,6 +39,9 @@ namespace Leisurebooker.DataAccess.EF
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
             SetPrimaryKeys(modelBuilder);
+            SetForeignKeys(modelBuilder);
+            SetOptionalProperties(modelBuilder);
+            SetRequiredProperties(modelBuilder);
         }
 
         private static void SetPrimaryKeys(DbModelBuilder modelBuilder)
@@ -52,6 +55,35 @@ namespace Leisurebooker.DataAccess.EF
             modelBuilder.Entity<Message>().HasKey(e => e.Id);
             modelBuilder.Entity<Review>().HasKey(e => e.Id);
             modelBuilder.Entity<AdditionalInfo>().HasKey(e => e.Id);
+        }
+
+        private static void SetForeignKeys(DbModelBuilder modelBuilder)
+        {
+            SetOneToMany(modelBuilder);
+            SetManyToMany(modelBuilder);
+        }
+
+
+        private static void SetOneToMany(DbModelBuilder modelBuilder)
+        {
+            //Branches
+            modelBuilder.Entity<Company>().HasMany(e => e.Branches)
+                .WithRequired()
+                .HasForeignKey(e => e.CompanyId);
+        }
+        private static void SetManyToMany(DbModelBuilder modelBuilder)
+        {
+            //throw new System.NotImplementedException();
+        }
+
+        private static void SetRequiredProperties(DbModelBuilder modelBuilder)
+        {
+            //throw new System.NotImplementedException();
+        }
+
+        public void SetOptionalProperties(DbModelBuilder modelBuilder)
+        {
+            //throw new System.NotImplementedException();
         }
     }
 }

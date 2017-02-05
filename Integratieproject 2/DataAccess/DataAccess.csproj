@@ -49,14 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EF\Configuration.cs" />
-    <Compile Include="EF\Context.cs" />
-    <Compile Include="EF\ContextFactory.cs" />
-    <Compile Include="EF\Initialiser.cs" />
-    <Compile Include="Migrations\201702051631394_PrimaryKey.cs" />
-    <Compile Include="Migrations\201702051631394_PrimaryKey.Designer.cs">
-      <DependentUpon>201702051631394_PrimaryKey.cs</DependentUpon>
+    <Compile Include="EF\Connection\Configuration.cs" />
+    <Compile Include="EF\Connection\Context.cs" />
+    <Compile Include="EF\Connection\ContextFactory.cs" />
+    <Compile Include="EF\Connection\Initialiser.cs" />
+    <Compile Include="EF\Repositories\CompanyRepository.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="Migrations\201702051715137_Initial.cs" />
+    <Compile Include="Migrations\201702051715137_Initial.Designer.cs">
+      <DependentUpon>201702051715137_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -71,8 +74,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702051631394_PrimaryKey.resx">
-      <DependentUpon>201702051631394_PrimaryKey.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702051715137_Initial.resx">
+      <DependentUpon>201702051715137_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

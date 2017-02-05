@@ -1,6 +1,6 @@
 ﻿namespace Leisurebooker.Business.Domain
 {
-    public class Space : GuidEntity
+    public class Space : Entity
     {
         public string Name { get; set; }
         public bool Enabled { get; set; }
