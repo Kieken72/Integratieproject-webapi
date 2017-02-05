@@ -53,6 +53,11 @@
     <Compile Include="EF\Context.cs" />
     <Compile Include="EF\ContextFactory.cs" />
     <Compile Include="EF\Initialiser.cs" />
+    <Compile Include="Migrations\201702051631394_PrimaryKey.cs" />
+    <Compile Include="Migrations\201702051631394_PrimaryKey.Designer.cs">
+      <DependentUpon>201702051631394_PrimaryKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,6 +69,11 @@
       <Project>{1819aced-1079-4543-9d33-f8eeab32eda0}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702051631394_PrimaryKey.resx">
+      <DependentUpon>201702051631394_PrimaryKey.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
