@@ -67,9 +67,33 @@ namespace Leisurebooker.DataAccess.EF.Connection
         private static void SetOneToMany(DbModelBuilder modelBuilder)
         {
             //Branches
-            modelBuilder.Entity<Company>().HasMany(e => e.Branches)
+            modelBuilder.Entity<Company>()
+                .HasMany(e => e.Branches)
                 .WithRequired()
                 .HasForeignKey(e => e.CompanyId);
+
+            //Rooms
+            modelBuilder.Entity<Branch>()
+                .HasMany(e => e.Rooms)
+                .WithRequired()
+                .HasForeignKey(e => e.BranchId);
+
+            //AdditionalInfo
+            modelBuilder.Entity<Branch>()
+                .HasMany(e => e.AdditionalInfos)
+                .WithRequired()
+                .HasForeignKey(e => e.BranchId);
+
+            //OpeningHours
+            modelBuilder.Entity<Branch>()
+                .HasMany(e => e.OpeningHours)
+                .WithRequired()
+                .HasForeignKey(e => e.BranchId);
+
+            modelBuilder.Entity<Room>()
+                .HasMany(e => e.Spaces)
+                .WithRequired()
+                .HasForeignKey(e => e.RoomId);
         }
         private static void SetManyToMany(DbModelBuilder modelBuilder)
         {
@@ -78,7 +102,7 @@ namespace Leisurebooker.DataAccess.EF.Connection
 
         private static void SetRequiredProperties(DbModelBuilder modelBuilder)
         {
-            //throw new System.NotImplementedException();
+            //
         }
 
         public void SetOptionalProperties(DbModelBuilder modelBuilder)

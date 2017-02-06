@@ -10,5 +10,7 @@
         public int Persons { get; set; }
         public int MinPersons { get; set; }
 
+        public int RoomId { get; set; }
+
     }
 }

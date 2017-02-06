@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,9 +48,9 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
         }
 
         [Test]
-        public void ShouldCreateAndReadMultipleEntity()
+        public void ShouldCreateAndReadMultipleEntities()
         {
-            var company2 = new Company()
+            var company = new Company()
             {
                 Adress = new Adress()
                 {
@@ -62,9 +63,9 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
                 Name = "Fictief bedrijf",
                 VATNumber = "Fictief Nummer"
             };
-            company2 = _companies.Create(company2);
+            company = _companies.Create(company);
 
-            Assert.AreEqual(2,this._companies.Read().Count(e => e.Id==company2.Id||e.Id==_company.Id));
+            Assert.AreEqual(2,this._companies.Read().Count(e => e.Id==company.Id||e.Id==_company.Id));
         }
 
         [Test]
@@ -76,10 +77,29 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
             
             Assert.AreEqual(_company,_companies.Read(_company.Id));
         }
+
         [Test]
         public void ShouldThrowExceptionOnDelete()
         {
             Assert.Throws(typeof(NotSupportedException), delegate {_companies.Delete(_company.Id);});
+        }
+
+        [Test]
+        public void ShouldThrowExceptionOnCreate()
+        {
+            var company = new Company()
+            {
+                Adress = new Adress()
+                {
+                    Street = "Fictieve straat",
+                    Number = "2",
+                    City = "Antwerpen",
+                    PostalCode = "2000",
+                    Box = ""
+                }
+            };
+            Assert.Throws(typeof(DbEntityValidationException), delegate { _companies.Create(company); });
+
         }
     }
 }

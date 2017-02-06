@@ -4,5 +4,7 @@
     {
         public AdditionalInfoType Type { get; set; }
         public string Value { get; set; }
+
+        public int BranchId { get; set; }
     }
 }

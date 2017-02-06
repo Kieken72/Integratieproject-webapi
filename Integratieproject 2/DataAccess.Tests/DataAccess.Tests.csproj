@@ -57,6 +57,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -72,6 +73,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="EF\Connection\ContextFactoryTests.cs" />
+    <Compile Include="EF\Repositories\BranchRepositoryTest.cs" />
     <Compile Include="EF\Repositories\CompanyRepositoryTest.cs" />
     <Compile Include="Fakes\FakeContext.cs" />
     <Compile Include="Fakes\FakeRepository.cs" />

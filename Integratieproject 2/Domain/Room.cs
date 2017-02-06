@@ -11,6 +11,8 @@ namespace Leisurebooker.Business.Domain
         public int Width { get; set; }
         public int Height { get; set; }
 
+        public int BranchId { get; set; }
+
         public ICollection<Space> Spaces { get; set; } 
 
     }
