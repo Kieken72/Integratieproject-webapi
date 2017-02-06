@@ -44,12 +44,13 @@ namespace Leisurebooker.DataAccess.EF.Repositories
 
         public override void Update(Company entity)
         {
-            throw new NotImplementedException();
+            this.Context.Entry<Company>(entity);
+            this.Context.SaveChanges();
         }
 
         public override void Delete(int id)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         

@@ -76,11 +76,6 @@
     <Compile Include="Fakes\FakeContext.cs" />
     <Compile Include="Fakes\FakeRepository.cs" />
     <Compile Include="Fakes\FakeRepositoryFactory.cs" />
-    <Compile Include="Migrations\201702051717060_Inital.cs" />
-    <Compile Include="Migrations\201702051717060_Inital.Designer.cs">
-      <DependentUpon>201702051717060_Inital.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,11 +91,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702051717060_Inital.resx">
-      <DependentUpon>201702051717060_Inital.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

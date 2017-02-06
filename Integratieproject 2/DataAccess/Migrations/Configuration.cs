@@ -5,7 +5,7 @@ namespace Leisurebooker.DataAccess.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Leisurebooker.DataAccess.EF.Connection.Context>
+    public sealed class Configuration : DbMigrationsConfiguration<Leisurebooker.DataAccess.EF.Connection.Context>
     {
         public Configuration()
         {
