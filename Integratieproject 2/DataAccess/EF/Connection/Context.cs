@@ -90,11 +90,44 @@ namespace Leisurebooker.DataAccess.EF.Connection
                 .WithRequired()
                 .HasForeignKey(e => e.BranchId);
 
+            //Spaces
             modelBuilder.Entity<Room>()
                 .HasMany(e => e.Spaces)
                 .WithRequired()
                 .HasForeignKey(e => e.RoomId);
+
+            //Reservation
+            modelBuilder.Entity<Branch>()
+                .HasMany(e => e.Reservations)
+                .WithRequired()
+                .HasForeignKey(e => e.BranchId);
+            modelBuilder.Entity<Space>()
+                .HasMany(e => e.Reservations)
+                .WithRequired()
+                .HasForeignKey(e => e.SpaceId);
+
+            //Messages
+            modelBuilder.Entity<Reservation>()
+                .HasMany(e => e.Messages)
+                .WithRequired()
+                .HasForeignKey(e => e.ReservationId);
+
+            modelBuilder.Entity<Branch>()
+                .HasMany(e => e.Messages)
+                .WithRequired()
+                .HasForeignKey(e => e.BranchId);
+
+            //Reviews
+            modelBuilder.Entity<Branch>()
+                .HasMany(e => e.Reviews)
+                .WithRequired()
+                .HasForeignKey(e => e.BranchId);
+
+
+
+
         }
+
         private static void SetManyToMany(DbModelBuilder modelBuilder)
         {
             //throw new System.NotImplementedException();

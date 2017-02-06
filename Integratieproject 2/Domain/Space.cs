@@ -1,4 +1,6 @@
-﻿namespace Leisurebooker.Business.Domain
+﻿using System.Collections.Generic;
+
+namespace Leisurebooker.Business.Domain
 {
     public class Space : Entity
     {
@@ -12,5 +14,6 @@
 
         public int RoomId { get; set; }
 
+        public ICollection<Reservation> Reservations { get; set; }  
     }
 }

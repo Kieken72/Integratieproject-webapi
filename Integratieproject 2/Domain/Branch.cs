@@ -20,5 +20,9 @@ namespace Leisurebooker.Business.Domain
         public ICollection<OpeningHour> OpeningHours { get; set; }
         public ICollection<AdditionalInfo> AdditionalInfos { get; set; }
 
+        public ICollection<Review> Reviews { get; set; }
+        public ICollection<Message> Messages { get; set; }
+        public ICollection<Reservation> Reservations { get; set; }
+
     }
 }
