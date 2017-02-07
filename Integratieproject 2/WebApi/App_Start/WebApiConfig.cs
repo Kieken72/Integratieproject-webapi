@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using AutoMapper;
+using Leisurebooker.Business;
+using Leisurebooker.Business.Domain;
+using Leisurebooker.Business.Services;
+using Microsoft.Practices.Unity;
+using WebApi.Models;
+using WebApi.Models.Dto;
+using WebApi.Models.Mapping;
 
 namespace WebApi
 {
@@ -11,6 +19,23 @@ namespace WebApi
         {
             // Web API configuration and services
 
+            //Mapper
+            Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile<CompanyProfile>();
+                cfg.AddProfile<AddressProfile>();
+            });
+
+            //Mapper = mCfg.CreateMapper();
+
+            #region DI
+            var container = new UnityContainer();
+
+            container.RegisterType<IMapper, Mapper>();
+            container.RegisterType<IService<Company>, CompanyService>(new HierarchicalLifetimeManager());
+
+            config.DependencyResolver = new UnityResolver(container);
+#endregion
             // Web API routes
             config.MapHttpAttributeRoutes();
 

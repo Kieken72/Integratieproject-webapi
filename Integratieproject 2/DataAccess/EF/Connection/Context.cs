@@ -7,9 +7,9 @@ namespace Leisurebooker.DataAccess.EF.Connection
     [DbConfigurationType(typeof(Configuration))]
     public class Context : DbContext
     {
-        public Context() : base("LeisurebookerDB_EFCodeFirst_Ninja_TEST")
+        public Context() : base("LeisurebookerDB_EFCodeFirst_Ninja")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("LeisurebookerDB_EFCodeFirst_Ninja_TEST"));
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("LeisurebookerDB_EFCodeFirst_Ninja"));
         }
 
         public Context(string nameOrConnectionString) : base(nameOrConnectionString)
