@@ -21,7 +21,7 @@ namespace WebApi.Controllers
             _service = service;
         }
 
-        // GET: api/City
+        // GET: api/cities
         [Route("")]
         public IHttpActionResult Get()
         {
@@ -35,32 +35,44 @@ namespace WebApi.Controllers
         public IHttpActionResult Get(int id)
         {
             var entity = this._service.Get(id, collections: true);
+            if (entity == null)
+            {
+                return NotFound();
+            }
             var dto = Mapper.Map<FullCityDto>(entity);
             return Ok(dto);
         }
 
         [Route("by-postal/{postalcode}")]
-        // GET: api/City/5
+        // GET: api/cities/bt-postal/2000
         public IHttpActionResult GetByPostalCode(int postalcode)
         {
             var postalString = postalcode.ToString();
-            City entity = this._service.Get(e=>e.PostalCode == postalString).First();
+            City entity = this._service.Get(e=>e.PostalCode == postalString).FirstOrDefault();
+            if (entity == null)
+            {
+                return NotFound();
+            }
             var dto = Mapper.Map<FullCityDto>(entity);
             return Ok(dto);
         }
-        // POST: api/City
-        public IHttpActionResult Post([FromBody]string value)
+
+        [Route("")]
+        // POST: api/cities
+        public IHttpActionResult Post([FromBody] FullCityDto dto)
         {
             return BadRequest();
         }
 
-        // PUT: api/City/5
-        public IHttpActionResult Put(int id, [FromBody]string value)
+        [Route("")]
+        // PUT: api/cities
+        public IHttpActionResult Put([FromBody]FullCityDto dto)
         {
             return BadRequest();
         }
 
-        // DELETE: api/City/5
+        [Route("{id}")]
+        // DELETE: api/cities
         public IHttpActionResult Delete(int id)
         {
             return BadRequest();

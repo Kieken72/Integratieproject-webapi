@@ -21,6 +21,7 @@ namespace WebApi.Controllers
             _service = service;
         }
 
+        [Route("")]
         // GET: api/Company
         public IEnumerable<CompanyDto> Get()
         {
@@ -28,26 +29,33 @@ namespace WebApi.Controllers
             return Mapper.Map<IEnumerable<CompanyDto>>(_service.Get());
         }
 
+
+        [Route("{id}")]
         // GET: api/Company/5
         public string Get(int id)
         {
             return "value";
         }
 
+        [Route("")]
         // POST: api/Company
         public void Post([FromBody]Company value)
         {
             _service.Add(value);
         }
 
+        [Route("{id}")]
         // PUT: api/Company/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
+
+        [Route("{id}")]
         // DELETE: api/Company/5
         public void Delete(int id)
         {
+
         }
     }
 }
