@@ -13,8 +13,12 @@ namespace Leisurebooker.Business.Domain
         public string Name { get; set; }
         [Required]
         public string VATNumber { get; set; }
-        
-        public Adress Adress { get; set; }
+
+        public string Street { get; set; }
+        public string Number { get; set; }
+        public string Box { get; set; }
+        public int CityId { get; set; }
+        public virtual City City { get; set; }
 
         public ICollection<Branch> Branches { get; set; }
 

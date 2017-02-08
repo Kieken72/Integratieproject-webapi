@@ -53,35 +53,24 @@
     <Compile Include="EF\Connection\Context.cs" />
     <Compile Include="EF\Connection\ContextFactory.cs" />
     <Compile Include="EF\Connection\Initialiser.cs" />
+    <Compile Include="EF\Repositories\BranchRepository - Copy.cs" />
     <Compile Include="EF\Repositories\BranchRepository.cs" />
     <Compile Include="EF\Repositories\CompanyRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="Migrations\201702051715137_Initial.cs" />
-    <Compile Include="Migrations\201702051715137_Initial.Designer.cs">
-      <DependentUpon>201702051715137_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201702080913134_initial.cs" />
+    <Compile Include="Migrations\201702080913134_initial.Designer.cs">
+      <DependentUpon>201702080913134_initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702060908321_Change.cs" />
-    <Compile Include="Migrations\201702060908321_Change.Designer.cs">
-      <DependentUpon>201702060908321_Change.cs</DependentUpon>
+    <Compile Include="Migrations\201702081000584_Cities.cs" />
+    <Compile Include="Migrations\201702081000584_Cities.Designer.cs">
+      <DependentUpon>201702081000584_Cities.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702060945287_Required.cs" />
-    <Compile Include="Migrations\201702060945287_Required.Designer.cs">
-      <DependentUpon>201702060945287_Required.cs</DependentUpon>
+    <Compile Include="Migrations\201702081017437_Cities2.cs" />
+    <Compile Include="Migrations\201702081017437_Cities2.Designer.cs">
+      <DependentUpon>201702081017437_Cities2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702061006271_6022017-1100.cs" />
-    <Compile Include="Migrations\201702061006271_6022017-1100.Designer.cs">
-      <DependentUpon>201702061006271_6022017-1100.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702061022391_11_22.cs" />
-    <Compile Include="Migrations\201702061022391_11_22.Designer.cs">
-      <DependentUpon>201702061022391_11_22.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702061113539_1200.cs" />
-    <Compile Include="Migrations\201702061113539_1200.Designer.cs">
-      <DependentUpon>201702061113539_1200.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Repository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -95,23 +84,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702051715137_Initial.resx">
-      <DependentUpon>201702051715137_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702080913134_initial.resx">
+      <DependentUpon>201702080913134_initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702060908321_Change.resx">
-      <DependentUpon>201702060908321_Change.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702081000584_Cities.resx">
+      <DependentUpon>201702081000584_Cities.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702060945287_Required.resx">
-      <DependentUpon>201702060945287_Required.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702061006271_6022017-1100.resx">
-      <DependentUpon>201702061006271_6022017-1100.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702061022391_11_22.resx">
-      <DependentUpon>201702061022391_11_22.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702061113539_1200.resx">
-      <DependentUpon>201702061113539_1200.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702081017437_Cities2.resx">
+      <DependentUpon>201702081017437_Cities2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

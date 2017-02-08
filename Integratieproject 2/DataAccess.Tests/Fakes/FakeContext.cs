@@ -13,7 +13,7 @@ namespace Leisurebooker.DataAccess.Tests.Fakes
     {
         public FakeContext() : base("LeisurebookerDB_EFCodeFirst_Ninja_TEST")
         {
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<FakeContext, Migrations.Configuration>("LeisurebookerDB_EFCodeFirst_Ninja_TEST"));
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<FakeContext, Migrations.Configuration>("LeisurebookerDB_EFCodeFirst_Ninja_TEST"));
         }
     }
 }

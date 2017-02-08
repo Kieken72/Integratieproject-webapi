@@ -14,8 +14,8 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
         private IRepository<Company> _companies;
 
         private Branch _branch;
-        private Adress _adress;
         private Company _company;
+        private City _city;
 
         [SetUp]
         public void Setup()
@@ -24,18 +24,15 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
 
             _branches = new BranchRepository(context);
             _companies = new CompanyRepository(context);
+            var cities = new CityRepository(context);
 
-            _adress = new Adress()
+            _city = cities.Read().First();
+            
+            _company = new Company()
             {
                 Street = "Groenplaats",
                 Number = "1",
-                PostalCode = "2000",
-                City = "Antwerpen",
-                Country = "België"
-            };
-            _company = new Company()
-            {
-                Adress = _adress,
+                CityId = _city.Id,
                 Name = "Fictief Bedrijf",
                 VATNumber = "BE000X0X0"
             };
@@ -44,7 +41,9 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
             {
                 Name = "Fictief Filiaal",
                 Email = "test@test.be",
-                Adress = _adress,
+                Street = "Groenplaats",
+                Number = "1",
+                CityId = _city.Id,
                 CompanyId = _company.Id
 
             };
@@ -65,7 +64,9 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
                 Name = "Fictief Filiaal 2",
                 Email = "test@test.be",
                 CompanyId = _company.Id,
-                Adress =  _adress
+                Street = "Groenplaats",
+                Number = "1",
+                CityId = _city.Id
             };
             branch =  _branches.Create(branch);
             Assert.AreEqual(2, this._branches.Read().Count(e => e.Id == _branch.Id || e.Id == branch.Id));
@@ -80,12 +81,6 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
 
             Assert.AreEqual(_branch, _branches.Read(_branch.Id));
         }
-
-        //[Test]
-        //public void ShouldThrowExceptionOnCreate()
-        //{
-            
-        //}
 
 
 

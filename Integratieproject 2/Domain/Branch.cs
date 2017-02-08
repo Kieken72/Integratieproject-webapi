@@ -9,7 +9,13 @@ namespace Leisurebooker.Business.Domain
     {
         [Required]
         public string Name { get; set; }
-        public Adress Adress { get; set; }
+        //ADRESS
+        public string Street { get; set; }
+        public string Number { get; set; }
+        public string Box { get; set; }
+        public int CityId { get; set; }
+        public virtual City City { get; set; }
+
         public string PhoneNumber { get; set; }
         [Required]
         public string Email { get; set; }
@@ -23,6 +29,8 @@ namespace Leisurebooker.Business.Domain
         public ICollection<Review> Reviews { get; set; }
         public ICollection<Message> Messages { get; set; }
         public ICollection<Reservation> Reservations { get; set; }
+
+        public ICollection<Account> Favorites { get; set; }
 
     }
 }

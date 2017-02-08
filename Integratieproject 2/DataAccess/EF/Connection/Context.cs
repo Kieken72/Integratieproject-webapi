@@ -27,6 +27,8 @@ namespace Leisurebooker.DataAccess.EF.Connection
         public DbSet<Message> Messages { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<AdditionalInfo> AdditionalInfos { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -55,12 +57,15 @@ namespace Leisurebooker.DataAccess.EF.Connection
             modelBuilder.Entity<Message>().HasKey(e => e.Id);
             modelBuilder.Entity<Review>().HasKey(e => e.Id);
             modelBuilder.Entity<AdditionalInfo>().HasKey(e => e.Id);
+            modelBuilder.Entity<Account>().HasKey(e => e.Id);
+            modelBuilder.Entity<City>().HasKey(e => e.Id);
         }
 
         private static void SetForeignKeys(DbModelBuilder modelBuilder)
         {
             SetOneToMany(modelBuilder);
             SetManyToMany(modelBuilder);
+            SetOneToOne(modelBuilder);
         }
 
 
@@ -105,6 +110,10 @@ namespace Leisurebooker.DataAccess.EF.Connection
                 .HasMany(e => e.Reservations)
                 .WithRequired()
                 .HasForeignKey(e => e.SpaceId);
+            modelBuilder.Entity<Account>()
+                .HasMany(e => e.Reservations)
+                .WithRequired()
+                .HasForeignKey(e => e.AccountId);
 
             //Messages
             modelBuilder.Entity<Reservation>()
@@ -117,11 +126,41 @@ namespace Leisurebooker.DataAccess.EF.Connection
                 .WithRequired()
                 .HasForeignKey(e => e.BranchId);
 
+            modelBuilder.Entity<Account>()
+                .HasMany(e => e.Messages)
+                .WithRequired()
+                .HasForeignKey(e => e.UserId);
+
             //Reviews
             modelBuilder.Entity<Branch>()
                 .HasMany(e => e.Reviews)
                 .WithRequired()
                 .HasForeignKey(e => e.BranchId);
+
+            modelBuilder.Entity<Account>()
+                .HasMany(e => e.Reviews)
+                .WithRequired()
+                .HasForeignKey(e => e.UserId);
+
+
+
+
+            //Cities
+            modelBuilder.Entity<City>()
+                .HasMany(e => e.SubCities)
+                .WithOptional()
+                .HasForeignKey(e => e.HeadCityId);
+
+            modelBuilder.Entity<City>()
+                .HasMany(e => e.Companies)
+                .WithRequired()
+                .HasForeignKey(e => e.CityId);
+
+            modelBuilder.Entity<City>()
+                .HasMany(e => e.Branches)
+                .WithRequired()
+                .HasForeignKey(e => e.CityId);
+
 
 
 
@@ -130,7 +169,24 @@ namespace Leisurebooker.DataAccess.EF.Connection
 
         private static void SetManyToMany(DbModelBuilder modelBuilder)
         {
-            //throw new System.NotImplementedException();
+            //0..N - 0..N Users-Branches (Favorites)
+            modelBuilder.Entity<Account>()
+                .HasMany(e => e.Favorites)
+                .WithMany(e => e.Favorites)
+                .Map(e => e.MapLeftKey("AccountId")
+                    .MapRightKey("BranchId")
+                    .ToTable("Favorites"));
+            
+        }
+
+        private static void SetOneToOne(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Review>()
+                .HasRequired(e => e.Reservation)
+                .WithRequiredPrincipal(e => e.Review);
+
+            
+
         }
 
         private static void SetRequiredProperties(DbModelBuilder modelBuilder)

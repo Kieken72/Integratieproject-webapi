@@ -23,16 +23,16 @@ namespace WebApi
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile<CompanyProfile>();
-                cfg.AddProfile<AddressProfile>();
+                cfg.AddProfile<CityProfile>();
             });
 
             //Mapper = mCfg.CreateMapper();
 
             #region DI
             var container = new UnityContainer();
-
-            container.RegisterType<IMapper, Mapper>();
+            
             container.RegisterType<IService<Company>, CompanyService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IService<City>, CityService>(new HierarchicalLifetimeManager());
 
             config.DependencyResolver = new UnityResolver(container);
 #endregion

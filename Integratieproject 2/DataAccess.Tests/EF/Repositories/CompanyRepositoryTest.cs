@@ -17,6 +17,7 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
         private IRepository<Company> _companies;
 
         private Company _company;
+        private City _city;
 
         [SetUp]
         public void Setup()
@@ -25,16 +26,12 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
 
             _companies = new CompanyRepository(context);
 
+            _city = new CityRepository().Read().First();
             _company = new Company()
             {
-                Adress = new Adress()
-                {
-                    Street = "Fictieve straat",
-                    Number = "1",
-                    City = "Antwerpen",
-                    PostalCode = "2000",
-                    Box = ""
-                },
+                Street = "Groenplaats",
+                Number = "1",
+                CityId = _city.Id,
                 Name = "Fictief bedrijf",
                 VATNumber = "Fictief Nummer"
             };
@@ -52,14 +49,9 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
         {
             var company = new Company()
             {
-                Adress = new Adress()
-                {
-                    Street = "Fictieve straat",
-                    Number = "2",
-                    City = "Antwerpen",
-                    PostalCode = "2000",
-                    Box = ""
-                },
+                Street = "Groenplaats",
+                Number = "1",
+                CityId = _city.Id,
                 Name = "Fictief bedrijf",
                 VATNumber = "Fictief Nummer"
             };
@@ -72,7 +64,6 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
         public void ShouldUpdateCompany()
         {
             _company.Name = "Nieuwe fictieve naam";
-            _company.Adress.City = "Mechelen";
             _companies.Update(_company);
             
             Assert.AreEqual(_company,_companies.Read(_company.Id));
@@ -89,14 +80,9 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
         {
             var company = new Company()
             {
-                Adress = new Adress()
-                {
-                    Street = "Fictieve straat",
-                    Number = "2",
-                    City = "Antwerpen",
-                    PostalCode = "2000",
-                    Box = ""
-                }
+                Street = "Groenplaats",
+                Number = "1",
+                CityId = _city.Id
             };
             Assert.Throws(typeof(DbEntityValidationException), delegate { _companies.Create(company); });
 

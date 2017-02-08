@@ -7,13 +7,13 @@ namespace Leisurebooker.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class Cities : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Cities));
         
         string IMigrationMetadata.Id
         {
-            get { return "201702051715137_Initial"; }
+            get { return "201702081000584_Cities"; }
         }
         
         string IMigrationMetadata.Source

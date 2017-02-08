@@ -131,13 +131,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Dto\AdressDto.cs" />
+    <Compile Include="Models\Dto\CityDto.cs" />
     <Compile Include="Models\Dto\CompanyDto.cs" />
-    <Compile Include="Models\Mapping\AddressProfile.cs" />
+    <Compile Include="Models\Mapping\CityProfile.cs" />
     <Compile Include="Models\Mapping\CompanyProfile.cs" />
     <Compile Include="Models\UnityResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

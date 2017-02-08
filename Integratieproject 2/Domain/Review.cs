@@ -1,15 +1,17 @@
-﻿namespace Leisurebooker.Business.Domain
+﻿using System;
+
+namespace Leisurebooker.Business.Domain
 {
     public class Review : Entity
     {
-        //Koppel aan reservatie
-
-
+        public bool Result { get; set; }
         public string Text { get; set; }
+        public DateTime DateTime { get; set; }
         public bool Public { get; set; }
 
-        public int ReservationId { get; set; }
+        public Reservation Reservation { get; set; }
         public int BranchId { get; set; }
+        public int UserId { get; set; }
         
         //Verschillende factoren? (Ja / Nee?)
     }

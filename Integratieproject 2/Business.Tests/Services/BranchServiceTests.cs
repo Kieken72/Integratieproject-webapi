@@ -13,7 +13,7 @@ namespace Leisurebooker.Business.Tests.Services
         private IService<Company> _companies;
 
         private Branch _branch;
-        private Adress _adress;
+        private Address _adress;
         private Company _company;
         [SetUp]
         public void SetUp()
@@ -21,7 +21,7 @@ namespace Leisurebooker.Business.Tests.Services
             _branches = FakeServiceFactory.Create<Branch>();
             _companies = FakeServiceFactory.Create<Company>();
 
-            _adress = new Adress()
+            _adress = new Address()
             {
                 Street = "Groenplaats",
                 Number = "1",

@@ -20,7 +20,7 @@ namespace Leisurebooker.Business.Tests.Services
             {
                 Name = "Bowling Bvba",
                 VATNumber = "0123456789",
-                Adress = new Adress()
+                Adress = new Address()
                 {
                     Street = "Groenplaats",
                     Number = "1",
@@ -54,7 +54,7 @@ namespace Leisurebooker.Business.Tests.Services
             {
                 Name = "Bowling VZW",
                 VATNumber = "0123456789",
-                Adress = new Adress()
+                Adress = new Address()
                 {
                     Street = "Groenplaats",
                     Number = "1",

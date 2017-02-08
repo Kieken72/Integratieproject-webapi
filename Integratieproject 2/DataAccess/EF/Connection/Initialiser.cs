@@ -6,6 +6,7 @@ namespace Leisurebooker.DataAccess.EF.Connection
     {
         protected override void Seed(Context context)
         {
+
             base.Seed(context);
         }
     }

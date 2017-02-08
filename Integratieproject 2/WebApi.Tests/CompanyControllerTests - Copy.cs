@@ -15,21 +15,20 @@ using WebApi.Models.Mapping;
 namespace WebApi.Tests
 {
     [TestFixture]
-    public class CompanyControllerTests
+    public class CityControllerTests
     {
         [SetUp]
         public void SetUp()
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.AddProfile<CompanyProfile>();
                 cfg.AddProfile<CityProfile>();
             });
         }
         [Test]
         public void TestController()
         {
-            var controller = new CompanyController(new CompanyService());
+            var controller = new CityController(new CityService());
 
             var results = controller.Get();
 

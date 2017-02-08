@@ -1,21 +1,19 @@
 using System.Collections.Generic;
 using Leisurebooker.Business.Domain;
+using Leisurebooker.DataAccess.Tests.Fakes;
+using System.Data.Entity.Migrations;
 
-namespace Leisurebooker.DataAccess.Migrations
+namespace Leisurebooker.DataAccess.Tests.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Leisurebooker.DataAccess.EF.Connection.Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<FakeContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Leisurebooker.DataAccess.EF.Connection.Context context)
+        protected override void Seed(FakeContext context)
         {
             context.Cities.AddRange(new List<City>()
             {

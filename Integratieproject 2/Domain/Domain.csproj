@@ -44,13 +44,12 @@
     <Compile Include="Account.cs" />
     <Compile Include="AdditionalInfo.cs" />
     <Compile Include="AdditionalInfoType.cs" />
-    <Compile Include="Adress.cs" />
+    <Compile Include="City.cs" />
     <Compile Include="Branch.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Event.cs" />
-    <Compile Include="Guest.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="OpeningHour.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
