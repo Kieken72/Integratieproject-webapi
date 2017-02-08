@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Http.Results;
 using AutoMapper;
 using Leisurebooker.Business;
 using Leisurebooker.Business.Domain;
@@ -33,7 +34,7 @@ namespace WebApi.Tests
             var results = controller.Get();
 
             Assert.IsNotNull(results);
-            Assert.IsNotEmpty(results);
+            //Assert.Is
         }
     }
 }
