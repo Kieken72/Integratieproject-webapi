@@ -21,7 +21,7 @@ namespace Leisurebooker.DataAccess.Tests.Migrations
                 {
                     Name = "Boechout",
                     PostalCode = "2530",
-                    Province = "Antwerpen"
+                    Province = "Antwerpen",
                 },
                 new City()
                 {
