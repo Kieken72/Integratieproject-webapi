@@ -39,6 +39,15 @@ namespace WebApi.Controllers
             return Ok(dto);
         }
 
+        [Route("by-postal/{postalcode}")]
+        // GET: api/City/5
+        public IHttpActionResult GetByPostalCode(int postalcode)
+        {
+            var postalString = postalcode.ToString();
+            City entity = this._service.Get(e=>e.PostalCode == postalString).First();
+            var dto = Mapper.Map<FullCityDto>(entity);
+            return Ok(dto);
+        }
         // POST: api/City
         public IHttpActionResult Post([FromBody]string value)
         {
