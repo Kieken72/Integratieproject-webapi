@@ -44,7 +44,8 @@ namespace Leisurebooker.DataAccess.EF.Repositories
 
         public override void Update(Company entity)
         {
-            this.Context.Entry<Company>(entity);
+            this.Context.Companies.Attach(entity);
+            this.Context.Entry(entity).State = EntityState.Modified;
             this.Context.SaveChanges();
         }
 
