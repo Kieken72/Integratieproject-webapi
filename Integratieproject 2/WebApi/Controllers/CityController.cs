@@ -11,7 +11,7 @@ using WebApi.Models.Dto;
 
 namespace WebApi.Controllers
 {
-    [RoutePrefix("api/city")]
+    [RoutePrefix("api/cities")]
     public class CityController : ApiController
     {
         private readonly IService<City> _service;
@@ -22,30 +22,39 @@ namespace WebApi.Controllers
         }
 
         // GET: api/City
-        public IEnumerable<CityDto> Get()
+        [Route("")]
+        public IHttpActionResult Get()
         {
-            return Mapper.Map<IEnumerable<CityDto>>(_service.Get());
+            var entities = this._service.Get();
+            var dtos =  Mapper.Map<IEnumerable<CityDto>>(entities);
+            return Ok(dtos);
         }
 
+        [Route("{id}")]
         // GET: api/City/5
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            var entity = this._service.Get(id, collections: true);
+            var dto = Mapper.Map<FullCityDto>(entity);
+            return Ok(dto);
         }
 
         // POST: api/City
-        public void Post([FromBody]string value)
+        public IHttpActionResult Post([FromBody]string value)
         {
+            return BadRequest();
         }
 
         // PUT: api/City/5
-        public void Put(int id, [FromBody]string value)
+        public IHttpActionResult Put(int id, [FromBody]string value)
         {
+            return BadRequest();
         }
 
         // DELETE: api/City/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            return BadRequest();
         }
     }
 }

@@ -10,6 +10,8 @@ namespace Leisurebooker.Business.Domain
         public string Province { get; set; }
 
         public int? HeadCityId { get; set; }
+        public City HeadCity { get; set; }
+
         public ICollection<City> SubCities { get; set; }
 
         public ICollection<Branch> Branches { get; set; }

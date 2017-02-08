@@ -10,6 +10,9 @@ namespace WebApi.Models.Mapping
         {
             this.CreateMap<City, CityDto>();
             this.CreateMap<CityDto, City>();
+
+            this.CreateMap<City, FullCityDto>();
+            this.CreateMap<FullCityDto, City>();
         }
     }
 }

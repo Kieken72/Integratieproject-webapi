@@ -9,12 +9,12 @@ namespace Leisurebooker.DataAccess.EF.Connection
     {
         public Context() : base("LeisurebookerDB_EFCodeFirst_Ninja")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>("LeisurebookerDB_EFCodeFirst_Ninja"));
+            Database.SetInitializer(new CheckAndMigrateDatabaseToLatestVersion<Context, Migrations.Configuration>());
         }
 
         public Context(string nameOrConnectionString) : base(nameOrConnectionString)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Context, Migrations.Configuration>(nameOrConnectionString));
+            Database.SetInitializer(new CheckAndMigrateDatabaseToLatestVersion<Context, Migrations.Configuration>());
         }
 
 

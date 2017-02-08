@@ -26,6 +26,7 @@ namespace Leisurebooker.DataAccess.EF.Repositories
             {
                 return this.Context.Cities
                     .Include(e=>e.SubCities)
+                    .Include(e=>e.HeadCity)
                     .SingleOrDefault(t => t.Id == id);
             }
             return this.Context.Cities.Find(id);
@@ -49,6 +50,7 @@ namespace Leisurebooker.DataAccess.EF.Repositories
             {
                 return this.Context.Cities
                     .Include(e => e.SubCities)
+                    .Include(e=>e.HeadCity)
                     .AsEnumerable();
             }
             return this.Context.Cities.AsEnumerable();
