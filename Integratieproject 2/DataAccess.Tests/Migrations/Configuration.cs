@@ -43,6 +43,15 @@ namespace Leisurebooker.DataAccess.Tests.Migrations
                 }
 
             });
+            context.Companies.Add(new Company()
+            {
+                Name = "Company 1",
+                VATNumber = "BE0123456789",
+                CityId = 1,
+                Street = "Straat",
+                Number = "1"
+            });
+            context.SaveChanges();
         }
     }
 }

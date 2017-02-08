@@ -11,7 +11,7 @@ using WebApi.Models.Dto;
 
 namespace WebApi.Controllers
 {
-    [RoutePrefix("api/company")]
+    [RoutePrefix("api/companies")]
     public class CompanyController : ApiController
     {
         private readonly IService<Company> _service;
@@ -22,40 +22,60 @@ namespace WebApi.Controllers
         }
 
         [Route("")]
-        // GET: api/Company
-        public IEnumerable<CompanyDto> Get()
+        //!!Authorized As Admin
+        // GET: api/companies
+        public IHttpActionResult Get()
         {
-
-            return Mapper.Map<IEnumerable<CompanyDto>>(_service.Get());
+            var entities = this._service.Get();
+            var dtos = Mapper.Map<IEnumerable<CompanyDto>>(entities);
+            return Ok(dtos);
         }
 
 
         [Route("{id}")]
-        // GET: api/Company/5
-        public string Get(int id)
+        //!!Authorized As Admin or Manager from this company
+        // GET: api/companies/5
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            var entity = this._service.Get(id, collections: true);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+            var dto = Mapper.Map<CompanyDto>(entity);
+            return Ok(dto);
         }
 
         [Route("")]
-        // POST: api/Company
-        public void Post([FromBody]Company value)
+        //!!Authorized as admin
+        // POST: api/companies
+        public IHttpActionResult Post([FromBody]CompanyDto value)
         {
-            _service.Add(value);
+            var entity = Mapper.Map<Company>(value);
+            entity = this._service.Add(entity);
+            value = Mapper.Map<CompanyDto>(entity);
+            return Ok(value);
+
         }
 
         [Route("{id}")]
-        // PUT: api/Company/5
-        public void Put(int id, [FromBody]string value)
+        //!!Authorized as admin or manager from this company
+        // PUT: api/companies/5
+        public IHttpActionResult Put(int id, [FromBody]CompanyDto value)
         {
+            var entity = Mapper.Map<Company>(value);
+            this._service.Change(entity);
+            return Ok();
         }
 
 
         [Route("{id}")]
-        // DELETE: api/Company/5
-        public void Delete(int id)
+        //!!Authorized only as admin
+        // DELETE: api/companies/5
+        public IHttpActionResult Delete(int id)
         {
-
+            this._service.Remove(id);
+            return Ok(); 
         }
     }
 }
