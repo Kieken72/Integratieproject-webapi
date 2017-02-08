@@ -20,14 +20,14 @@ namespace Leisurebooker.Business.Tests.Services
             {
                 Name = "Bowling Bvba",
                 VATNumber = "0123456789",
-                Adress = new Address()
-                {
-                    Street = "Groenplaats",
-                    Number = "1",
-                    PostalCode = "2000",
-                    City = "Antwerpen",
-                    Country = "België"
-                }
+                //Adress = new Address()
+                //{
+                //    Street = "Groenplaats",
+                //    Number = "1",
+                //    PostalCode = "2000",
+                //    City = "Antwerpen",
+                //    Country = "België"
+                //}
             };
             _service.Add(_company);
         }
@@ -54,14 +54,14 @@ namespace Leisurebooker.Business.Tests.Services
             {
                 Name = "Bowling VZW",
                 VATNumber = "0123456789",
-                Adress = new Address()
-                {
-                    Street = "Groenplaats",
-                    Number = "1",
-                    PostalCode = "2000",
-                    City = "Antwerpen",
-                    Country = "België"
-                }
+                //Adress = new Address()
+                //{
+                //    Street = "Groenplaats",
+                //    Number = "1",
+                //    PostalCode = "2000",
+                //    City = "Antwerpen",
+                //    Country = "België"
+                //}
             };
             _service.Add(company);
 

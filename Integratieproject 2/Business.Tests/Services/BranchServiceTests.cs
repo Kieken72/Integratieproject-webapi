@@ -13,7 +13,7 @@ namespace Leisurebooker.Business.Tests.Services
         private IService<Company> _companies;
 
         private Branch _branch;
-        private Address _adress;
+        //private Address _adress;
         private Company _company;
         [SetUp]
         public void SetUp()
@@ -21,17 +21,17 @@ namespace Leisurebooker.Business.Tests.Services
             _branches = FakeServiceFactory.Create<Branch>();
             _companies = FakeServiceFactory.Create<Company>();
 
-            _adress = new Address()
-            {
-                Street = "Groenplaats",
-                Number = "1",
-                PostalCode = "2000",
-                City = "Antwerpen",
-                Country = "België"
-            };
+            //_adress = new Address()
+            //{
+            //    Street = "Groenplaats",
+            //    Number = "1",
+            //    PostalCode = "2000",
+            //    City = "Antwerpen",
+            //    Country = "België"
+            //};
             _company = new Company()
             {
-                Adress = _adress,
+                //Adress = _adress,
                 Name = "Fictief Bedrijf",
                 VATNumber = "BE000X0X0"
             };
@@ -40,7 +40,7 @@ namespace Leisurebooker.Business.Tests.Services
             {
                 Name = "Fictief Filiaal",
                 Email = "test@test.be",
-                Adress = _adress,
+                //Adress = _adress,
                 CompanyId = _company.Id
 
             };
@@ -70,7 +70,7 @@ namespace Leisurebooker.Business.Tests.Services
                 Name = "Fictief Filiaal 2",
                 Email = "test@test.be",
                 CompanyId = _company.Id,
-                Adress = _adress
+                //Adress = _adress
             };
             _branches.Add(branch);
 
