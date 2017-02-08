@@ -20,4 +20,6 @@
 | URI | Controller | VERB | Role | Test |
 | --- | --- | --- | --- | --- |
 | [/companies](http://leisurebooker.azurewebsites.net/api/companies) | CompanyController | GET | ADMIN | :white_check_mark: |
-| [/company/{id}](http://leisurebooker.azurewebsites.net/api/companies/1) | CompanyController | GET |  | :white_check_mark: |
+| [/company/{id}](http://leisurebooker.azurewebsites.net/api/companies/1) | CompanyController | GET | ADMIN / MANAGER | :white_check_mark: |
+| [/company/{company in body}](http://leisurebooker.azurewebsites.net/api/companies/) | CompanyController | POST | ADMIN | :white_check_mark: |
+
