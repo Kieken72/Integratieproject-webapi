@@ -55,6 +55,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Services\BranchServiceTests.cs" />
+    <Compile Include="Services\CityServiceTests.cs" />
     <Compile Include="Services\CompanyServiceTests.cs" />
     <Compile Include="Fakes\FakeService.cs" />
     <Compile Include="Fakes\FakeServiceFactory.cs" />

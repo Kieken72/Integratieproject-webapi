@@ -6,7 +6,6 @@ using NUnit.Framework;
 namespace Leisurebooker.Business.Tests.Services
 {
     [TestFixture]
-    [Author("Seppe")]
     public class BranchServiceTests
     {
         private IService<Branch> _branches;

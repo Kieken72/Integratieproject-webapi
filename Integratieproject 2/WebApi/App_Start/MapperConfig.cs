@@ -11,6 +11,8 @@ namespace WebApi
             {
                 cfg.AddProfile<CompanyProfile>();
                 cfg.AddProfile<CityProfile>();
+                cfg.AddProfile<BranchProfile>();
+                cfg.AddProfile<OpeningHourProfile>();
             });
         }
     }

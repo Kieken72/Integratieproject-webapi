@@ -15,9 +15,10 @@ namespace Leisurebooker.DataAccess.EF.Repositories
 
         public override City Create(City entity)
         {
-            this.Context.Cities.Add(entity);
-            this.Context.SaveChanges();
-            return entity;
+            //this.Context.Cities.Add(entity);
+            //this.Context.SaveChanges();
+            //return entity;
+            throw new NotSupportedException();
         }
 
         public override City Read(int id, bool eager = false)
@@ -34,15 +35,17 @@ namespace Leisurebooker.DataAccess.EF.Repositories
 
         public override void Update(City entity)
         {
-            this.Context.Cities.Attach(entity);
-            this.Context.Entry(entity).State = EntityState.Modified;
-            this.Context.SaveChanges();
+            //this.Context.Cities.Attach(entity);
+            //this.Context.Entry(entity).State = EntityState.Modified;
+            //this.Context.SaveChanges();
+            throw new NotSupportedException();
         }
 
         public override void Delete(int id)
         {
-            var entity = Read(id);
-            this.Context.Cities.Remove(entity);
+            //var entity = Read(id);
+            //this.Context.Cities.Remove(entity);
+            throw new NotSupportedException();
         }
 
         public override IEnumerable<City> Read(bool eager = false)

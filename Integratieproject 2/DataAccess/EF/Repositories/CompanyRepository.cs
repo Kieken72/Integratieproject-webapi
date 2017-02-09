@@ -25,10 +25,13 @@ namespace Leisurebooker.DataAccess.EF.Repositories
             if (eager)
             {
                 return this.Context.Companies
+                    .Include(e=>e.City)
                     .Include(t => t.Branches)
                     .SingleOrDefault(t => t.Id == id);
             }
-            return this.Context.Companies.Find(id);
+            return this.Context.Companies
+                    .Include(e => e.City)
+                    .SingleOrDefault(t => t.Id == id);
         }
 
         public override IEnumerable<Company> Read(bool eager = false)
@@ -36,10 +39,12 @@ namespace Leisurebooker.DataAccess.EF.Repositories
             if (eager)
             {
                 return this.Context.Companies
+                    .Include(e=>e.City)
                     .Include(e => e.Branches)
                     .AsEnumerable();
             }
-            return this.Context.Companies.AsEnumerable();
+            return this.Context.Companies
+                    .Include(e => e.City).AsEnumerable();
         }
 
         public override void Update(Company entity)

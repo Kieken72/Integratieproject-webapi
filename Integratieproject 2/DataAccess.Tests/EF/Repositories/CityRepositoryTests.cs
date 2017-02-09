@@ -15,27 +15,18 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
     public class CityRepositoryTests
     {
         private IRepository<City> _cities;
-        private City _city;
         [SetUp]
         public void SetUp()
         {
             var context = new FakeContext();
 
             _cities = new CityRepository(context);
-
-            _city = new City()
-            {
-                PostalCode = "0000",
-                Name = "Test",
-                Province = "Test"
-            };
-           _city = _cities.Create(_city);
         }
 
         [Test]
-        public void ShouldCreateAndReadCity()
+        public void ShouldSearchReadCity()
         {
-            Assert.AreEqual(_city,_cities.Read(_city.Id));
+            Assert.AreEqual("2000",_cities.Read().FirstOrDefault(e=>e.PostalCode=="2000"));
         }
     }
 }

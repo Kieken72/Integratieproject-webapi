@@ -80,6 +80,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CityControllerTests.cs" />
+    <Compile Include="BranchControllerTests.cs" />
     <Compile Include="CompanyControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

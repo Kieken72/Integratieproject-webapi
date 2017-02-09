@@ -15,6 +15,7 @@ namespace Leisurebooker.DataAccess.Tests.Migrations
                         Email = c.String(),
                         Name = c.String(),
                         Surname = c.String(),
+                        Picture = c.String(),
                         Secret = c.String(),
                     })
                 .PrimaryKey(t => t.Id);

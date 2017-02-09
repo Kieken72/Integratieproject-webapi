@@ -15,6 +15,7 @@ namespace WebApi
 
             container.RegisterType<IService<Company>, CompanyService>(new HierarchicalLifetimeManager());
             container.RegisterType<IService<City>, CityService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IService<Branch>, BranchService>(new HierarchicalLifetimeManager());
 
             config.DependencyResolver = new UnityResolver(container);
         }
