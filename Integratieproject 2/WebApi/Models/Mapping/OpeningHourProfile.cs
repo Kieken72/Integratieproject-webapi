@@ -8,8 +8,8 @@ namespace WebApi.Models.Mapping
     {
         public OpeningHourProfile()
         {
-            this.CreateMap<OpeningHour, OpeningHourDto>();
-            this.CreateMap<OpeningHourDto, OpeningHour>();
+            this.CreateMap<OperationHours, OpeningHourDto>();
+            this.CreateMap<OpeningHourDto, OperationHours>();
         }
     }
 }

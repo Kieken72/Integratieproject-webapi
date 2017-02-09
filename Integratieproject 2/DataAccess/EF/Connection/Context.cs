@@ -22,7 +22,7 @@ namespace Leisurebooker.DataAccess.EF.Connection
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Space> Spaces { get; set; }
-        public DbSet<OpeningHour> OpeningHours { get; set; }
+        public DbSet<OperationHours> OpeningHours { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Review> Reviews { get; set; }
@@ -52,7 +52,7 @@ namespace Leisurebooker.DataAccess.EF.Connection
             modelBuilder.Entity<Branch>().HasKey(e => e.Id);
             modelBuilder.Entity<Room>().HasKey(e => e.Id);
             modelBuilder.Entity<Space>().HasKey(e => e.Id);
-            modelBuilder.Entity<OpeningHour>().HasKey(e => e.Id);
+            modelBuilder.Entity<OperationHours>().HasKey(e => e.Id);
             modelBuilder.Entity<Reservation>().HasKey(e => e.Id);
             modelBuilder.Entity<Message>().HasKey(e => e.Id);
             modelBuilder.Entity<Review>().HasKey(e => e.Id);

@@ -23,7 +23,7 @@ namespace Leisurebooker.Business.Domain
         public int CompanyId { get; set; }
 
         public ICollection<Room> Rooms { get; set; }
-        public ICollection<OpeningHour> OpeningHours { get; set; }
+        public ICollection<OperationHours> OpeningHours { get; set; }
         public ICollection<AdditionalInfo> AdditionalInfos { get; set; }
 
         public ICollection<Review> Reviews { get; set; }
