@@ -12,6 +12,7 @@ namespace WebApi.Models.Dto
         public string Street { get; set; }
         public string Number { get; set; }
         public string Box { get; set; }
+        public int CityId { get; set; }
         public virtual CityDto City { get; set; }
         public ICollection<BranchDto> Branches { get; set; }
     }
