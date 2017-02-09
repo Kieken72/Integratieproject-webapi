@@ -20,7 +20,7 @@ namespace WebApi.Models.Dto
         public int CompanyId { get; set; }
 
         //public ICollection<Room> Rooms { get; set; }
-        public ICollection<OpeningHourDto> OpeningHours { get; set; }
+        public ICollection<OperationHoursDto> OpeningHours { get; set; }
         //public ICollection<AdditionalInfo> AdditionalInfos { get; set; }
 
         //public ICollection<Message> Messages { get; set; }

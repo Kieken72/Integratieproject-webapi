@@ -1,12 +1,16 @@
-﻿using Leisurebooker.Business.Domain;
-using NodaTime;
+﻿using System;
+using Leisurebooker.Business.Domain;
 
 namespace WebApi.Models.Dto
 {
-    public class OpeningHourDto
+    public class OperationHoursDto
     {
-        public Day Day { get; set; }
-        public LocalTime OpenTime { get; set; }
-        public LocalTime CloseTime { get; set; }
+        public DayOfWeek Day { get; set; }
+        
+        public TimeSpan FromTime { get; set; }
+
+        public TimeSpan ToTime { get; set; }
+
+        public int BranchId { get; set; }
     }
 }

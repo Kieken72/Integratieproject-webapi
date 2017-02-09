@@ -83,6 +83,10 @@
     <Compile Include="Migrations\201702091224006_Initial.Designer.cs">
       <DependentUpon>201702091224006_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702091511097_Initial2.cs" />
+    <Compile Include="Migrations\201702091511097_Initial2.Designer.cs">
+      <DependentUpon>201702091511097_Initial2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -103,6 +107,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702091224006_Initial.resx">
       <DependentUpon>201702091224006_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702091511097_Initial2.resx">
+      <DependentUpon>201702091511097_Initial2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Choose>
