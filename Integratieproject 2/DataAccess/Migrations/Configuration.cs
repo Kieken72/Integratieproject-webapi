@@ -24,7 +24,7 @@ namespace Leisurebooker.DataAccess.Migrations
 
             context.Companies.AddRange(new List<Company>()
             {
-                new Company() {Name = "Involved", VATNumber = "BE0544984305",CityId=343,Street = ="Veldkant", Number = "33a"}
+                new Company() {Name = "Involved", VATNumber = "BE0544984305",CityId=343,Street = "Veldkant", Number = "33a"}
             });
 
         }
