@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
@@ -20,11 +19,11 @@ namespace WebApi.Models.Dto
 
         public int CompanyId { get; set; }
 
-        //public ICollection<Room> Rooms { get; set; }
+        public ICollection<RoomDto> Rooms { get; set; }
         public ICollection<OperationHoursDto> OpeningHours { get; set; }
-        //public ICollection<AdditionalInfo> AdditionalInfos { get; set; }
-
-        //public ICollection<Message> Messages { get; set; }
-        //public ICollection<Reservation> Reservations { get; set; }
+        public ICollection<AdditionalInfoDto> AdditionalInfos { get; set; }
+        public ICollection<ReviewDto> Reviews { get; set; }
+        public ICollection<MessageDto> Messages { get; set; }
+        public ICollection<ReservationDto> Reservations { get; set; }
     }
 }

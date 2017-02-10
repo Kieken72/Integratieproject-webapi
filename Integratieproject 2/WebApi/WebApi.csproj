@@ -140,14 +140,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Dto\AdditionalInfoDto.cs" />
     <Compile Include="Models\Dto\BranchDto.cs" />
     <Compile Include="Models\Dto\CityDto.cs" />
     <Compile Include="Models\Dto\CompanyDto.cs" />
+    <Compile Include="Models\Dto\MessageDto.cs" />
     <Compile Include="Models\Dto\OperationHoursDto.cs" />
+    <Compile Include="Models\Dto\ReservationDto.cs" />
+    <Compile Include="Models\Dto\ReviewDto.cs" />
+    <Compile Include="Models\Dto\RoomDto.cs" />
+    <Compile Include="Models\Dto\SpaceDto.cs" />
+    <Compile Include="Models\Mapping\AdditionalInfoProfile.cs" />
     <Compile Include="Models\Mapping\BranchProfile.cs" />
     <Compile Include="Models\Mapping\CityProfile.cs" />
     <Compile Include="Models\Mapping\CompanyProfile.cs" />
+    <Compile Include="Models\Mapping\MessageProfile.cs" />
     <Compile Include="Models\Mapping\OpeningHourProfile.cs" />
+    <Compile Include="Models\Mapping\ReservationProfile.cs" />
+    <Compile Include="Models\Mapping\ReviewProfile.cs" />
+    <Compile Include="Models\Mapping\RoomProfile.cs" />
+    <Compile Include="Models\Mapping\SpaceProfile.cs" />
     <Compile Include="Models\UnityResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Leisurebooker.Business.Domain
 {
     //Makkelijk zoekbaar op adress!!! Index? + Makkelijk zoekbaar van plek vrij!
+
     public class Branch : Entity
     {
         [Required]

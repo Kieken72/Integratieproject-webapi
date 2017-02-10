@@ -13,6 +13,12 @@ namespace WebApi
                 cfg.AddProfile<CityProfile>();
                 cfg.AddProfile<BranchProfile>();
                 cfg.AddProfile<OpeningHourProfile>();
+                cfg.AddProfile<AdditionalInfoProfile>();
+                cfg.AddProfile<MessageProfile>();
+                cfg.AddProfile<ReservationProfile>();
+                cfg.AddProfile<ReviewProfile>();
+                cfg.AddProfile<SpaceProfile>();
+                cfg.AddProfile<RoomProfile>();
             });
         }
     }

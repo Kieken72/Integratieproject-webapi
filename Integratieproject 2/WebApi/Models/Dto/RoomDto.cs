@@ -1,17 +1,15 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Leisurebooker.Business.Domain
+namespace WebApi.Models.Dto
 {
-    public class Room : Entity
+    public class RoomDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public bool Enabled { get; set; }
-
         public int Width { get; set; }
         public int Height { get; set; }
-
         public int BranchId { get; set; }
-        public ICollection<Space> Spaces { get; set; } 
-
+        public ICollection<SpaceDto> Spaces { get; set; }
     }
 }
