@@ -48,12 +48,12 @@ namespace WebApi.Controllers
         public IHttpActionResult GetByPostalCode(int postalcode)
         {
             var postalString = postalcode.ToString();
-            City entity = this._service.Get(e=>e.PostalCode == postalString).FirstOrDefault();
-            if (entity == null)
+            var entity = this._service.Get(e=>e.PostalCode == postalString).AsEnumerable();
+            if (!entity.Any())
             {
                 return NotFound();
             }
-            var dto = Mapper.Map<FullCityDto>(entity);
+            var dto = Mapper.Map<IEnumerable<FullCityDto>>(entity);
             return Ok(dto);
         }
 

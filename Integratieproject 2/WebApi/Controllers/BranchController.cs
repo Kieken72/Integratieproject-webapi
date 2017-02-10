@@ -15,10 +15,12 @@ namespace WebApi.Controllers
     public class BranchController : ApiController
     {
         private readonly IService<Branch> _service;
+        private readonly IService<City> _cityService;
 
-        public BranchController(IService<Branch> service)
+        public BranchController(IService<Branch> service, IService<City> cityService)
         {
             _service = service;
+            _cityService = cityService;
         }
 
         [Route("")]
@@ -47,8 +49,23 @@ namespace WebApi.Controllers
         public IHttpActionResult GetByPostalCode(int postalcode)
         {
             var postalString = postalcode.ToString();
-            var entity = this._service.Get(e=>e.City.PostalCode==postalString);
-            var dto = Mapper.Map<BranchDto>(entity);
+
+            var cities = _cityService.Get(e => e.PostalCode == postalString).ToList();
+            if (!cities.Any())
+            {
+                return NotFound();
+            }
+            var citiesId = cities.Select(city => city.Id).ToList();
+
+
+            var t = _service.Get();
+            var entity = this._service.Get(b=>citiesId.Contains(b.CityId)).AsEnumerable();
+
+            //var entity = this._service.Get(b => b.CityId == city.Id, collections:true);
+
+            var count = entity.Count();
+
+            var dto = Mapper.Map<IEnumerable<BranchDto>>(entity);
             return Ok(dto);
         }
 

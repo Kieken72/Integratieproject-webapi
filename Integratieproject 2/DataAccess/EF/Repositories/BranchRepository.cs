@@ -28,9 +28,12 @@ namespace Leisurebooker.DataAccess.EF.Repositories
                     .Include(e=>e.Rooms)
                     .Include(e=>e.OpeningHours)
                     .Include(e=>e.AdditionalInfos)
+                    .Include(e=>e.City)
                     .SingleOrDefault(t => t.Id == id);
             }
-            return this.Context.Branches.Find(id);
+            return this.Context.Branches
+                    .Include(e => e.City)
+                    .SingleOrDefault(t => t.Id == id);
         }
 
         public override void Update(Branch entity)
@@ -54,9 +57,11 @@ namespace Leisurebooker.DataAccess.EF.Repositories
                     .Include(e => e.Rooms)
                     .Include(e => e.OpeningHours)
                     .Include(e => e.AdditionalInfos)
+                    .Include(e=>e.City)
                     .AsEnumerable();
             }
-            return this.Context.Branches.AsEnumerable();
+            return this.Context.Branches
+                    .Include(e => e.City).AsEnumerable();
         }
     }
 }

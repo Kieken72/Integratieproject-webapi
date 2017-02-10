@@ -7,6 +7,7 @@ namespace WebApi.Models.Dto
 {
     public class CompanyDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string VATNumber { get; set; }
         public string Street { get; set; }

@@ -67,6 +67,7 @@
     <Compile Include="Migrations\201702091508475_Initial2.Designer.cs">
       <DependentUpon>201702091508475_Initial2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
