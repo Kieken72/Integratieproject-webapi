@@ -143,7 +143,7 @@
     <Compile Include="Models\Dto\BranchDto.cs" />
     <Compile Include="Models\Dto\CityDto.cs" />
     <Compile Include="Models\Dto\CompanyDto.cs" />
-    <Compile Include="Models\Dto\OpeningHourDto.cs" />
+    <Compile Include="Models\Dto\OperationHoursDto.cs" />
     <Compile Include="Models\Mapping\BranchProfile.cs" />
     <Compile Include="Models\Mapping\CityProfile.cs" />
     <Compile Include="Models\Mapping\CompanyProfile.cs" />

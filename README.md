@@ -23,6 +23,8 @@
 | [/companies](http://leisurebooker.azurewebsites.net/api/companies) | CompanyController | GET | ADMIN | :white_check_mark: |
 | [/company/{id}](http://leisurebooker.azurewebsites.net/api/companies/1) | CompanyController | GET | ADMIN / MANAGER | :white_check_mark: |
 | [/company/{company in body}](http://leisurebooker.azurewebsites.net/api/companies/) | CompanyController | POST | ADMIN | :white_check_mark: |
+| [/companies/{id}{company in body}](http://leisurebooker.azurewebsites.net/api/companies) | CompanyController | PUT | ADMIN | :white_check_mark: |
+| [/companies/{id}](http://leisurebooker.azurewebsites.net/api/companies) | CompanyController | DELETE | ADMIN | :white_check_mark: |
 
 
 ### Branches
@@ -32,4 +34,7 @@
 | [/branches](http://leisurebooker.azurewebsites.net/api/branches) | BranchesController | GET |  | :white_check_mark: |
 | [/branches/{id}](http://leisurebooker.azurewebsites.net/api/branches/1) | BranchesController | GET |  | :white_check_mark: |
 | [/branches/by-postal/{postalcode}](http://leisurebooker.azurewebsites.net/api/branches/by-postal/2000) | BranchesController | GET |  | :white_check_mark: |
+| [/branches/{branch in body}](http://leisurebooker.azurewebsites.net/api/branches/) | BranchesController | POST |  | :white_check_mark: |
+| [/branches/{id}{branch in body}](http://leisurebooker.azurewebsites.net/api/branches/) | BranchesController | PUT |  | :white_check_mark: |
+| [/branches/{id}](http://leisurebooker.azurewebsites.net/api/branches/) | BranchesController | DELETE |  | :white_check_mark: |
 

@@ -53,5 +53,21 @@ namespace Leisurebooker.Business.Domain
 
             this.Day = dayOfWeek;
         }
+
+        public bool IsOpen(int hours, int minutes)
+        {
+            if (hours < 0 || hours > 23)
+            {
+                throw new ArgumentOutOfRangeException(nameof(hours), "Hour must be in the range 0 to 23 inclusive");
+            }
+
+            if (minutes < 0 || minutes > 59)
+            {
+                throw new ArgumentOutOfRangeException(nameof(minutes), "Minutes must be in the range 0 to 59 inclusive");
+            }
+
+            var timespan = new TimeSpan(hours,minutes,0);
+            return timespan >= FromTime || timespan <= ToTime;
+        }
     }
 }

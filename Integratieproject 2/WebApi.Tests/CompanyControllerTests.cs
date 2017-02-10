@@ -8,6 +8,7 @@ using AutoMapper;
 using Leisurebooker.Business;
 using Leisurebooker.Business.Domain;
 using Leisurebooker.Business.Services;
+using Leisurebooker.Business.Tests.Fakes;
 using Moq;
 using NUnit.Framework;
 using WebApi.Controllers;
@@ -20,6 +21,7 @@ namespace WebApi.Tests
     public class CompanyControllerTests
     {
         private CompanyController _controller;
+        private ICollection<Company> _companies;
         [SetUp]
         public void SetUp()
         {
@@ -28,7 +30,32 @@ namespace WebApi.Tests
                 cfg.AddProfile<CompanyProfile>();
                 cfg.AddProfile<CityProfile>();
             });
-            _controller = new CompanyController(new CompanyService());
+            
+            var fakeService = new FakeService<Company>();
+            _companies = new List<Company>();
+            for (int j = 1; j <= 5; j++)
+            {
+                var company = new Company()
+                {
+                    Name = $"Company {j}",
+                    Street = "Streetname",
+                    Number = $"{j}",
+                    City = new City()
+                    {
+                        PostalCode = "2000",
+                        Name = "Antwerpen",
+                        Province = "Antwerpen"
+                    },
+                    VATNumber = $"BE012345678{j}"
+                
+                };
+                fakeService.Add(company);
+                _companies.Add(company);
+            }
+            //Setup Test objects
+
+            _controller = new CompanyController(fakeService);
+
 
 
         }
@@ -41,6 +68,7 @@ namespace WebApi.Tests
 
             var rResult = cResult as OkNegotiatedContentResult<IEnumerable<CompanyDto>>;
             Assert.IsNotEmpty(rResult.Content);
+            Assert.AreEqual(_companies.Count,rResult.Content.Count());
         }
 
         [Test]
@@ -49,10 +77,27 @@ namespace WebApi.Tests
             var cResult = _controller.Get(1);
             var rResult = cResult as OkNegotiatedContentResult<CompanyDto>;
             Assert.IsInstanceOf<OkNegotiatedContentResult<CompanyDto>>(cResult);
+            Assert.AreEqual(_companies.FirstOrDefault(e => e.Id==1).Id,rResult.Content.Id);
         }
 
         [Test]
         public void Post_AddsNewEntityToDatabaseAndOkResult()
+        {
+            var dto = new CompanyDto()
+            {
+                Name = "Bedrijf",
+                VATNumber = "BE0123456789",
+                CityId = 1,
+                Street = "Straat",
+                Number = "nummer"
+            };
+            var cResult = _controller.Post(dto);
+            var rResult = cResult as OkNegotiatedContentResult<CompanyDto>;
+            Assert.IsInstanceOf<OkNegotiatedContentResult<CompanyDto>>(cResult);
+        }
+
+        [Test]
+        public void Put_EditEntityToDatabaseAndOkResult()
         {
             var dto = new CompanyDto()
             {
