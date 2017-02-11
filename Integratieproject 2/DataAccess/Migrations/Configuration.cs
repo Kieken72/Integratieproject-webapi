@@ -24,11 +24,11 @@ namespace Leisurebooker.DataAccess.Migrations
 
             var user = new AuthAccount()
             {
-                UserName = "SuperPowerUser",
-                Email = "taiseer.joudeh@mymail.com",
+                UserName = "hello@leisurebooker.me",
+                Email = "hello@leisurebooker.me",
                 EmailConfirmed = true,
-                Name = "Taiseer",
-                Surname = "Joudeh"
+                Name = "Leisure",
+                Surname = "booker"
             };
 
             manager.Create(user, "MySuperP@ssword!");
