@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using Leisurebooker.Business.Domain;
+using Leisurebooker.DataAccess.EF.Connection;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Leisurebooker.DataAccess.Migrations
 {
@@ -17,6 +20,19 @@ namespace Leisurebooker.DataAccess.Migrations
 
         protected override void Seed(Leisurebooker.DataAccess.EF.Connection.Context context)
         {
+            var manager = new UserManager<AuthAccount>(new UserStore<AuthAccount>(ContextFactory.GetContext()));
+
+            var user = new AuthAccount()
+            {
+                UserName = "SuperPowerUser",
+                Email = "taiseer.joudeh@mymail.com",
+                EmailConfirmed = true,
+                Name = "Taiseer",
+                Surname = "Joudeh"
+            };
+
+            manager.Create(user, "MySuperP@ssword!");
+
             CitiesSeeder.Seed(context);
 
             context.Companies.AddRange(new List<Company>()

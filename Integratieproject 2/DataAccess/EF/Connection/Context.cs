@@ -1,14 +1,16 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Leisurebooker.Business.Domain;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Leisurebooker.DataAccess.EF.Connection
 {
     [DbConfigurationType(typeof(Configuration))]
-    public class Context : DbContext
+    public class Context : IdentityDbContext<AuthAccount>
     {
-        public Context() : base("LeisurebookerDB_EFCodeFirst_Ninja")
+        public Context() : base("LeisurebookerDB_EFCodeFirst_Ninja", throwIfV1Schema:false)
         {
+            Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer(new CheckAndMigrateDatabaseToLatestVersion<Context, Migrations.Configuration>());
         }
 
@@ -197,6 +199,11 @@ namespace Leisurebooker.DataAccess.EF.Connection
         public void SetOptionalProperties(DbModelBuilder modelBuilder)
         {
             //throw new System.NotImplementedException();
+        }
+
+        public static Context Create()
+        {
+            return new Context();
         }
     }
 }
