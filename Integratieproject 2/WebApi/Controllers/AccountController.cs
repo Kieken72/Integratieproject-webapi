@@ -57,7 +57,7 @@ namespace WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new AuthAccount()
+            var user = new Account()
             {
                 UserName = createUserModel.Username,
                 Email = createUserModel.Email,

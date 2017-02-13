@@ -4,7 +4,9 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using Leisurebooker.Business;
 using Leisurebooker.Business.Services;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security.OAuth;
 
@@ -22,7 +24,7 @@ namespace WebApi.Providers
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            using (AuthService _repo = new AuthService())
+            using (RealAuthService _repo = new RealAuthService())
             {
                 IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
 

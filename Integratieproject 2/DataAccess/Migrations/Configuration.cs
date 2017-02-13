@@ -20,9 +20,9 @@ namespace Leisurebooker.DataAccess.Migrations
 
         protected override void Seed(Leisurebooker.DataAccess.EF.Connection.Context context)
         {
-            var manager = new UserManager<AuthAccount>(new UserStore<AuthAccount>(ContextFactory.GetContext()));
+            var manager = new UserManager<Account>(new UserStore<Account>(ContextFactory.GetContext()));
 
-            var user = new AuthAccount()
+            var user = new Account()
             {
                 UserName = "hello@leisurebooker.me",
                 Email = "hello@leisurebooker.me",

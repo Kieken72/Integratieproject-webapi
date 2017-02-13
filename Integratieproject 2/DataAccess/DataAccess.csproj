@@ -91,7 +91,6 @@
     <Compile Include="EF\Connection\Initialiser.cs" />
     <Compile Include="EF\Connection\CheckAndMigrateDatabaseToLatestVersion.cs" />
     <Compile Include="EF\Repositories\AccountRepository.cs" />
-    <Compile Include="EF\Repositories\AuthRepository.cs" />
     <Compile Include="EF\Repositories\CityRepository.cs" />
     <Compile Include="EF\Repositories\BranchRepository.cs" />
     <Compile Include="EF\Repositories\CompanyRepository.cs" />
@@ -101,21 +100,9 @@
     <Compile Include="EF\Repositories\RoomRepository.cs" />
     <Compile Include="EF\Repositories\SpaceRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="Migrations\201702091353064_Initial.cs" />
-    <Compile Include="Migrations\201702091353064_Initial.Designer.cs">
-      <DependentUpon>201702091353064_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702091508475_Initial2.cs" />
-    <Compile Include="Migrations\201702091508475_Initial2.Designer.cs">
-      <DependentUpon>201702091508475_Initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702111828382_Account.cs" />
-    <Compile Include="Migrations\201702111828382_Account.Designer.cs">
-      <DependentUpon>201702111828382_Account.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702111844335_InitialAccounts.cs" />
-    <Compile Include="Migrations\201702111844335_InitialAccounts.Designer.cs">
-      <DependentUpon>201702111844335_InitialAccounts.cs</DependentUpon>
+    <Compile Include="Migrations\201702130923431_Initial.cs" />
+    <Compile Include="Migrations\201702130923431_Initial.Designer.cs">
+      <DependentUpon>201702130923431_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -133,17 +120,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702091353064_Initial.resx">
-      <DependentUpon>201702091353064_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702091508475_Initial2.resx">
-      <DependentUpon>201702091508475_Initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702111828382_Account.resx">
-      <DependentUpon>201702111828382_Account.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702111844335_InitialAccounts.resx">
-      <DependentUpon>201702111844335_InitialAccounts.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702130923431_Initial.resx">
+      <DependentUpon>201702130923431_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Http.Routing;
 using Leisurebooker.Business;
 using Leisurebooker.Business.Domain;
+using Leisurebooker.Business.Services;
 
 namespace WebApi.Models
 {
@@ -21,7 +22,7 @@ namespace WebApi.Models
             _AppUserManager = appUserManager;
         }
 
-        public UserReturnModel Create(AuthAccount appUser)
+        public UserReturnModel Create(Account appUser)
         {
             return new UserReturnModel
             {

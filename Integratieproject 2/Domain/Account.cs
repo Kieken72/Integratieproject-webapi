@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Leisurebooker.Business.Domain
 {
-    public class Account : Entity
+    public class Account : IdentityUser
     {
-        public string Email { get; set; }
+        
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Picture { get; set; }
-
-        public string Secret { get; set; }
 
         public ICollection<Branch> Favorites { get; set; }
         public ICollection<Message> Messages { get; set; }

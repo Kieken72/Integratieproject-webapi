@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Http;
 using Leisurebooker.Business;
+using Leisurebooker.Business.Services;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.OAuth;
 using Owin;

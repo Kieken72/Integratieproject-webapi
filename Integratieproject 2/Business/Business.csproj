@@ -99,12 +99,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthService.cs" />
+    <Compile Include="Services\AuthService.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\CityService.cs" />
     <Compile Include="Services\BranchService.cs" />
-    <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\CompanyService.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

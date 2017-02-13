@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 namespace Leisurebooker.DataAccess.EF.Connection
 {
     [DbConfigurationType(typeof(Configuration))]
-    public class Context : IdentityDbContext<AuthAccount>
+    public class Context : IdentityDbContext<Account>
     {
         public Context() : base("LeisurebookerDB_EFCodeFirst_Ninja", throwIfV1Schema:false)
         {
@@ -30,7 +30,7 @@ namespace Leisurebooker.DataAccess.EF.Connection
         public DbSet<Review> Reviews { get; set; }
         public DbSet<AdditionalInfo> AdditionalInfos { get; set; }
         public DbSet<City> Cities { get; set; }
-        public DbSet<Account> Accounts { get; set; }
+        //public DbSet<Account> Accounts { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
