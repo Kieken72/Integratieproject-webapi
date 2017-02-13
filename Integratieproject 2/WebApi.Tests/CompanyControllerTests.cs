@@ -107,6 +107,7 @@ namespace WebApi.Tests
                 Street = "Straat",
                 Number = "nummer"
             };
+            //put?
             var cResult = _controller.Post(dto);
             var rResult = cResult as OkNegotiatedContentResult<CompanyDto>;
             Assert.IsInstanceOf<OkNegotiatedContentResult<CompanyDto>>(cResult);

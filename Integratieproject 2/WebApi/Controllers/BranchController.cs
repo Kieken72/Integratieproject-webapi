@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
 using Leisurebooker.Business;
@@ -70,20 +67,35 @@ namespace WebApi.Controllers
         }
 
 
+        [Route("")]
+        //!!Authorized as manager from company
         // POST: api/branches
         public IHttpActionResult Post([FromBody]BranchDto value)
         {
+            var entity = Mapper.Map<Branch>(value);
+            entity = this._service.Add(entity);
+            value = Mapper.Map<BranchDto>(entity);
+            return Ok(value);
+
+        }
+
+        [Route("{id}")]
+        //!!Authorized as manager from this company
+        // PUT: api/branches/5
+        public IHttpActionResult Put(int id, [FromBody]BranchDto value)
+        {
+            var entity = Mapper.Map<Branch>(value);
+            this._service.Change(entity);
             return Ok();
         }
 
-        // PUT: api/branches/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
+        [Route("{id}")]
+        //!!Authorized only as admin
         // DELETE: api/branches/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            this._service.Remove(id);
+            return Ok();
         }
     }
 }

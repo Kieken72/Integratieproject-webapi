@@ -21,6 +21,7 @@ namespace WebApi.Tests
             Mapper.Initialize(cfg =>
             {
                 cfg.AddProfile<BranchProfile>();
+                cfg.AddProfile<CityProfile>();
             });
             _controller = new BranchController(new BranchService(), new CityService());
         }
@@ -78,18 +79,24 @@ namespace WebApi.Tests
             Assert.AreEqual(entity.Name, rResult.Content.Name);
         }
 
-        //[Test]
-        //public void Put_BadRequest()
-        //{
-        //    var cResult = _controller.Put(null);
-        //    Assert.IsInstanceOf<BadRequestResult>(cResult);
-        //}
-        //[Test]
-        //public void Delete_BadRequest()
-        //{
-        //    var cResult = _controller.Delete(0);
-        //    Assert.IsInstanceOf<BadRequestResult>(cResult);
-        //}
+        [Test]
+        public void Put_UpdateBranchToDatabase()
+        {
+            var bResult = _controller.Get(1);
+            var rResult = bResult as OkNegotiatedContentResult<BranchDto>;
+            var b = rResult.Content;
+            b.Name = "Update";
+            var cResult = _controller.Put(b.Id,b);
+            rResult = cResult as OkNegotiatedContentResult<BranchDto>;
+            Assert.IsInstanceOf<OkNegotiatedContentResult<BranchDto>>(cResult);
+            Assert.AreEqual(b.Name,rResult.Content.Name);
+        }
+        [Test]
+        public void Delete_BadRequest()
+        {
+            var cResult = _controller.Delete(0);
+            Assert.IsInstanceOf<OkResult>(cResult);
+        }
 
     }
 }
