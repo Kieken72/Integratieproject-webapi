@@ -9,6 +9,7 @@ namespace Leisurebooker.Business.Domain
         public DateTime DateTime { get; set; }
         public bool Public { get; set; }
 
+        public int ReservationId { get; set; }
         public Reservation Reservation { get; set; }
         public int BranchId { get; set; }
         public string UserId { get; set; }

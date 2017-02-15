@@ -183,9 +183,10 @@ namespace Leisurebooker.DataAccess.EF.Connection
 
         private static void SetOneToOne(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Review>()
-                .HasRequired(e => e.Reservation)
-                .WithRequiredPrincipal(e => e.Review);
+            modelBuilder.Entity<Reservation>()
+                .HasOptional(e => e.Review)
+                .WithRequired(e=>e.Reservation);
+            
 
             
 

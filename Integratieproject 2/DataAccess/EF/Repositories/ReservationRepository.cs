@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
 using Leisurebooker.Business.Domain;
 using Leisurebooker.DataAccess.EF.Connection;
 
@@ -15,27 +14,46 @@ namespace Leisurebooker.DataAccess.EF.Repositories
 
         public override Reservation Create(Reservation entity)
         {
-            throw new NotImplementedException();
+            this.Context.Reservations.Add(entity);
+            this.Context.SaveChanges();
+            return entity;
         }
 
         public override Reservation Read(int id, bool eager = false)
         {
-            throw new NotImplementedException();
+            if (eager)
+            {
+                return this.Context.Reservations
+                    .Include(e => e.Messages)
+                    .Include(e=>e.Review)
+                    .SingleOrDefault(t => t.Id == id);
+            }
+            return this.Context.Reservations.Find(id);
         }
 
         public override void Update(Reservation entity)
         {
-            throw new NotImplementedException();
+            this.Context.Reservations.Attach(entity);
+            this.Context.Entry(entity).State = EntityState.Modified;
+            this.Context.SaveChanges();
         }
 
         public override void Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = Read(id);
+            this.Context.Reservations.Remove(entity);
         }
 
         public override IEnumerable<Reservation> Read(bool eager = false)
         {
-            throw new NotImplementedException();
+            if (eager)
+            {
+                return this.Context.Reservations
+                    .Include(e => e.Messages)
+                    .Include(e => e.Review)
+                    .AsEnumerable();
+            }
+            return this.Context.Reservations.AsEnumerable();
         }
     }
 }

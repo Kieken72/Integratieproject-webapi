@@ -10,6 +10,9 @@ namespace WebApi.Models.Mapping
         {
             this.CreateMap<Branch, BranchDto>();
             this.CreateMap<BranchDto, Branch>();
+
+            this.CreateMap<Branch, CheckBranchDto>();
+            this.CreateMap<CheckBranchDto, Branch>();
         }
     }
 }

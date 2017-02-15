@@ -7,6 +7,8 @@
 * [City](#city)
 * [Company](#company)
 * [Branches](#branches)
+* [Accounts](#accounts)
+
 
 ### City
 
@@ -38,3 +40,11 @@
 | [/branches/{id}{branch in body}](http://leisurebooker.azurewebsites.net/api/branches/) | BranchesController | PUT |  | :white_check_mark: |
 | [/branches/{id}](http://leisurebooker.azurewebsites.net/api/branches/) | BranchesController | DELETE |  | :white_check_mark: |
 
+
+### Accounts
+
+| URI | Controller | VERB | Role | Test |
+| --- | --- | --- | --- | --- |
+| [/accounts/create](http://leisurebooker.azurewebsites.net/api/accounts/create) | AccountController | POST |  |  |
+| [/token](http://leisurebooker.azurewebsites.net/api/token) | Bearer | POST |  USER |  |
+Todo: External Providers 

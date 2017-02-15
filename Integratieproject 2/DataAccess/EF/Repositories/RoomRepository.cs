@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Leisurebooker.Business.Domain;
 using Leisurebooker.DataAccess.EF.Connection;
 
@@ -15,27 +14,44 @@ namespace Leisurebooker.DataAccess.EF.Repositories
 
         public override Room Create(Room entity)
         {
-            throw new NotImplementedException();
+            this.Context.Rooms.Add(entity);
+            this.Context.SaveChanges();
+            return entity;
         }
 
         public override Room Read(int id, bool eager = false)
         {
-            throw new NotImplementedException();
+            if (eager)
+            {
+                return this.Context.Rooms
+                    .Include(e => e.Spaces)
+                    .SingleOrDefault(e => e.Id == id);
+            }
+            return this.Context.Rooms.Find(id);
         }
 
         public override void Update(Room entity)
         {
-            throw new NotImplementedException();
+            this.Context.Rooms.Attach(entity);
+            this.Context.Entry(entity).State =EntityState.Modified;
+            this.Context.SaveChanges();
         }
 
         public override void Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = Read(id);
+            this.Context.Rooms.Remove(entity);
         }
 
         public override IEnumerable<Room> Read(bool eager = false)
         {
-            throw new NotImplementedException();
+            if (eager)
+            {
+                return this.Context.Rooms
+                    .Include(e => e.Spaces)
+                    .AsEnumerable();
+            }
+            return this.Context.Rooms.AsEnumerable();
         }
     }
 }

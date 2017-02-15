@@ -23,7 +23,7 @@ namespace WebApi.Tests
                 cfg.AddProfile<BranchProfile>();
                 cfg.AddProfile<CityProfile>();
             });
-            _controller = new BranchController(new BranchService(), new CityService());
+            _controller = new BranchController(new BranchService(), new CityService(), new SpaceService());
         }
         [Test]
         public void Get_ReturnsMultipleBranches()

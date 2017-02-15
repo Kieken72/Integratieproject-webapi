@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Linq.SqlClient;
 using System.Linq;
 using System.Web.Http;
 using AutoMapper;
 using Leisurebooker.Business;
 using Leisurebooker.Business.Domain;
+using Leisurebooker.Business.Services;
 using WebApi.Models.Dto;
 
 namespace WebApi.Controllers
@@ -13,11 +16,13 @@ namespace WebApi.Controllers
     {
         private readonly IService<Branch> _service;
         private readonly IService<City> _cityService;
+        private readonly IService<Space> _spaceService;
 
-        public BranchController(IService<Branch> service, IService<City> cityService)
+        public BranchController(IService<Branch> service, IService<City> cityService, IService<Space> spaceService )
         {
             _service = service;
             _cityService = cityService;
+            _spaceService = spaceService;
         }
 
         [Route("")]
@@ -54,16 +59,88 @@ namespace WebApi.Controllers
             }
             var citiesId = cities.Select(city => city.Id).ToList();
 
+            var entities = this._service.Get(b=>citiesId.Contains(b.CityId)).AsEnumerable();
 
-            var t = _service.Get();
-            var entity = this._service.Get(b=>citiesId.Contains(b.CityId)).AsEnumerable();
-
-            //var entity = this._service.Get(b => b.CityId == city.Id, collections:true);
-
-            var count = entity.Count();
-
-            var dto = Mapper.Map<IEnumerable<BranchDto>>(entity);
+            var dto = Mapper.Map<IEnumerable<BranchDto>>(entities);
             return Ok(dto);
+        }
+
+        [Route("available/{postalcode}")]
+        [HttpGet]
+        public IHttpActionResult IsPlaceInBranches(int postalcode, [FromUri] AvailableBranchUri parameters)
+        {
+            var postalString = postalcode.ToString();
+
+            var cities = _cityService.Get(e => e.PostalCode == postalString).ToList();
+            if (!cities.Any())
+            {
+                return NotFound();
+            }
+            var citiesId = cities.Select(city => city.Id).ToList();
+            var entities = this._service.Get(b => citiesId.Contains(b.CityId), collections:true).AsEnumerable();
+
+            var branches = new List<CheckBranchDto>();
+            var date = new DateTime(parameters.Year, parameters.Month, parameters.Day, parameters.Hours, parameters.Minutes,0);
+            foreach (var entity in entities)
+            {
+                var branch = Mapper.Map<CheckBranchDto>(entity);
+                var operationHour = entity.OpeningHours.FirstOrDefault(e => e.Day == date.DayOfWeek);
+                if (operationHour == null)
+                {
+                    branch.Available = false;
+                    branch.Message = CheckMessage.Closed;
+                    branches.Add(branch);
+                    continue;
+                }
+                if (!operationHour.IsOpen(date.Hour, date.Minute))
+                {
+                    branch.Available = false;
+                    branch.Message = CheckMessage.Closed;
+                    branches.Add(branch);
+                    continue;
+                }
+                var roomIds = entity.Rooms.Select(room=>room.Id).ToList();
+                branch.Available = true;
+                branch.Message = CheckMessage.Free;
+                branches.Add(branch);
+                var spaces = _spaceService.Get(e=> roomIds.Contains(e.RoomId), collections:true);
+                //var freeSpaces = new List<Space>();
+                //foreach (var space in spaces)
+                //{
+                //    //MAX HOURS?
+                //    var reservations =
+                //        space.Reservations.Where(
+                //            e =>
+                //                e.DateTime.Year == date.Year && e.DateTime.Month == date.Month &&
+                //                e.DateTime.Day == date.Day && e.DateTime.Hour < date.Hour+3).ToList();
+
+                //    var isAvailable = true;
+                //    foreach (var reservation in reservations)
+                //    {
+                //        var dateTimeRes = reservation.DateTime;
+                //        var dateEndTimeRes = reservation.EndDateTime;
+                //        //if (hours < 0 || hours > 23) throw bad
+
+                //        if (date.Ticks > dateTimeRes.Ticks && date.Ticks < dateEndTimeRes.Ticks)
+                //        {
+                //            isAvailable = false;
+                //        }
+                //        else
+                //        {
+                //            continue;
+                //        }
+                //     }
+
+                //    var reservations2 = reservations.Where(t =>
+                //        SqlMethods.DateDiffMinute(date, t.EndDateTime) < 0 && SqlMethods.DateDiffMinute(date,t.DateTime) > 120);
+                //    var i = reservations2.Count();
+                //    freeSpaces.Add(space);
+                //}
+
+            }
+
+            
+            return Ok(branches);
         }
 
 

@@ -10,6 +10,7 @@ namespace WebApi.Models.Dto
         public string Name { get; set; }
         public string Province { get; set; }
     }
+
     public class FullCityDto
     {
         public int Id { get; set; }
