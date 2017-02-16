@@ -67,7 +67,7 @@ namespace Leisurebooker.Business.Domain
             }
 
             var timespan = new TimeSpan(hours,minutes,0);
-            return timespan >= FromTime || timespan <= ToTime;
+            return timespan >= FromTime && timespan <= ToTime;
         }
     }
 }

@@ -103,39 +103,54 @@ namespace WebApi.Controllers
                 branch.Available = true;
                 branch.Message = CheckMessage.Free;
                 branches.Add(branch);
-                var spaces = _spaceService.Get(e=> roomIds.Contains(e.RoomId), collections:true);
-                //var freeSpaces = new List<Space>();
-                //foreach (var space in spaces)
-                //{
-                //    //MAX HOURS?
-                //    var reservations =
-                //        space.Reservations.Where(
-                //            e =>
-                //                e.DateTime.Year == date.Year && e.DateTime.Month == date.Month &&
-                //                e.DateTime.Day == date.Day && e.DateTime.Hour < date.Hour+3).ToList();
+                var spaces = _spaceService.Get(e=> roomIds.Contains(e.RoomId), e=>(e.MinPersons <= parameters.Amount && e.Persons <= parameters.Amount), collections:true);
 
-                //    var isAvailable = true;
-                //    foreach (var reservation in reservations)
-                //    {
-                //        var dateTimeRes = reservation.DateTime;
-                //        var dateEndTimeRes = reservation.EndDateTime;
-                //        //if (hours < 0 || hours > 23) throw bad
 
-                //        if (date.Ticks > dateTimeRes.Ticks && date.Ticks < dateEndTimeRes.Ticks)
-                //        {
-                //            isAvailable = false;
-                //        }
-                //        else
-                //        {
-                //            continue;
-                //        }
-                //     }
+                var freeSpaces = new List<Space>();
+                foreach (var space in spaces)
+                {
+                    //MAX HOURS?
+                    var reservations =
+                        space.Reservations.Where(
+                            e =>
+                                e.DateTime.Year == date.Year && e.DateTime.Month == date.Month &&
+                                e.DateTime.Day == date.Day && e.DateTime.Hour < date.Hour + 3).ToList();
 
-                //    var reservations2 = reservations.Where(t =>
-                //        SqlMethods.DateDiffMinute(date, t.EndDateTime) < 0 && SqlMethods.DateDiffMinute(date,t.DateTime) > 120);
-                //    var i = reservations2.Count();
-                //    freeSpaces.Add(space);
-                //}
+                    var isAvailable = true;
+                    foreach (var reservation in reservations)
+                    {
+                        var dateTimeRes = reservation.DateTime;
+                        var dateEndTimeRes = reservation.EndDateTime;
+                        //if (hours < 0 || hours > 23) throw bad
+
+                        if (date.TimeOfDay > dateTimeRes.TimeOfDay && date.TimeOfDay < dateEndTimeRes.TimeOfDay)
+                        {
+                            isAvailable = false;
+                        }
+                        else if ((date.AddHours(2)).TimeOfDay > dateTimeRes.TimeOfDay &&
+                                 (date.AddHours(2)).TimeOfDay < dateEndTimeRes.TimeOfDay)
+                        {
+                            isAvailable = false;
+                        }
+                    }
+                    if (isAvailable)
+                    {
+                        freeSpaces.Add(space);
+                    }
+                    
+                }
+                if (freeSpaces.Any())
+                {
+                    branch.Available = true;
+                    branch.Message = CheckMessage.Free;
+                    
+                }
+                else
+                {
+                    branch.Available = false;
+                    branch.Message = CheckMessage.Full;
+                }
+                branches.Add(branch);
 
             }
 
