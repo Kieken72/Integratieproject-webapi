@@ -24,9 +24,15 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
         {
             var context = new FakeContext();
 
-            _companies = new CompanyRepository(context);
+            _companies = new FakeRepository<Company>();
 
-            _city = new CityRepository().Read().First();
+            _city = new City()
+            {
+                Id = 1,
+                Name = "Antwerpen",
+                PostalCode = "2000",
+                Province = "Antwerpen"
+            };
             _company = new Company()
             {
                 Street = "Groenplaats",
@@ -35,7 +41,16 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
                 Name = "Fictief bedrijf",
                 VATNumber = "Fictief Nummer"
             };
+            var company2 = new Company()
+            {
+                Street = "Groenplaats",
+                Number = "1",
+                CityId = _city.Id,
+                Name = "Fictief bedrijf",
+                VATNumber = "Fictief Nummer"
+            };
             _company = _companies.Create(_company);
+            _companies.Create(company2);
         }
 
         [Test]
@@ -47,17 +62,7 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
         [Test]
         public void ShouldCreateAndReadMultipleEntities()
         {
-            var company = new Company()
-            {
-                Street = "Groenplaats",
-                Number = "1",
-                CityId = _city.Id,
-                Name = "Fictief bedrijf",
-                VATNumber = "Fictief Nummer"
-            };
-            company = _companies.Create(company);
-
-            Assert.AreEqual(2,this._companies.Read().Count(e => e.Id==company.Id||e.Id==_company.Id));
+            Assert.AreEqual(2,this._companies.Read().Count());
         }
 
         [Test]
@@ -67,6 +72,7 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
             _companies.Update(_company);
             
             Assert.AreEqual(_company,_companies.Read(_company.Id));
+            Assert.AreEqual(_company.Name, _companies.Read(_company.Id).Name);
         }
 
         [Test]

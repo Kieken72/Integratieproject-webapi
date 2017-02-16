@@ -18,15 +18,48 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
         [SetUp]
         public void SetUp()
         {
-            var context = new FakeContext();
+            //var context = new FakeContext();
 
-            _cities = new CityRepository(context);
+            _cities = new FakeRepository<City>();
+
+            _cities.Create(new City()
+            {
+                Id=1,
+                Name = "Antwerpen",
+                Province = "Antwerpen",
+                PostalCode = "2000"
+            });
+            _cities.Create(new City()
+            {
+                Id = 2,
+                Name = "Duffel",
+                Province = "Antwerpen",
+                PostalCode = "2570"
+            });
+            _cities.Create(new City()
+            {
+                Id = 3,
+                Name = "Kontich",
+                Province = "Antwerpen",
+                PostalCode = "2550"
+            });
         }
 
         [Test]
-        public void ShouldSearchReadCity()
+        public void ShouldSearchByPostalAndReturnCity()
         {
-            Assert.AreEqual("2000",_cities.Read().FirstOrDefault(e=>e.PostalCode=="2000"));
+            Assert.AreEqual("2000",_cities.Read().FirstOrDefault(e=>e.PostalCode=="2000").PostalCode);
+        }
+
+        [Test]
+        public void ShouldSearchById()
+        {
+            Assert.AreEqual(1, _cities.Read(1).Id);
+        }
+        [Test]
+        public void ShouldReadMultipleEntities()
+        {
+            Assert.AreEqual(3, _cities.Read().Count());
         }
     }
 }

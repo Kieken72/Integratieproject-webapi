@@ -1,7 +1,6 @@
-﻿
+﻿using System;
 using System.Linq;
 using Leisurebooker.Business.Domain;
-using Leisurebooker.DataAccess.EF.Repositories;
 using Leisurebooker.DataAccess.Tests.Fakes;
 using NUnit.Framework;
 
@@ -20,16 +19,24 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
         [SetUp]
         public void Setup()
         {
-            var context = new FakeContext();
+            //var context = new FakeContext();
 
-            _branches = new BranchRepository(context);
-            _companies = new CompanyRepository(context);
-            var cities = new CityRepository(context);
+            _branches = new FakeRepository<Branch>();
+            _companies = new FakeRepository<Company>();
+            //var cities = new FakeRepository<City>();
 
-            _city = cities.Read().First();
+            
+            _city = new City()
+            {
+                Id=1,
+                Name = "Antwerpen",
+                PostalCode = "2000",
+                Province = "Antwerpen"
+            };
             
             _company = new Company()
             {
+                Id = 1,
                 Street = "Groenplaats",
                 Number = "1",
                 CityId = _city.Id,
@@ -39,6 +46,7 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
             _company=_companies.Create(_company);
             _branch = new Branch()
             {
+                Id = 1,
                 Name = "Fictief Filiaal",
                 Email = "test@test.be",
                 Street = "Groenplaats",
@@ -47,7 +55,19 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
                 CompanyId = _company.Id
 
             };
+            var branch2 = _branch = new Branch()
+            {
+                Id = 2,
+                Name = "Fictief Filiaal 2",
+                Email = "test2@test.be",
+                Street = "Groenplaats",
+                Number = "3",
+                CityId = _city.Id,
+                CompanyId = _company.Id
+
+            };
             _branch = _branches.Create(_branch);
+            _branches.Create(branch2);
         }
 
         [Test]
@@ -57,29 +77,27 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
         }
 
         [Test]
-        public void ShouldCreateAndReadMultipleEntities()
+        public void ShouldReadMultipleEntities()
         {
-            var branch = new Branch()
-            {
-                Name = "Fictief Filiaal 2",
-                Email = "test@test.be",
-                CompanyId = _company.Id,
-                Street = "Groenplaats",
-                Number = "1",
-                CityId = _city.Id
-            };
-            branch =  _branches.Create(branch);
-            Assert.AreEqual(2, this._branches.Read().Count(e => e.Id == _branch.Id || e.Id == branch.Id));
+            Assert.AreEqual(2, this._branches.Read().Count());
         }
 
         [Test]
         public void ShouldUpdateBranch()
         {
-            _branch.Email = "test@test.be";
+            _branch.Email = "newTest@test.be";
             _branch.PhoneNumber = "009181856";
             _branches.Update(_branch);
 
             Assert.AreEqual(_branch, _branches.Read(_branch.Id));
+            Assert.AreEqual(_branch.Email, _branches.Read(_branch.Id).Email);
+        }
+
+        [Test]
+        public void ShouldDeleteEntity()
+        {
+            _branches.Delete(_branch.Id);
+            Assert.Throws<ArgumentOutOfRangeException>(delegate { _branches.Read(_branch.Id); });
         }
 
 
