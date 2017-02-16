@@ -79,6 +79,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AccountControllerTests.cs" />
     <Compile Include="CityControllerTests.cs" />
     <Compile Include="BranchControllerTests.cs" />
     <Compile Include="CompanyControllerTests.cs" />
