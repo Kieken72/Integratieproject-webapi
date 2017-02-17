@@ -100,17 +100,9 @@
     <Compile Include="EF\Repositories\RoomRepository.cs" />
     <Compile Include="EF\Repositories\SpaceRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="Migrations\201702151008369_Initial.cs" />
-    <Compile Include="Migrations\201702151008369_Initial.Designer.cs">
-      <DependentUpon>201702151008369_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702151013041_Initial1.cs" />
-    <Compile Include="Migrations\201702151013041_Initial1.Designer.cs">
-      <DependentUpon>201702151013041_Initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702171248190_Picture.cs" />
-    <Compile Include="Migrations\201702171248190_Picture.Designer.cs">
-      <DependentUpon>201702171248190_Picture.cs</DependentUpon>
+    <Compile Include="Migrations\201702171311588_Ini.cs" />
+    <Compile Include="Migrations\201702171311588_Ini.Designer.cs">
+      <DependentUpon>201702171311588_Ini.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -128,14 +120,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702151008369_Initial.resx">
-      <DependentUpon>201702151008369_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702151013041_Initial1.resx">
-      <DependentUpon>201702151013041_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702171248190_Picture.resx">
-      <DependentUpon>201702171248190_Picture.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702171311588_Ini.resx">
+      <DependentUpon>201702171311588_Ini.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
