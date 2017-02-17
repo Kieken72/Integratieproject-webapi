@@ -108,6 +108,10 @@
     <Compile Include="Migrations\201702151013041_Initial1.Designer.cs">
       <DependentUpon>201702151013041_Initial1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702171248190_Picture.cs" />
+    <Compile Include="Migrations\201702171248190_Picture.Designer.cs">
+      <DependentUpon>201702171248190_Picture.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository.cs" />
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702151013041_Initial1.resx">
       <DependentUpon>201702151013041_Initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702171248190_Picture.resx">
+      <DependentUpon>201702171248190_Picture.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

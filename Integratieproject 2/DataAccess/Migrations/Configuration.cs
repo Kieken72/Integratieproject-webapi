@@ -53,6 +53,7 @@ namespace Leisurebooker.DataAccess.Migrations
                             Name = "Filiaal Kontich",
                             Street = "Vlierenpaal",
                             Number = "1",
+                            Picture = "Content/bowling.jpg",
                             CityId = 342,
                             OpeningHours = new List<OperationHours>()
                             {
