@@ -49,6 +49,18 @@ namespace WebApi.Controllers
             return NotFound();
 
         }
+
+        [Route("/")]
+        public async Task<IHttpActionResult> GetUser()
+        {
+            var user = await this.AppUserManager.FindByIdAsync(User.Identity.GetUserId());
+            if (user != null)
+            {
+                return Ok(this.TheModelFactory.Create(user));
+            }
+            return NotFound();
+        }
+
         [Route("create")]
         public async Task<IHttpActionResult> CreateUser(CreateUserBindingModel createUserModel)
         {
