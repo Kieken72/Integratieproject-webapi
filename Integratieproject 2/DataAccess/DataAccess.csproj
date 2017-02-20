@@ -100,13 +100,9 @@
     <Compile Include="EF\Repositories\RoomRepository.cs" />
     <Compile Include="EF\Repositories\SpaceRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="Migrations\201702171311588_Ini.cs" />
-    <Compile Include="Migrations\201702171311588_Ini.Designer.cs">
-      <DependentUpon>201702171311588_Ini.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702200912349_Tekst.cs" />
-    <Compile Include="Migrations\201702200912349_Tekst.Designer.cs">
-      <DependentUpon>201702200912349_Tekst.cs</DependentUpon>
+    <Compile Include="Migrations\201702200955051_Initial.cs" />
+    <Compile Include="Migrations\201702200955051_Initial.Designer.cs">
+      <DependentUpon>201702200955051_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -124,11 +120,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702171311588_Ini.resx">
-      <DependentUpon>201702171311588_Ini.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702200912349_Tekst.resx">
-      <DependentUpon>201702200912349_Tekst.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201702200955051_Initial.resx">
+      <DependentUpon>201702200955051_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

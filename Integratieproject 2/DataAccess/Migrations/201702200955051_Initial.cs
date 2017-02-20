@@ -3,7 +3,7 @@ namespace Leisurebooker.DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Ini : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -12,7 +12,7 @@ namespace Leisurebooker.DataAccess.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Type = c.Int(nullable: false),
+                        Type = c.Byte(nullable: false),
                         Value = c.String(),
                         BranchId = c.Int(nullable: false),
                     })
@@ -32,6 +32,7 @@ namespace Leisurebooker.DataAccess.Migrations
                         CityId = c.Int(nullable: false),
                         PhoneNumber = c.String(),
                         Picture = c.String(),
+                        Description = c.String(),
                         Email = c.String(nullable: false),
                         CompanyId = c.Int(nullable: false),
                     })
