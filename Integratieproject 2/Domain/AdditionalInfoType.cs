@@ -1,11 +1,13 @@
 ﻿namespace Leisurebooker.Business.Domain
 {
-    public enum AdditionalInfoType
+    public enum AdditionalInfoType : byte
     {
         PaymentMethod,
         Facility,
         Accessibility,
-        Atmosphere
+        Atmosphere,
+        Image,
+        Video
 
     }
 }
