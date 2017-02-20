@@ -37,8 +37,8 @@ namespace Leisurebooker.DataAccess.Migrations
             manager.Create(user, "MySuperP@ssword!");
             var id = manager.FindByEmail("hello@leisurebooker.me").Id;
             var date = DateTime.Now;
-            context.Companies.AddRange(new List<Company>()
-            {
+            context.Companies.Add(
+            
                 new Company()
                 {
                     Name = "Wima",
@@ -119,7 +119,6 @@ namespace Leisurebooker.DataAccess.Migrations
                                             {
                                                 new Reservation()
                                                 {
-                                                    Id =1,
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
@@ -127,14 +126,12 @@ namespace Leisurebooker.DataAccess.Migrations
 
                                                 },new Reservation()
                                                 {
-                                                    Id=2,
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,11,30,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     AccountId = id
                                                 },new Reservation()
                                                 {
-                                                    Id=3,
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,13,30,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
@@ -205,20 +202,20 @@ namespace Leisurebooker.DataAccess.Migrations
                                             Persons = 8,Reservations = new List<Reservation>()
                                             {
                                                 new Reservation()
-                                                {Id=10,
+                                                {
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     AccountId = id
 
                                                 },new Reservation()
-                                                {Id=11,
+                                                {
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,11,30,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     AccountId = id
                                                 },new Reservation()
-                                                {Id=12,
+                                                {
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,13,30,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
@@ -232,14 +229,19 @@ namespace Leisurebooker.DataAccess.Migrations
                             Email = "post@wima.be"
                         }
                     }
-                },
+            });
+
+            context.SaveChanges();
+
+            context.Companies.Add(
+
                 new Company()
                 {
-                    Name = "SuperBowl",
+                    Name = "Suerbowl",
                     VATNumber = "BEXXXXXXXXXX",
-                    Street = "Nationalestraat",
-                    Number = "21",
-                    CityId = 252,
+                    CityId = 342,
+                    Street = "Groenplaats",
+                    Number = "1",
                     Branches = new List<Branch>()
                     {
                         new Branch()
@@ -249,14 +251,9 @@ namespace Leisurebooker.DataAccess.Migrations
                             Number = "1",
                             Picture = "Content/bowling.jpg",
                             CityId = 342,
-                            Description = "Sportieve ontspanning in een gezellig kader... dat is Superbowl! "+
-                            "Tien bowlingbanen, drie pooltafels, een airhockey tafel en een uitgebreide keuze snacks en drankjes, alles tegen democratische prijzen."+
-                            "kunt tevens deelnemen aan onze competities."+
-                            "En... waarom viert u het volgende verjaardagsfeestje van U of een van uw kinderen niet in Superbowl? Wij zijn er klaar voor!",
                             OpeningHours = new List<OperationHours>()
                             {
-                                new OperationHours(DayOfWeek.Monday, 11,30,14,30),
-                                new OperationHours(DayOfWeek.Monday, 17,30,22,00),
+                                new OperationHours(DayOfWeek.Monday, 11,30,17,30),
                                 new OperationHours(DayOfWeek.Tuesday, 11,30,17,30),
                                 new OperationHours(DayOfWeek.Wednesday, 11,30,17,30),
                                 new OperationHours(DayOfWeek.Thursday, 11,30,17,30),
@@ -293,6 +290,10 @@ namespace Leisurebooker.DataAccess.Migrations
                                 },
 
                             },
+                            Description = "Sportieve ontspanning in een gezellig kader... dat is Superbowl! "+
+                            "Tien bowlingbanen, drie pooltafels, een airhockey tafel en een uitgebreide keuze snacks en drankjes, alles tegen democratische prijzen."+
+                            "kunt tevens deelnemen aan onze competities."+
+                            "En... waarom viert u het volgende verjaardagsfeestje van U of een van uw kinderen niet in Superbowl? Wij zijn er klaar voor!",
                             Rooms = new List<Room>()
                             {
                                 new Room()
@@ -314,7 +315,6 @@ namespace Leisurebooker.DataAccess.Migrations
                                             {
                                                 new Reservation()
                                                 {
-                                                    Id =1,
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
@@ -322,14 +322,12 @@ namespace Leisurebooker.DataAccess.Migrations
 
                                                 },new Reservation()
                                                 {
-                                                    Id=2,
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,11,30,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     AccountId = id
                                                 },new Reservation()
                                                 {
-                                                    Id=3,
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,13,30,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
@@ -400,20 +398,20 @@ namespace Leisurebooker.DataAccess.Migrations
                                             Persons = 8,Reservations = new List<Reservation>()
                                             {
                                                 new Reservation()
-                                                {Id=10,
+                                                {
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     AccountId = id
 
                                                 },new Reservation()
-                                                {Id=11,
+                                                {
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,11,30,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     AccountId = id
                                                 },new Reservation()
-                                                {Id=12,
+                                                {
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,13,30,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
@@ -427,8 +425,10 @@ namespace Leisurebooker.DataAccess.Migrations
                             Email = "post@wima.be"
                         }
                     }
-                }
-            });
+                });
+
+            context.SaveChanges();
+
 
 
 
