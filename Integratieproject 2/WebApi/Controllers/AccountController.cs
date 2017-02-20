@@ -50,7 +50,7 @@ namespace WebApi.Controllers
 
         }
 
-        [Route("/")]
+        [Route("")]
         public async Task<IHttpActionResult> GetUser()
         {
             var user = await this.AppUserManager.FindByIdAsync(User.Identity.GetUserId());
