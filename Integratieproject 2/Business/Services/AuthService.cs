@@ -9,11 +9,11 @@ using Microsoft.Owin;
 
 namespace Leisurebooker.Business.Services
 {
-    public class RealAuthService : UserManager<Account>
+    public class AuthService : UserManager<Account>
     {
-        public RealAuthService(IUserStore<Account> store)
+        public AuthService(IUserStore<Account> store)
             : base(store){}
-        public RealAuthService() : base(new UserStore<Account>(ContextFactory.GetContext())) { }
+        public AuthService() : base(new UserStore<Account>(ContextFactory.GetContext())) { }
 
         public async Task<IdentityUser> FindUser(string userName, string password)
         {
@@ -21,11 +21,11 @@ namespace Leisurebooker.Business.Services
 
             return user;
         }
-        public static RealAuthService Create(IdentityFactoryOptions<RealAuthService> options, IOwinContext context)
+        public static AuthService Create(IdentityFactoryOptions<AuthService> options, IOwinContext context)
         {
             ContextFactory.Refresh();
             var appDbContext = ContextFactory.GetContext();
-            var appUserManager = new RealAuthService(new UserStore<Account>(appDbContext))
+            var appUserManager = new AuthService(new UserStore<Account>(appDbContext))
             {
                 EmailService = new EmailService()
             };

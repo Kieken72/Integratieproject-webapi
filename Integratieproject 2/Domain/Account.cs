@@ -1,4 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Leisurebooker.Business.Domain
@@ -14,6 +17,13 @@ namespace Leisurebooker.Business.Domain
         public ICollection<Message> Messages { get; set; }
         public ICollection<Review> Reviews { get; set; }
         public ICollection<Reservation> Reservations { get; set; }
+
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Account> manager, string authenticationType)
+        {
+            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
+            // Add custom user claims here
+            return userIdentity;
+        }
 
 
 

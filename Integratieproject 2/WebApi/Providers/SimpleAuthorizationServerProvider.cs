@@ -24,7 +24,7 @@ namespace WebApi.Providers
 
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
 
-            using (RealAuthService _repo = new RealAuthService())
+            using (AuthService _repo = new AuthService())
             {
                 IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
 

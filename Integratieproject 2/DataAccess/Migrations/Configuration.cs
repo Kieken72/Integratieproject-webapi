@@ -24,6 +24,8 @@ namespace Leisurebooker.DataAccess.Migrations
 
 
             var manager = new UserManager<Account>(new UserStore<Account>(ContextFactory.GetContext()));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(ContextFactory.GetContext()));
+
 
             var user = new Account()
             {
@@ -35,7 +37,17 @@ namespace Leisurebooker.DataAccess.Migrations
             };
 
             manager.Create(user, "MySuperP@ssword!");
+
+            if (!roleManager.Roles.Any())
+            {
+                roleManager.Create(new IdentityRole { Name = "SuperAdmin" });
+                roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "User" });
+            }
             var id = manager.FindByEmail("hello@leisurebooker.me").Id;
+
+            manager.AddToRoles(id, new string[] { "SuperAdmin", "Admin" });
+
             var date = DateTime.Now;
             context.Companies.Add(
             

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens;
 using System.Linq;
 using System.Web.Http;
 using WebApi.Models.Dto;
@@ -10,8 +11,9 @@ namespace WebApi
     {
         public static void Register(HttpConfiguration config)
         {
+
             // Web API configuration and services
-            
+
             MapperConfig.Configure();
 
             DependencyInjection.Configue(config);
