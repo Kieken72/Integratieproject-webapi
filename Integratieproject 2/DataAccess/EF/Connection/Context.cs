@@ -11,7 +11,7 @@ namespace Leisurebooker.DataAccess.EF.Connection
     {
         public Context() : base("LeisurebookerDB_EFCodeFirst_Ninja", throwIfV1Schema:false)
         {
-            Configuration.ProxyCreationEnabled = false;
+           // Configuration.ProxyCreationEnabled = false;
             Database.SetInitializer(new CheckAndMigrateDatabaseToLatestVersion<Context, Migrations.Configuration>());
         }
 

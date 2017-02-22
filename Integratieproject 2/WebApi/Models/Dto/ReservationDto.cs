@@ -11,7 +11,7 @@ namespace WebApi.Models.Dto
         public DateTime EndDateTime { get; set; }
         public int SpaceId { get; set; }
         public int BranchId { get; set; }
-        public int AccountId { get; set; }
+        public string AccountId { get; set; }
         public ICollection<MessageDto> Messages { get; set; }
         public ReviewDto Review { get; set; }
         public bool Cancelled { get; set; }

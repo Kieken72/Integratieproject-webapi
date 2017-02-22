@@ -16,7 +16,7 @@ namespace Leisurebooker.Business.Domain
         public ICollection<Branch> Favorites { get; set; }
         public ICollection<Message> Messages { get; set; }
         public ICollection<Review> Reviews { get; set; }
-        public ICollection<Reservation> Reservations { get; set; }
+        public virtual ICollection<Reservation> Reservations { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Account> manager, string authenticationType)
         {
