@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Leisurebooker.Business.Domain;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -200,6 +201,8 @@ namespace Leisurebooker.DataAccess.EF.Connection
         public void SetOptionalProperties(DbModelBuilder modelBuilder)
         {
             //throw new System.NotImplementedException();
+            modelBuilder.Entity<City>().Property(m => m.Id)
+             .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
         }
 
         public static Context Create()

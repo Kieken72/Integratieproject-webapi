@@ -46,7 +46,7 @@ namespace Leisurebooker.DataAccess.Migrations
                 "dbo.City",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false),
                         PostalCode = c.String(),
                         Name = c.String(),
                         Province = c.String(),

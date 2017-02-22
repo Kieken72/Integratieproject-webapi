@@ -13,7 +13,7 @@ namespace Leisurebooker.DataAccess.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201702200955051_Initial"; }
+            get { return "201702221103352_Initial"; }
         }
         
         string IMigrationMetadata.Source

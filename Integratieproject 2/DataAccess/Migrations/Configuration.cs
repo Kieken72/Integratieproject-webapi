@@ -13,6 +13,7 @@ namespace Leisurebooker.DataAccess.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<Context>
     {
+        private const int City = 342;
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
@@ -25,6 +26,7 @@ namespace Leisurebooker.DataAccess.Migrations
 
             var manager = new UserManager<Account>(new UserStore<Account>(ContextFactory.GetContext()));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(ContextFactory.GetContext()));
+            
 
 
             var user = new Account()
@@ -66,7 +68,7 @@ namespace Leisurebooker.DataAccess.Migrations
                             Street = "Gemeenteplein",
                             Number = "1",
                             Picture = "Content/bowling.jpg",
-                            CityId = 342,
+                            CityId = City,
                             OpeningHours = new List<OperationHours>()
                             {
                                 new OperationHours(DayOfWeek.Monday, 11,30,17,30),
@@ -262,7 +264,7 @@ namespace Leisurebooker.DataAccess.Migrations
                             Street = "Gemeenteplein",
                             Number = "1",
                             Picture = "Content/bowling.jpg",
-                            CityId = 342,
+                            CityId = City,
                             OpeningHours = new List<OperationHours>()
                             {
                                 new OperationHours(DayOfWeek.Monday, 11,30,17,30),
