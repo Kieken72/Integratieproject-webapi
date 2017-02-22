@@ -8,15 +8,16 @@ using System.Web.Http.Routing;
 using Leisurebooker.Business;
 using Leisurebooker.Business.Domain;
 using Leisurebooker.Business.Services;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace WebApi.Models
 {
     public class ModelFactory
     {
         private UrlHelper _UrlHelper;
-        private RealAuthService _AppUserManager;
+        private AuthService _AppUserManager;
 
-        public ModelFactory(HttpRequestMessage request, RealAuthService appUserManager)
+        public ModelFactory(HttpRequestMessage request, AuthService appUserManager)
         {
             _UrlHelper = new UrlHelper(request);
             _AppUserManager = appUserManager;
@@ -36,8 +37,23 @@ namespace WebApi.Models
                 Claims = _AppUserManager.GetClaimsAsync(appUser.Id).Result
             };
         }
-    }
+        public RoleReturnModel Create(IdentityRole appRole)
+        {
 
+            return new RoleReturnModel
+            {
+                Url = _UrlHelper.Link("GetRoleById", new { id = appRole.Id }),
+                Id = appRole.Id,
+                Name = appRole.Name
+            };
+        }
+    }
+    public class RoleReturnModel
+    {
+        public string Url { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+    }
     public class UserReturnModel
     {
         public string Url { get; set; }
@@ -102,5 +118,21 @@ namespace WebApi.Models
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+    }
+    public class CreateRoleBindingModel
+    {
+        [Required]
+        [StringLength(256, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
+        [Display(Name = "Role Name")]
+        public string Name { get; set; }
+
+    }
+
+    public class UsersInRoleModel
+    {
+
+        public string Id { get; set; }
+        public List<string> EnrolledUsers { get; set; }
+        public List<string> RemovedUsers { get; set; }
     }
 }

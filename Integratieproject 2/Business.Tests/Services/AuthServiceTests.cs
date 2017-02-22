@@ -12,14 +12,14 @@ namespace Leisurebooker.Business.Tests.Services
     [TestFixture]
     public class AuthServiceTests
     {
-        private RealAuthService _authService;
+        private AuthService _authService;
 
         private Account _account;
 
         [SetUp]
         public void SetUp()
         {
-            _authService = new RealAuthService();
+            _authService = new AuthService();
 
             //NO REFERENCE!!
 

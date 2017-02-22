@@ -46,5 +46,6 @@
 | URI | Controller | VERB | Role | Test |
 | --- | --- | --- | --- | --- |
 | [/accounts/create](http://leisurebooker.azurewebsites.net/api/accounts/create) | AccountController | POST |  |  |
+| [/accounts/](http://leisurebooker.azurewebsites.net/api/accounts/) | AccountController | GET |  |  |
 | [/token](http://leisurebooker.azurewebsites.net/api/token) | Bearer | POST |  USER |  |
 Todo: External Providers 

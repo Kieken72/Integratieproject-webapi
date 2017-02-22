@@ -16,15 +16,11 @@ namespace WebApi.Controllers
     {
 
         private ModelFactory _modelFactory;
-        private readonly RealAuthService _authService = null;
+        private readonly AuthService _authService = null;
+        private readonly RoleService _roleService = null;
 
-        protected RealAuthService AppUserManager
-        {
-            get
-            {
-                return _authService ?? Request.GetOwinContext().GetUserManager<RealAuthService>();
-            }
-        }
+        protected AuthService AppUserManager => _authService ?? Request.GetOwinContext().GetUserManager<AuthService>();
+        protected RoleService AppRoleManager => _roleService ?? Request.GetOwinContext().GetUserManager<RoleService>();
 
         public BaseApiController()
         {
