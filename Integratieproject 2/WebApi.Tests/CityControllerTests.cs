@@ -37,10 +37,9 @@ namespace WebApi.Tests
         [Test]
         public void GetByPostalCode_CorrectPostalCodeWillGetCityEntityAndOkResult()
         {
-            var cResult = _controller.GetByPostalCode(2000);
-            var rResult = cResult as OkNegotiatedContentResult<FullCityDto>;
-            Assert.IsInstanceOf<OkNegotiatedContentResult<FullCityDto>>(cResult);
-            Assert.AreEqual("2000",rResult.Content.PostalCode);
+            var cResult = _controller.GetByPostalCode(2550);
+            var rResult = cResult as OkNegotiatedContentResult<IEnumerable<FullCityDto>>;
+            Assert.IsInstanceOf<OkNegotiatedContentResult<IEnumerable<FullCityDto>>>(cResult);
         }
 
         [Test]
@@ -57,13 +56,12 @@ namespace WebApi.Tests
             var cResult = _controller.Get(1);
             var rResult = cResult as OkNegotiatedContentResult<FullCityDto>;
             Assert.IsInstanceOf<OkNegotiatedContentResult<FullCityDto>>(cResult);
-            Assert.AreEqual("1000", rResult.Content.PostalCode);
         }
 
         [Test]
         public void Get_WrongIdWillGetNotFoundResult()
         {
-            var cResult = _controller.Get(0);
+            var cResult = _controller.Get(999999);
             var rResult = cResult as NotFoundResult;
             Assert.IsInstanceOf<NotFoundResult>(rResult);
 
