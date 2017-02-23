@@ -63,7 +63,7 @@ namespace WebApi.Controllers
                     continue;
                 }
                 var roomIds = entity.Rooms.Select(room => room.Id).ToList();
-                var spaces = _spaceService.Get(e => roomIds.Contains(e.RoomId), e => (e.MinPersons <= parameters.Amount && e.Persons <= parameters.Amount), collections: true);
+                var spaces = _spaceService.Get(e => roomIds.Contains(e.RoomId), e => (e.MinPersons <= parameters.Amount && e.Persons <= parameters.Amount), collections: true).ToList();
 
 
                 var freeSpaces = new List<Space>();
