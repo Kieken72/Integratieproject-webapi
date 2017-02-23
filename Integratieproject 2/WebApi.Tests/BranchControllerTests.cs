@@ -22,6 +22,9 @@ namespace WebApi.Tests
             {
                 cfg.AddProfile<BranchProfile>();
                 cfg.AddProfile<CityProfile>();
+                cfg.AddProfile<RoomProfile>();
+                cfg.AddProfile<OpeningHourProfile>();
+                cfg.AddProfile<AdditionalInfoProfile>();
             });
             _controller = new BranchController(new BranchService(), new CityService(), new SpaceService());
         }
@@ -40,8 +43,8 @@ namespace WebApi.Tests
         public void GetByPostalCode_CorrectPostalCodeWillGetBranchesEntityAndOkResult()
         {
             var cResult = _controller.GetByPostalCode(2000);
-            var rResult = cResult as OkNegotiatedContentResult<BranchDto>;
-            Assert.IsInstanceOf<OkNegotiatedContentResult<BranchDto>>(cResult);
+            var rResult = cResult as OkNegotiatedContentResult<IEnumerable<BranchDto>>;
+            Assert.IsInstanceOf<OkNegotiatedContentResult<IEnumerable<BranchDto>>>(cResult);
         }
         
         [Test]
@@ -70,12 +73,13 @@ namespace WebApi.Tests
                 Street = "Groenplaats",
                 Number = "1",
                 CityId = 1,
-                Email = "test@test.be"
+                Email = "test@test.be",
+                CompanyId = 1
             };
 
             var cResult = _controller.Post(entity);
             var rResult = cResult as OkNegotiatedContentResult<BranchDto>;
-            Assert.IsInstanceOf<BadRequestResult>(cResult);
+            Assert.IsInstanceOf<OkNegotiatedContentResult<BranchDto>>(cResult);
             Assert.AreEqual(entity.Name, rResult.Content.Name);
         }
 
@@ -94,7 +98,7 @@ namespace WebApi.Tests
         [Test]
         public void Delete_BadRequest()
         {
-            var cResult = _controller.Delete(0);
+            var cResult = _controller.Delete(1);
             Assert.IsInstanceOf<OkResult>(cResult);
         }
 
