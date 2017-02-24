@@ -43,7 +43,7 @@ namespace WebApi.Controllers
             var entities = this._branchService.Get(b => citiesId.Contains(b.CityId), collections: true).AsEnumerable();
 
             var branches = new List<CheckBranchDto>();
-            var date = new DateTime(parameters.Year, parameters.Month, parameters.Day, parameters.Hours, parameters.Minutes, 0);
+            var date = new DateTime(parameters.DateTime.Year, parameters.DateTime.Month, parameters.DateTime.Day, parameters.DateTime.Hour, parameters.DateTime.Minute, 0);
             foreach (var entity in entities)
             {
                 var branch = Mapper.Map<CheckBranchDto>(entity);
@@ -122,7 +122,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public IHttpActionResult IsPlaceInBranch(int branchId, [FromUri] AvailableBranchUri parameters)
         {
-            var date = new DateTime(parameters.Year, parameters.Month, parameters.Day, parameters.Hours, parameters.Minutes, 0);
+            var date = new DateTime(parameters.DateTime.Year, parameters.DateTime.Month, parameters.DateTime.Day, parameters.DateTime.Hour, parameters.DateTime.Minute, 0);
             var entity = _branchService.Get(branchId);
                 var branch = Mapper.Map<CheckBranchDto>(entity);
                 var operationHour = entity.OpeningHours.FirstOrDefault(e => e.Day == date.DayOfWeek);

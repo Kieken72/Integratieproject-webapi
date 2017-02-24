@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
@@ -47,11 +48,7 @@ namespace WebApi.Models.Dto
 
     public class AvailableBranchUri
     {
-        public int  Year { get; set; }
-        public int Month { get; set; }
-        public int Day { get; set; }
-        public int Hours  { get; set; }
-        public int Minutes { get; set; }
+        public DateTime DateTime { get; set; }
         public int Amount { get; set; }
     }
 
