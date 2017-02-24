@@ -123,7 +123,7 @@ namespace WebApi.Controllers
         public IHttpActionResult IsPlaceInBranch(int branchId, [FromUri] AvailableBranchUri parameters)
         {
             var date = new DateTime(parameters.DateTime.Year, parameters.DateTime.Month, parameters.DateTime.Day, parameters.DateTime.Hour, parameters.DateTime.Minute, 0);
-            var entity = _branchService.Get(branchId);
+            var entity = _branchService.Get(branchId, collections:true);
                 var branch = Mapper.Map<CheckBranchDto>(entity);
                 var operationHour = entity.OpeningHours.FirstOrDefault(e => e.Day == date.DayOfWeek);
                 if (operationHour == null)
@@ -139,7 +139,7 @@ namespace WebApi.Controllers
                 return Ok(branch);
                 }
                 var roomIds = entity.Rooms.Select(room => room.Id).ToList();
-                var spaces = _spaceService.Get(e => roomIds.Contains(e.RoomId), e => (e.MinPersons <= parameters.Amount && e.Persons <= parameters.Amount), collections: true);
+                var spaces = _spaceService.Get(e => roomIds.Contains(e.RoomId), e => (e.MinPersons <= parameters.Amount && e.Persons >= parameters.Amount), collections: true).ToList();
 
 
                 var freeSpaces = new List<Space>();
