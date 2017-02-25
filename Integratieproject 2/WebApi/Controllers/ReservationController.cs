@@ -63,7 +63,7 @@ namespace WebApi.Controllers
                     continue;
                 }
                 var roomIds = entity.Rooms.Select(room => room.Id).ToList();
-                var spaces = _spaceService.Get(e => roomIds.Contains(e.RoomId), e => (e.MinPersons <= parameters.Amount && e.Persons <= parameters.Amount), collections: true).ToList();
+                var spaces = _spaceService.Get(e => roomIds.Contains(e.RoomId), e => (e.MinPersons <= parameters.Amount && e.Persons >= parameters.Amount), collections: true).ToList();
 
 
                 var freeSpaces = new List<Space>();
@@ -279,6 +279,15 @@ namespace WebApi.Controllers
 
                 }
             return BadRequest("No free space.");
+        }
+
+        [Route("branch/{id}")]
+        [HttpGet]
+        public IHttpActionResult ForBranch(int id)
+        {
+            var entities = this._reservationService.Get(e=>e.BranchId==id, e=>e.DateTime > (DateTime.Today.AddDays(-1)));
+            var dtos = Mapper.Map<IEnumerable<CompanyDto>>(entities);
+            return Ok(dtos);
         }
     }
 

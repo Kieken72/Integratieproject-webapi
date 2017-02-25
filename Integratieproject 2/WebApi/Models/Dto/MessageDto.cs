@@ -7,7 +7,7 @@ namespace WebApi.Models.Dto
         public int Id { get; set; }
         public int ReservationId { get; set; }
         public int BranchId { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public string Text { get; set; }
         public DateTime DateTime { get; set; }
     }

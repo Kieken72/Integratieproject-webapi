@@ -56,18 +56,6 @@ namespace WebApi.Controllers
             var dto = Mapper.Map<IEnumerable<FullCityDto>>(entity);
             return Ok(dto);
         }
-        //TEST VOOR AUTOCOMPLETE
-        //[Route("contains/{postalcodeString}")]
-        //public IHttpActionResult GetByContainsPostalCode(string postalcodeString)
-        //{
-        //    var entity = this._service.Get(e => e.PostalCode.Contains(postalcodeString)).AsEnumerable();
-        //    if (!entity.Any())
-        //    {
-        //        return NotFound();
-        //    }
-        //    var dto = Mapper.Map<IEnumerable<FullCityDto>>(entity);
-        //    return Ok(dto);
-        //}
 
         [Route("")]
         // POST: api/cities

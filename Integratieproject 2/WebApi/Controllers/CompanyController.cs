@@ -47,6 +47,7 @@ namespace WebApi.Controllers
         }
 
         [Route("")]
+        [Authorize(Roles = "SuperAdmin")]
         //!!Authorized as admin
         // POST: api/companies
         public IHttpActionResult Post([FromBody]CompanyDto value)
@@ -59,6 +60,7 @@ namespace WebApi.Controllers
         }
 
         [Route("{id}")]
+        [Authorize(Roles = "Manager")]
         //!!Authorized as admin or manager from this company
         // PUT: api/companies/5
         public IHttpActionResult Put(int id, [FromBody]CompanyDto value)
@@ -70,6 +72,7 @@ namespace WebApi.Controllers
 
 
         [Route("{id}")]
+        [Authorize(Roles = "SuperAdmin")]
         //!!Authorized only as admin
         // DELETE: api/companies/5
         public IHttpActionResult Delete(int id)
