@@ -286,7 +286,7 @@ namespace WebApi.Controllers
         public IHttpActionResult ForBranch(int id)
         {
             var entities = this._reservationService.Get(e=>e.BranchId==id, e=>e.DateTime > (DateTime.Today.AddDays(-1)));
-            var dtos = Mapper.Map<IEnumerable<CompanyDto>>(entities);
+            var dtos = Mapper.Map<IEnumerable<ReservationDto>>(entities);
             return Ok(dtos);
         }
     }
