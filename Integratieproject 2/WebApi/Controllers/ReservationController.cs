@@ -274,6 +274,7 @@ namespace WebApi.Controllers
 
                         newReservation = _reservationService.Add(newReservation);
 
+                        //SendMail!!
                         return Ok(newReservation);
                     }
 
