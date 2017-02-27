@@ -31,7 +31,7 @@ namespace WebApi.Models
                 Email = appUser.Email,
                 EmailConfirmed = appUser.EmailConfirmed,
                 Roles = _AppUserManager.GetRolesAsync(appUser.Id).Result,
-                Claims = _AppUserManager.GetClaimsAsync(appUser.Id).Result,
+                //Claims = _AppUserManager.GetClaimsAsync(appUser.Id).Result,
                 Reservations = Mapper.Map<ICollection<ReservationDto>>(appUser.Reservations)
 
             };

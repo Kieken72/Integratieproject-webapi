@@ -65,6 +65,7 @@ namespace WebApi.Controllers
         // POST: api/branches
         public IHttpActionResult Post([FromBody]ReviewDto value)
         {
+            value.UserId = User.Identity.GetUserId();
             //var user = User.Identity.GetUserId();
             //var reservation = _reservationService.Get(e => e.AccountId == user);
             //To Check if reservation was made by this user..
@@ -90,6 +91,7 @@ namespace WebApi.Controllers
         // DELETE: api/reviews/5
         public IHttpActionResult Delete(int id)
         {
+
             this._service.Remove(id);
             return Ok();
         }

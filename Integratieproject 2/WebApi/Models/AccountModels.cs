@@ -23,7 +23,7 @@ namespace WebApi.Models
         public string Surname { get; set; }
         public bool EmailConfirmed { get; set; }
         public IList<string> Roles { get; set; }
-        public IList<System.Security.Claims.Claim> Claims { get; set; }
+        //public IList<System.Security.Claims.Claim> Claims { get; set; }
         public ICollection<BranchDto> Favorites { get; set; }
         public ICollection<ReservationDto> Reservations { get; set; }
     }

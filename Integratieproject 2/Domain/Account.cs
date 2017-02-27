@@ -13,7 +13,7 @@ namespace Leisurebooker.Business.Domain
         public string Surname { get; set; }
         public string Picture { get; set; }
 
-        public ICollection<Branch> Favorites { get; set; }
+        public virtual ICollection<Branch> Favorites { get; set; }
         public ICollection<Message> Messages { get; set; }
         public ICollection<Review> Reviews { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }

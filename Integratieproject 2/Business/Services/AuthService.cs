@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using Leisurebooker.Business.Domain;
 using Leisurebooker.DataAccess.EF.Connection;
@@ -21,6 +23,13 @@ namespace Leisurebooker.Business.Services
 
             return user;
         }
+
+        public Account FindUserByIdInclude(string id)
+        {
+            var user = this.Users.Include(x => x.Favorites).FirstOrDefault(u => u.Id == id);
+            return user;
+        }
+
         public static AuthService Create(IdentityFactoryOptions<AuthService> options, IOwinContext context)
         {
             ContextFactory.Refresh();
