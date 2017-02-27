@@ -29,7 +29,7 @@
 //            {
 //                cfg.AddProfile<ReviewProfile>();
 //            });
-            
+
 //            var fakeService = new FakeService<Review>();
 //            _companies = new List<Review>();
 //            for (int j = 1; j <= 5; j++)
@@ -46,7 +46,7 @@
 //                        Province = "Antwerpen"
 //                    },
 //                    VATNumber = $"BE012345678{j}"
-                
+
 //                };
 //                fakeService.Add(company);
 //                _companies.Add(company);
@@ -67,7 +67,7 @@
 
 //            var rResult = cResult as OkNegotiatedContentResult<IEnumerable<CompanyDto>>;
 //            Assert.IsNotEmpty(rResult.Content);
-//            Assert.AreEqual(_companies.Count,rResult.Content.Count());
+//            Assert.AreEqual(_companies.Count, rResult.Content.Count());
 //        }
 
 //        [Test]
@@ -76,7 +76,7 @@
 //            var cResult = _controller.Get(1);
 //            var rResult = cResult as OkNegotiatedContentResult<CompanyDto>;
 //            Assert.IsInstanceOf<OkNegotiatedContentResult<CompanyDto>>(cResult);
-//            Assert.AreEqual(_companies.FirstOrDefault(e => e.Id==1).Id,rResult.Content.Id);
+//            Assert.AreEqual(_companies.FirstOrDefault(e => e.Id == 1).Id, rResult.Content.Id);
 //        }
 
 //        [Test]

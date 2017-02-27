@@ -14,6 +14,11 @@ namespace Leisurebooker.DataAccess.EF.Repositories
 
         public override Reservation Create(Reservation entity)
         {
+            entity.Event = new ReservationEvent()
+            {
+                BranchId = entity.BranchId,
+                EventType = EventType.NewReservation
+            };
             this.Context.Reservations.Add(entity);
             this.Context.SaveChanges();
             return entity;
