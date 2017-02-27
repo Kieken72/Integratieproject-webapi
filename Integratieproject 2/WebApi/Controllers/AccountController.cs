@@ -8,6 +8,7 @@ using System.Web.Http;
 using Leisurebooker.Business.Domain;
 using Leisurebooker.Business.Services;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using WebApi.Models;
 
 namespace WebApi.Controllers
@@ -54,9 +55,9 @@ namespace WebApi.Controllers
 
         [Authorize]
         [Route("")]
-        public async Task<IHttpActionResult> GetUser()
+        public IHttpActionResult GetUser()
         {
-            var user = await this.AppUserManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = this.AppUserManager.FindUserByIdInclude(User.Identity.GetUserId());
             if (user != null)
             {
                 return Ok(this.TheModelFactory.Create(user));

@@ -9,16 +9,27 @@ namespace Leisurebooker.Business.Domain
     public class Event : Entity
     {
         public EventType EventType { get; set; }
-        //Toadd
+        public DateTime CreatedOn { get; set; }
+        public int BranchId { get; set; }
+
+        public Event()
+        {
+            CreatedOn = DateTime.Now;
+        }
     }
 
-    public enum EventType
+    public class ReservationEvent : Event
     {
-        NewReservation,
-        ModifyReservation,
-        CancelReservation,
-        NewMessage,
-        NewReview
-        
+        public Reservation Reservation { get; set; }
+    }
+
+    public class MessageEvent : Event
+    {
+        public Message Message { get; set; }
+    }
+
+    public class ReviewEvent : Event
+    {
+        public Review Review { get; set; }
     }
 }

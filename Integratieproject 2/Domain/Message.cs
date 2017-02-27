@@ -10,5 +10,6 @@ namespace Leisurebooker.Business.Domain
 
         public string Text { get; set; }
         public DateTime DateTime { get; set; }
+        public MessageEvent Event { get; set; }
     }
 }

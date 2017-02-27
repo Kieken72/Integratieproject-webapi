@@ -3,7 +3,7 @@ namespace Leisurebooker.DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Events : DbMigration
     {
         public override void Up()
         {
@@ -73,6 +73,87 @@ namespace Leisurebooker.DataAccess.Migrations
                 .Index(t => t.CityId);
             
             CreateTable(
+                "dbo.Event",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        EventType = c.Int(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        BranchId = c.Int(nullable: false),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Message", t => t.Id)
+                .ForeignKey("dbo.Reservation", t => t.Id)
+                .ForeignKey("dbo.Review", t => t.Id)
+                .ForeignKey("dbo.Branch", t => t.BranchId)
+                .Index(t => t.Id)
+                .Index(t => t.BranchId);
+            
+            CreateTable(
+                "dbo.Message",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        ReservationId = c.Int(nullable: false),
+                        BranchId = c.Int(nullable: false),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        Text = c.String(),
+                        DateTime = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Reservation", t => t.ReservationId)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .ForeignKey("dbo.Branch", t => t.BranchId)
+                .Index(t => t.ReservationId)
+                .Index(t => t.BranchId)
+                .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.Reservation",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        AmountOfPersons = c.Int(nullable: false),
+                        DateTime = c.DateTime(nullable: false),
+                        EndDateTime = c.DateTime(nullable: false),
+                        CreatedOn = c.DateTime(nullable: false),
+                        ModifiedOn = c.DateTime(nullable: false),
+                        SpaceId = c.Int(nullable: false),
+                        BranchId = c.Int(nullable: false),
+                        AccountId = c.String(nullable: false, maxLength: 128),
+                        Cancelled = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.AccountId)
+                .ForeignKey("dbo.Branch", t => t.BranchId)
+                .ForeignKey("dbo.Space", t => t.SpaceId)
+                .Index(t => t.SpaceId)
+                .Index(t => t.BranchId)
+                .Index(t => t.AccountId);
+            
+            CreateTable(
+                "dbo.Review",
+                c => new
+                    {
+                        Id = c.Int(nullable: false),
+                        Result = c.Boolean(nullable: false),
+                        Text = c.String(),
+                        DateTime = c.DateTime(nullable: false),
+                        Public = c.Boolean(nullable: false),
+                        ReservationId = c.Int(nullable: false),
+                        BranchId = c.Int(nullable: false),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Reservation", t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .ForeignKey("dbo.Branch", t => t.BranchId)
+                .Index(t => t.Id)
+                .Index(t => t.BranchId)
+                .Index(t => t.UserId);
+            
+            CreateTable(
                 "dbo.AspNetUsers",
                 c => new
                     {
@@ -80,6 +161,7 @@ namespace Leisurebooker.DataAccess.Migrations
                         Name = c.String(),
                         Surname = c.String(),
                         Picture = c.String(),
+                        CreatedOn = c.DateTime(nullable: false),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -118,67 +200,6 @@ namespace Leisurebooker.DataAccess.Migrations
                     })
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
-                .Index(t => t.UserId);
-            
-            CreateTable(
-                "dbo.Message",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        ReservationId = c.Int(nullable: false),
-                        BranchId = c.Int(nullable: false),
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        Text = c.String(),
-                        DateTime = c.DateTime(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
-                .ForeignKey("dbo.Reservation", t => t.ReservationId)
-                .ForeignKey("dbo.Branch", t => t.BranchId)
-                .Index(t => t.ReservationId)
-                .Index(t => t.BranchId)
-                .Index(t => t.UserId);
-            
-            CreateTable(
-                "dbo.Reservation",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        AmountOfPersons = c.Int(nullable: false),
-                        DateTime = c.DateTime(nullable: false),
-                        EndDateTime = c.DateTime(nullable: false),
-                        SpaceId = c.Int(nullable: false),
-                        BranchId = c.Int(nullable: false),
-                        AccountId = c.String(nullable: false, maxLength: 128),
-                        Cancelled = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.AccountId)
-                .ForeignKey("dbo.Branch", t => t.BranchId)
-                .ForeignKey("dbo.Space", t => t.SpaceId)
-                .Index(t => t.SpaceId)
-                .Index(t => t.BranchId)
-                .Index(t => t.AccountId);
-            
-            CreateTable(
-                "dbo.Review",
-                c => new
-                    {
-                        Id = c.Int(nullable: false),
-                        Result = c.Boolean(nullable: false),
-                        Text = c.String(),
-                        DateTime = c.DateTime(nullable: false),
-                        Public = c.Boolean(nullable: false),
-                        ReservationId = c.Int(nullable: false),
-                        BranchId = c.Int(nullable: false),
-                        UserId = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Reservation", t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
-                .ForeignKey("dbo.Branch", t => t.BranchId)
-                .Index(t => t.Id)
-                .Index(t => t.BranchId)
                 .Index(t => t.UserId);
             
             CreateTable(
@@ -276,13 +297,17 @@ namespace Leisurebooker.DataAccess.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Review", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Reservation", "AccountId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Review", "Id", "dbo.Reservation");
-            DropForeignKey("dbo.Message", "ReservationId", "dbo.Reservation");
             DropForeignKey("dbo.Message", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Favorites", "BranchId", "dbo.Branch");
             DropForeignKey("dbo.Favorites", "AccountId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Event", "BranchId", "dbo.Branch");
+            DropForeignKey("dbo.Review", "Id", "dbo.Reservation");
+            DropForeignKey("dbo.Event", "Id", "dbo.Review");
+            DropForeignKey("dbo.Message", "ReservationId", "dbo.Reservation");
+            DropForeignKey("dbo.Event", "Id", "dbo.Reservation");
+            DropForeignKey("dbo.Event", "Id", "dbo.Message");
             DropForeignKey("dbo.City", "HeadCityId", "dbo.City");
             DropForeignKey("dbo.Company", "CityId", "dbo.City");
             DropForeignKey("dbo.Branch", "CompanyId", "dbo.Company");
@@ -296,6 +321,9 @@ namespace Leisurebooker.DataAccess.Migrations
             DropIndex("dbo.OperationHours", new[] { "BranchId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
+            DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
+            DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
+            DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.Review", new[] { "UserId" });
             DropIndex("dbo.Review", new[] { "BranchId" });
             DropIndex("dbo.Review", new[] { "Id" });
@@ -305,9 +333,8 @@ namespace Leisurebooker.DataAccess.Migrations
             DropIndex("dbo.Message", new[] { "UserId" });
             DropIndex("dbo.Message", new[] { "BranchId" });
             DropIndex("dbo.Message", new[] { "ReservationId" });
-            DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
-            DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
-            DropIndex("dbo.AspNetUsers", "UserNameIndex");
+            DropIndex("dbo.Event", new[] { "BranchId" });
+            DropIndex("dbo.Event", new[] { "Id" });
             DropIndex("dbo.Company", new[] { "CityId" });
             DropIndex("dbo.City", new[] { "HeadCityId" });
             DropIndex("dbo.Branch", new[] { "CompanyId" });
@@ -319,12 +346,13 @@ namespace Leisurebooker.DataAccess.Migrations
             DropTable("dbo.Room");
             DropTable("dbo.OperationHours");
             DropTable("dbo.AspNetUserRoles");
-            DropTable("dbo.Review");
-            DropTable("dbo.Reservation");
-            DropTable("dbo.Message");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.Review");
+            DropTable("dbo.Reservation");
+            DropTable("dbo.Message");
+            DropTable("dbo.Event");
             DropTable("dbo.Company");
             DropTable("dbo.City");
             DropTable("dbo.Branch");

@@ -44,11 +44,12 @@ namespace Leisurebooker.DataAccess.Migrations
             {
                 roleManager.Create(new IdentityRole { Name = "SuperAdmin" });
                 roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "Manager" });
                 roleManager.Create(new IdentityRole { Name = "User" });
             }
             var id = manager.FindByEmail("hello@leisurebooker.me").Id;
 
-            manager.AddToRoles(id, new string[] { "SuperAdmin", "Admin" });
+            manager.AddToRoles(id, new string[] { "SuperAdmin", "Admin", "Manager" });
 
             var date = DateTime.Now;
             context.Companies.Add(
@@ -136,7 +137,15 @@ namespace Leisurebooker.DataAccess.Migrations
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
-                                                    AccountId = id
+                                                    AccountId = id,
+                                                    Review = new Review()
+                                                    {
+                                                        DateTime = DateTime.Today.AddDays(1),
+                                                        Public = true,
+                                                        Result = true,
+                                                        Text = "KEIGOED",
+                                                        UserId = user.Id
+                                                    }
 
                                                 },new Reservation()
                                                 {

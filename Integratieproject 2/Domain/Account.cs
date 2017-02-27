@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -13,10 +14,17 @@ namespace Leisurebooker.Business.Domain
         public string Surname { get; set; }
         public string Picture { get; set; }
 
-        public ICollection<Branch> Favorites { get; set; }
-        public ICollection<Message> Messages { get; set; }
-        public ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Branch> Favorites { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public Account()
+        {
+            CreatedOn = DateTime.Now;
+        }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Account> manager, string authenticationType)
         {
