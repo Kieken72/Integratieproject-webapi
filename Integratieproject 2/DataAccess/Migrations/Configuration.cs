@@ -44,11 +44,12 @@ namespace Leisurebooker.DataAccess.Migrations
             {
                 roleManager.Create(new IdentityRole { Name = "SuperAdmin" });
                 roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "Manager" });
                 roleManager.Create(new IdentityRole { Name = "User" });
             }
             var id = manager.FindByEmail("hello@leisurebooker.me").Id;
 
-            manager.AddToRoles(id, new string[] { "SuperAdmin", "Admin" });
+            manager.AddToRoles(id, new string[] { "SuperAdmin", "Admin", "Manager" });
 
             var date = DateTime.Now;
             context.Companies.Add(
