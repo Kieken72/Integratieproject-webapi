@@ -31,6 +31,7 @@ namespace Leisurebooker.DataAccess.EF.Connection
         public DbSet<Review> Reviews { get; set; }
         public DbSet<AdditionalInfo> AdditionalInfos { get; set; }
         public DbSet<City> Cities { get; set; }
+        public DbSet<Event> Events { get; set; }
         //public DbSet<Account> Accounts { get; set; }
 
 
@@ -62,6 +63,7 @@ namespace Leisurebooker.DataAccess.EF.Connection
             modelBuilder.Entity<AdditionalInfo>().HasKey(e => e.Id);
             modelBuilder.Entity<Account>().HasKey(e => e.Id);
             modelBuilder.Entity<City>().HasKey(e => e.Id);
+            modelBuilder.Entity<Event>().HasKey(e => e.Id);
         }
 
         private static void SetForeignKeys(DbModelBuilder modelBuilder)
@@ -117,6 +119,7 @@ namespace Leisurebooker.DataAccess.EF.Connection
                 .HasMany(e => e.Reservations)
                 .WithRequired()
                 .HasForeignKey(e => e.AccountId);
+            
 
             //Messages
             modelBuilder.Entity<Reservation>()
@@ -174,12 +177,15 @@ namespace Leisurebooker.DataAccess.EF.Connection
         {
             //0..N - 0..N Users-Branches (Favorites)
             modelBuilder.Entity<Account>()
-                .HasMany(e => e.Favorites)
+                .HasMany<Branch>(e => e.Favorites)
                 .WithMany(e => e.Favorites)
-                .Map(e => e.MapLeftKey("AccountId")
-                    .MapRightKey("BranchId")
-                    .ToTable("Favorites"));
-            
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("AccountId");
+                    cs.MapRightKey("BranchId");
+                    cs.ToTable("Favorites");
+                });
+
         }
 
         private static void SetOneToOne(DbModelBuilder modelBuilder)
@@ -187,9 +193,19 @@ namespace Leisurebooker.DataAccess.EF.Connection
             modelBuilder.Entity<Reservation>()
                 .HasOptional(e => e.Review)
                 .WithRequired(e=>e.Reservation);
-            
 
-            
+            modelBuilder.Entity<Reservation>()
+                .HasOptional(e => e.Event)
+                .WithRequired(e => e.Reservation);
+            modelBuilder.Entity<Message>()
+                .HasOptional(e => e.Event)
+                .WithRequired(e => e.Message);
+            modelBuilder.Entity<Review>()
+                .HasOptional(e => e.Event)
+                .WithRequired(e => e.Review);
+
+
+
 
         }
 

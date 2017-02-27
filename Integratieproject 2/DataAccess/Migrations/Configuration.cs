@@ -136,7 +136,15 @@ namespace Leisurebooker.DataAccess.Migrations
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
-                                                    AccountId = id
+                                                    AccountId = id,
+                                                    Review = new Review()
+                                                    {
+                                                        DateTime = DateTime.Today.AddDays(1),
+                                                        Public = true,
+                                                        Result = true,
+                                                        Text = "KEIGOED",
+                                                        UserId = user.Id
+                                                    }
 
                                                 },new Reservation()
                                                 {

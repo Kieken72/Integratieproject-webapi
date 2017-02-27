@@ -7,6 +7,7 @@ using System.Web.Http;
 using AutoMapper;
 using Leisurebooker.Business;
 using Leisurebooker.Business.Domain;
+using Microsoft.AspNet.Identity;
 using WebApi.Models.Dto;
 
 namespace WebApi.Controllers
@@ -45,6 +46,7 @@ namespace WebApi.Controllers
         // POST: api/Message
         public IHttpActionResult Post([FromBody]MessageDto value)
         {
+            value.UserId = User.Identity.GetUserId();
             var entity = Mapper.Map<Message>(value);
             entity = this._service.Add(entity);
             value = Mapper.Map<MessageDto>(entity);

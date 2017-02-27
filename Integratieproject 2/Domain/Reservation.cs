@@ -9,6 +9,8 @@ namespace Leisurebooker.Business.Domain
         public int AmountOfPersons { get; set; }
         public DateTime DateTime { get; set; }
         public DateTime EndDateTime { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
 
 
 
@@ -17,8 +19,16 @@ namespace Leisurebooker.Business.Domain
         public string AccountId { get; set; }
 
         public ICollection<Message> Messages { get; set; }
+        public ReservationEvent Event { get; set; }
         public Review Review { get; set; }
         
         public bool Cancelled { get; set; }
+
+        public Reservation()
+        {
+            Cancelled = false;
+            CreatedOn = DateTime.Now;
+            ModifiedOn = DateTime.Now;
+        }
     }
 }
