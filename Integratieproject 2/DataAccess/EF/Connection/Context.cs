@@ -64,6 +64,9 @@ namespace Leisurebooker.DataAccess.EF.Connection
             modelBuilder.Entity<Account>().HasKey(e => e.Id);
             modelBuilder.Entity<City>().HasKey(e => e.Id);
             modelBuilder.Entity<Event>().HasKey(e => e.Id);
+            modelBuilder.Entity<ReviewEvent>().HasKey(e => e.Id);
+            modelBuilder.Entity<MessageEvent>().HasKey(e => e.Id);
+            modelBuilder.Entity<ReservationEvent>().HasKey(e => e.Id);
         }
 
         private static void SetForeignKeys(DbModelBuilder modelBuilder)
@@ -219,6 +222,8 @@ namespace Leisurebooker.DataAccess.EF.Connection
             //throw new System.NotImplementedException();
             modelBuilder.Entity<City>().Property(m => m.Id)
              .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            modelBuilder.Entity<Event>().Property(m => m.Id)
+             .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
 
         public static Context Create()

@@ -3,7 +3,7 @@ namespace Leisurebooker.DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Events : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -76,7 +76,7 @@ namespace Leisurebooker.DataAccess.Migrations
                 "dbo.Event",
                 c => new
                     {
-                        Id = c.Int(nullable: false),
+                        Id = c.Int(nullable: false, identity: true),
                         EventType = c.Int(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         BranchId = c.Int(nullable: false),
