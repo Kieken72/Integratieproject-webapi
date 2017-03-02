@@ -11,7 +11,14 @@ namespace WebApi.Models.Dto
         public DateTime DateTime { get; set; }
         public bool Public { get; set; }
         //public ReservationDto Reservation { get; set; }
+        public int ReservationId { get; set; }
         public int BranchId { get; set; }
         public string UserId { get; set; }
+        public AccountDto User { get; set; }
+
+        public ReviewDto()
+        {
+            DateTime = DateTime.Now;
+        }
     }
 }

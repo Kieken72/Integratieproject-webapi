@@ -15,5 +15,12 @@ namespace Leisurebooker.Business.Domain
         public ReviewEvent Event { get; set; }
         public int BranchId { get; set; }
         public string UserId { get; set; }
+        public virtual Account User { get; set; }
+
+        public Review()
+        {
+            DateTime= DateTime.Now;
+            
+        }
     }
 }

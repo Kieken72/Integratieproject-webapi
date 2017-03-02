@@ -66,11 +66,20 @@ namespace WebApi.Controllers
         public IHttpActionResult Post([FromBody]ReviewDto value)
         {
             value.UserId = User.Identity.GetUserId();
-            //var user = User.Identity.GetUserId();
-            //var reservation = _reservationService.Get(e => e.AccountId == user);
-            //To Check if reservation was made by this user..
+            var reservation = _reservationService.Get(value.ReservationId);
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+            if (reservation.Review != null)
+            {
+                return Conflict();
+            }
+            value.BranchId = reservation.BranchId;
             var entity = Mapper.Map<Review>(value);
-            entity = this._service.Add(entity);
+            reservation.Review = entity;
+            this._reservationService.Change(reservation);
+            //entity = this._service.Add(entity);
             value = Mapper.Map<ReviewDto>(entity);
             return Ok(value);
 
