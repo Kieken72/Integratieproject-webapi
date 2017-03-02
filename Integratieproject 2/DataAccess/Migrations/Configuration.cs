@@ -51,7 +51,7 @@ namespace Leisurebooker.DataAccess.Migrations
 
             manager.AddToRoles(id, new string[] { "SuperAdmin", "Admin", "Manager" });
 
-            var date = DateTime.Now;
+            var date = DateTime.Now.AddDays(1);
             context.Companies.Add(
             
                 new Company()
@@ -72,20 +72,16 @@ namespace Leisurebooker.DataAccess.Migrations
                             CityId = City,
                             OpeningHours = new List<OperationHours>()
                             {
-                                new OperationHours(DayOfWeek.Monday, 11,30,17,30),
-                                new OperationHours(DayOfWeek.Tuesday, 11,30,17,30),
-                                new OperationHours(DayOfWeek.Wednesday, 11,30,17,30),
-                                new OperationHours(DayOfWeek.Thursday, 11,30,17,30),
-                                new OperationHours(DayOfWeek.Friday, 11,30,17,30),
-                                new OperationHours(DayOfWeek.Sunday, 11,30,17,30)
+                                new OperationHours(DayOfWeek.Monday, 14,00,23,30),
+                                new OperationHours(DayOfWeek.Tuesday, 14,00,23,30),
+                                new OperationHours(DayOfWeek.Wednesday, 14,00,23,30),
+                                new OperationHours(DayOfWeek.Thursday, 14,00,23,30),
+                                new OperationHours(DayOfWeek.Friday, 14,00,23,30),
+                                new OperationHours(DayOfWeek.Sunday, 14,00,23,30)
                             },
                             AdditionalInfos = new List<AdditionalInfo>()
                             {
                                 new AdditionalInfo()
-                                {
-                                    Type = AdditionalInfoType.PaymentMethod,
-                                    Value = "MASTERCARD"
-                                },new AdditionalInfo()
                                 {
                                     Type = AdditionalInfoType.PaymentMethod,
                                     Value = "VISA"
@@ -136,7 +132,7 @@ namespace Leisurebooker.DataAccess.Migrations
                                                 {
                                                     AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,18,00,00),
                                                     AccountId = id,
                                                     Review = new Review()
                                                     {
@@ -150,14 +146,14 @@ namespace Leisurebooker.DataAccess.Migrations
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,11,30,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,14,30,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     AccountId = id
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,13,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,18,30,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,20,30,00),
                                                     AccountId = id
                                                 }
                                             }
@@ -173,20 +169,20 @@ namespace Leisurebooker.DataAccess.Migrations
                                                 new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,14,00,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     AccountId = id
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,11,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,18,00,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,20,00,00),
                                                     AccountId = id
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,13,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,20,00,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,22,00,00),
                                                     AccountId = id
                                                 }
                                             }
@@ -200,20 +196,20 @@ namespace Leisurebooker.DataAccess.Migrations
                                                 new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,14,00,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    AccountId = id
+                                                },new Reservation()
+                                                {
+                                                    AmountOfPersons = 2,
                                                     DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,18,00,00),
                                                     AccountId = id
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,11,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
-                                                    AccountId = id
-                                                },new Reservation()
-                                                {
-                                                    AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,13,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,20,30,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,22,30,00),
                                                     AccountId = id
                                                 }
                                             }
@@ -227,21 +223,21 @@ namespace Leisurebooker.DataAccess.Migrations
                                                 new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,14,00,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,18,00,00),
                                                     AccountId = id
 
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,11,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,18,30,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,20,00,00),
                                                     AccountId = id
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,13,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,20,30,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,22,30,00),
                                                     AccountId = id
                                                 }
                                             }
@@ -276,12 +272,12 @@ namespace Leisurebooker.DataAccess.Migrations
                             CityId = City,
                             OpeningHours = new List<OperationHours>()
                             {
-                                new OperationHours(DayOfWeek.Monday, 11,30,17,30),
-                                new OperationHours(DayOfWeek.Tuesday, 11,30,17,30),
-                                new OperationHours(DayOfWeek.Wednesday, 11,30,17,30),
-                                new OperationHours(DayOfWeek.Thursday, 11,30,17,30),
-                                new OperationHours(DayOfWeek.Friday, 11,30,17,30),
-                                new OperationHours(DayOfWeek.Sunday, 11,30,17,30)
+                                new OperationHours(DayOfWeek.Monday, 14,00,23,30),
+                                new OperationHours(DayOfWeek.Tuesday, 14,00,23,30),
+                                new OperationHours(DayOfWeek.Wednesday, 14,00,23,30),
+                                new OperationHours(DayOfWeek.Thursday, 14,00,23,30),
+                                new OperationHours(DayOfWeek.Friday, 14,00,23,30),
+                                new OperationHours(DayOfWeek.Sunday, 14,00,23,30)
                             },
                             AdditionalInfos = new List<AdditionalInfo>()
                             {
@@ -297,10 +293,6 @@ namespace Leisurebooker.DataAccess.Migrations
                                 {
                                     Type = AdditionalInfoType.PaymentMethod,
                                     Value = "BANCONTACT"
-                                },new AdditionalInfo()
-                                {
-                                    Type = AdditionalInfoType.PaymentMethod,
-                                    Value = "MASTERCARD"
                                 },new AdditionalInfo()
                                 {
                                     Type = AdditionalInfoType.Accessibility,
@@ -339,21 +331,21 @@ namespace Leisurebooker.DataAccess.Migrations
                                                 new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,15,00,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,17,00,00),
                                                     AccountId = id
 
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,11,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,17,00,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,19,00,00),
                                                     AccountId = id
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,13,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,19,30,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,21,00,00),
                                                     AccountId = id
                                                 }
                                             }
@@ -369,20 +361,20 @@ namespace Leisurebooker.DataAccess.Migrations
                                                 new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,14,00,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     AccountId = id
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,11,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,16,30,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,18,30,00),
                                                     AccountId = id
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,13,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,18,30,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,19,30,00),
                                                     AccountId = id
                                                 }
                                             }
@@ -396,20 +388,20 @@ namespace Leisurebooker.DataAccess.Migrations
                                                 new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,14,00,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     AccountId = id
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,11,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,16,30,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,18,30,00),
                                                     AccountId = id
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,13,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,20,30,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,22,30,00),
                                                     AccountId = id
                                                 }
                                             }
@@ -423,21 +415,21 @@ namespace Leisurebooker.DataAccess.Migrations
                                                 new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,14,00,00),
                                                     EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
                                                     AccountId = id
 
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,11,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,16,30,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,18,30,00),
                                                     AccountId = id
                                                 },new Reservation()
                                                 {
                                                     AmountOfPersons = 2,
-                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,13,30,00),
-                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,16,00,00),
+                                                    DateTime = new DateTime(date.Year,date.Month,date.Day,22,30,00),
+                                                    EndDateTime = new DateTime(date.Year,date.Month,date.Day,23,00,00),
                                                     AccountId = id
                                                 }
                                             }

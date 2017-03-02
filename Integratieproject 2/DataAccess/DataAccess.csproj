@@ -99,9 +99,9 @@
     <Compile Include="EF\Repositories\RoomRepository.cs" />
     <Compile Include="EF\Repositories\SpaceRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="Migrations\201702271219061_Events.cs" />
-    <Compile Include="Migrations\201702271219061_Events.Designer.cs">
-      <DependentUpon>201702271219061_Events.cs</DependentUpon>
+    <Compile Include="Migrations\201703011629519_Inheritance.cs" />
+    <Compile Include="Migrations\201703011629519_Inheritance.Designer.cs">
+      <DependentUpon>201703011629519_Inheritance.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -119,8 +119,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702271219061_Events.resx">
-      <DependentUpon>201702271219061_Events.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703011629519_Inheritance.resx">
+      <DependentUpon>201703011629519_Inheritance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

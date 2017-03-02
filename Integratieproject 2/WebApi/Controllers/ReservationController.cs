@@ -4,7 +4,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 using AutoMapper;
+using Itenso.TimePeriod;
 using Leisurebooker.Business;
 using Leisurebooker.Business.Domain;
 using Microsoft.AspNet.Identity;
@@ -47,20 +49,14 @@ namespace WebApi.Controllers
             foreach (var entity in entities)
             {
                 var branch = Mapper.Map<CheckBranchDto>(entity);
-                var operationHour = entity.OpeningHours.FirstOrDefault(e => e.Day == date.DayOfWeek);
-                if (operationHour == null)
+                var operationHour = entity.OpeningHours.Where(e => e.Day == date.DayOfWeek);
+
+                //Openingsuren
+                if (!IsValidReservation(operationHour.ToArray(), parameters.DateTime, parameters.DateTime.AddHours(2)))
                 {
                     branch.Available = false;
                     branch.Message = CheckMessage.Closed;
-                    branches.Add(branch);
-                    continue;
-                }
-                if (!operationHour.IsOpen(date.Hour, date.Minute))
-                {
-                    branch.Available = false;
-                    branch.Message = CheckMessage.Closed;
-                    branches.Add(branch);
-                    continue;
+                    return Ok(branch);
                 }
                 var roomIds = entity.Rooms.Select(room => room.Id).ToList();
                 var spaces = _spaceService.Get(e => roomIds.Contains(e.RoomId), e => (e.MinPersons <= parameters.Amount && e.Persons >= parameters.Amount), collections: true).ToList();
@@ -71,28 +67,12 @@ namespace WebApi.Controllers
                 {
                     //MAX HOURS?
                     var reservations =
-                        space.Reservations.Where(
-                            e =>
-                                e.DateTime.Year == date.Year && e.DateTime.Month == date.Month &&
-                                e.DateTime.Day == date.Day && e.DateTime.Hour < date.Hour + 3).ToList();
+                    space.Reservations.Where(e => e.DateTime.Date == date.Date).ToList();
 
-                    var isAvailable = true;
-                    foreach (var reservation in reservations)
-                    {
-                        var dateTimeRes = reservation.DateTime;
-                        var dateEndTimeRes = reservation.EndDateTime;
-                        //if (hours < 0 || hours > 23) throw bad
 
-                        if (date.TimeOfDay > dateTimeRes.TimeOfDay && date.TimeOfDay < dateEndTimeRes.TimeOfDay)
-                        {
-                            isAvailable = false;
-                        }
-                        else if ((date.AddHours(2)).TimeOfDay > dateTimeRes.TimeOfDay &&
-                                 (date.AddHours(2)).TimeOfDay < dateEndTimeRes.TimeOfDay)
-                        {
-                            isAvailable = false;
-                        }
-                    }
+
+                    var isAvailable = DoesNotOverlap(reservations.ToArray(), date, date.AddHours(2));
+
                     if (isAvailable)
                     {
                         freeSpaces.Add(space);
@@ -125,19 +105,15 @@ namespace WebApi.Controllers
             var date = new DateTime(parameters.DateTime.Year, parameters.DateTime.Month, parameters.DateTime.Day, parameters.DateTime.Hour, parameters.DateTime.Minute, 0);
             var entity = _branchService.Get(branchId, collections:true);
                 var branch = Mapper.Map<CheckBranchDto>(entity);
-                var operationHour = entity.OpeningHours.FirstOrDefault(e => e.Day == date.DayOfWeek);
-                if (operationHour == null)
-                {
-                    branch.Available = false;
-                    branch.Message = CheckMessage.Closed;
+            var operationHour = entity.OpeningHours.Where(e => e.Day == date.DayOfWeek);
+
+            //Openingsuren
+            if (!IsValidReservation(operationHour.ToArray(), parameters.DateTime, parameters.DateTime.AddHours(2)))
+            {
+                branch.Available = false;
+                branch.Message = CheckMessage.Closed;
                 return Ok(branch);
-                }
-                if (!operationHour.IsOpen(date.Hour, date.Minute))
-                {
-                    branch.Available = false;
-                    branch.Message = CheckMessage.Closed;
-                return Ok(branch);
-                }
+            }
                 var roomIds = entity.Rooms.Select(room => room.Id).ToList();
                 var spaces = _spaceService.Get(e => roomIds.Contains(e.RoomId), e => (e.MinPersons <= parameters.Amount && e.Persons >= parameters.Amount), collections: true).ToList();
 
@@ -145,31 +121,14 @@ namespace WebApi.Controllers
                 var freeSpaces = new List<Space>();
                 foreach (var space in spaces)
                 {
-                    //MAX HOURS?
-                    var reservations =
-                        space.Reservations.Where(
-                            e =>
-                                e.DateTime.Year == date.Year && e.DateTime.Month == date.Month &&
-                                e.DateTime.Day == date.Day && e.DateTime.Hour < date.Hour + 3).ToList();
+                //MAX HOURS?
+                var reservations =
+                    space.Reservations.Where(e => e.DateTime.Date == date.Date).ToList();
 
-                    var isAvailable = true;
-                    foreach (var reservation in reservations)
-                    {
-                        var dateTimeRes = reservation.DateTime;
-                        var dateEndTimeRes = reservation.EndDateTime;
-                        //if (hours < 0 || hours > 23) throw bad
 
-                        if (date.TimeOfDay > dateTimeRes.TimeOfDay && date.TimeOfDay < dateEndTimeRes.TimeOfDay)
-                        {
-                            isAvailable = false;
-                        }
-                        else if ((date.AddHours(2)).TimeOfDay > dateTimeRes.TimeOfDay &&
-                                 (date.AddHours(2)).TimeOfDay < dateEndTimeRes.TimeOfDay)
-                        {
-                            isAvailable = false;
-                        }
-                    }
-                    if (isAvailable)
+
+                var isAvailable = DoesNotOverlap(reservations.ToArray(), date, date.AddHours(2));
+                if (isAvailable)
                     {
                         freeSpaces.Add(space);
                     }
@@ -204,16 +163,15 @@ namespace WebApi.Controllers
             {
                 return BadRequest("Branch not found");
             }
-
             if (reservation.DateTime < DateTime.Now)
             {
                 return BadRequest("Reservation needs to be in future");
             }
-
             if (reservation.Amount < 1)
             {
                 return BadRequest("U need to be with atleast one person..");
             }
+
 
 
             //Logica voor room te vinden..
@@ -221,62 +179,43 @@ namespace WebApi.Controllers
             var entity = this._branchService.Get(branch.Id,collections:true);
             var date = reservation.DateTime;
 
-            var operationHour = entity.OpeningHours.FirstOrDefault(e => e.Day == date.DayOfWeek);
-                if (operationHour == null)
-                {
-                    return Conflict();
-                }
-                if (!operationHour.IsOpen(date.Hour, date.Minute))
+            var operationHour = entity.OpeningHours.Where(e => e.Day == date.DayOfWeek);
+            
+            //Openingsuren
+            if (!IsValidReservation(operationHour.ToArray(), reservation.DateTime, reservation.DateTime.AddHours(2)))
             {
-                return Conflict();
+                return ResponseMessage(new HttpResponseMessage(HttpStatusCode.PreconditionFailed));
             }
+
+
                 var roomIds = entity.Rooms.Select(room => room.Id).ToList();
                 var spaces = _spaceService.Get(e => roomIds.Contains(e.RoomId), e => (e.MinPersons <= reservation.Amount && e.Persons >= reservation.Amount), collections: true).ToList();
 
-                var freeSpaces = new List<Space>();
                 foreach (var space in spaces)
                 {
                     //MAX HOURS?
                     var reservations =
-                        space.Reservations.Where(
-                            e =>
-                                e.DateTime.Year == date.Year && e.DateTime.Month == date.Month &&
-                                e.DateTime.Day == date.Day && e.DateTime.Hour < date.Hour + 3).ToList();
+                        space.Reservations.Where(e => e.DateTime.Date == date.Date).ToList();
 
-                    var isAvailable = true;
-                    foreach (var res in reservations)
+                
+
+                    var isAvailable = DoesNotOverlap(reservations.ToArray(), date, date.AddHours(2));
+
+                    if (!isAvailable) continue;
+                    var newReservation = new Reservation()
                     {
-                        var dateTimeRes = res.DateTime;
-                        var dateEndTimeRes = res.EndDateTime;
-                        //if (hours < 0 || hours > 23) throw bad
+                        AccountId = User.Identity.GetUserId(),
+                        BranchId = branch.Id,
+                        AmountOfPersons = reservation.Amount,
+                        DateTime = reservation.DateTime,
+                        EndDateTime = reservation.DateTime.AddHours(2),
+                        SpaceId = space.Id
+                    };
 
-                        if (date.TimeOfDay > dateTimeRes.TimeOfDay && date.TimeOfDay < dateEndTimeRes.TimeOfDay)
-                        {
-                            isAvailable = false;
-                        }
-                        else if ((date.AddHours(2)).TimeOfDay > dateTimeRes.TimeOfDay &&
-                                 (date.AddHours(2)).TimeOfDay < dateEndTimeRes.TimeOfDay)
-                        {
-                            isAvailable = false;
-                        }
-                    }
-                    if (isAvailable)
-                    {
-                        var newReservation = new Reservation()
-                        {
-                            AccountId = User.Identity.GetUserId(),
-                            BranchId = branch.Id,
-                            AmountOfPersons = reservation.Amount,
-                            DateTime = reservation.DateTime,
-                            EndDateTime = reservation.DateTime.AddHours(2),
-                            SpaceId = space.Id
-                        };
+                    newReservation = _reservationService.Add(newReservation);
 
-                        newReservation = _reservationService.Add(newReservation);
-
-                        return Ok(newReservation);
-                    }
-
+                    //SendMail!!
+                    return Ok(newReservation);
                 }
             return BadRequest("No free space.");
         }
@@ -289,6 +228,61 @@ namespace WebApi.Controllers
             var dtos = Mapper.Map<IEnumerable<ReservationDto>>(entities);
             return Ok(dtos);
         }
+
+
+
+        public static bool IsValidReservation(OperationHours[] operationHours,DateTime start, DateTime end)
+        {
+            if (!TimeCompare.IsSameDay(start, end))
+            {
+                return false;
+            }
+            if (operationHours == null)
+            {
+                return false;
+            }
+
+            var isValid = false;
+            foreach (var operationHour in operationHours)
+            {
+                if (isValid) continue;
+                var workingHours = new TimeRange(TimeTrim.Hour(start, operationHour.FromTime.Hours, operationHour.FromTime.Minutes), TimeTrim.Hour(start, operationHour.ToTime.Hours, operationHour.ToTime.Minutes));
+                isValid = workingHours.HasInside(new TimeRange(start, end));
+            }
+
+            
+            return isValid;
+        }
+
+        public static bool DoesNotOverlap(Reservation reservation, DateTime start, DateTime end)
+        {
+            if (reservation == null)
+            {
+                return false;
+            }
+
+            var workingHours = new TimeRange(
+                TimeTrim.Hour(start,reservation.DateTime.Hour, reservation.DateTime.Minute),
+                TimeTrim.Hour(start, reservation.EndDateTime.Hour, reservation.EndDateTime.Minute));
+
+            return workingHours.IntersectsWith(new TimeRange(start, end));
+        }
+
+        public static bool DoesNotOverlap(Reservation[] reservations, DateTime start, DateTime end)
+        {
+            var isValid = false;
+            foreach (var reservation in reservations)
+            {
+                if (isValid)
+                {
+                    return false;
+                }
+                isValid = DoesNotOverlap(reservation, start, end);
+            }
+            return !isValid;
+
+        }
+
     }
 
 

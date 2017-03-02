@@ -65,6 +65,15 @@ namespace WebApi.Controllers
             return NotFound();
         }
 
+        [Authorize]
+        [Route("")]
+        [HttpPost]
+        public async Task<IHttpActionResult> EditUser()
+        {
+            return Ok();
+        }
+
+
         [Route("create")]
         public async Task<IHttpActionResult> CreateUser(CreateUserBindingModel createUserModel)
         {
