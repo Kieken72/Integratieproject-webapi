@@ -25,14 +25,14 @@ namespace WebApi.Controllers
             _reservationService = reservationService;
         }
 
-        [Route("")]
-        // GET: api/reviews
-        public IHttpActionResult Get()
-        {
-            var entities = this._service.Get();
-            var dtos = Mapper.Map<IEnumerable<ReviewDto>>(entities);
-            return Ok(dtos);
-        }
+        //[Route("")]
+        //// GET: api/reviews
+        //public IHttpActionResult Get()
+        //{
+        //    var entities = this._service.Get();
+        //    var dtos = Mapper.Map<IEnumerable<ReviewDto>>(entities);
+        //    return Ok(dtos);
+        //}
 
         [Route("{id}")]
         // GET: api/reviews/5
@@ -76,15 +76,15 @@ namespace WebApi.Controllers
 
         }
 
-        [Route("{id}")]
-        //!!Authorized as manager from this company
-        // PUT: api/reviews/5
-        public IHttpActionResult Put(int id, [FromBody]ReviewDto value)
-        {
-            var entity = Mapper.Map<Review>(value);
-            this._service.Change(entity);
-            return Ok();
-        }
+        //[Route("{id}")]
+        ////!!Authorized as manager from this company
+        //// PUT: api/reviews/5
+        //public IHttpActionResult Put(int id, [FromBody]ReviewDto value)
+        //{
+        //    var entity = Mapper.Map<Review>(value);
+        //    this._service.Change(entity);
+        //    return Ok();
+        //}
 
         [Route("{id}")]
         //!!Authorized only as admin

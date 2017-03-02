@@ -7,7 +7,10 @@
         Accessibility,
         Atmosphere,
         Image,
-        Video
+        Video,
+        Homepage,
+        Facebook,
+        Twitter
 
     }
 }

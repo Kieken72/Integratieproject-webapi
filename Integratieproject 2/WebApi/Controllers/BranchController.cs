@@ -17,12 +17,14 @@ namespace WebApi.Controllers
         private readonly IService<Branch> _service;
         private readonly IService<City> _cityService;
         private readonly IService<Space> _spaceService;
+        private readonly IService<Room> _roomService;
 
-        public BranchController(IService<Branch> service, IService<City> cityService, IService<Space> spaceService )
+        public BranchController(IService<Branch> service, IService<City> cityService, IService<Space> spaceService, IService<Room> roomService  )
         {
             _service = service;
             _cityService = cityService;
             _spaceService = spaceService;
+            _roomService = roomService;
         }
 
         [Route("")]
@@ -78,6 +80,16 @@ namespace WebApi.Controllers
             value = Mapper.Map<BranchDto>(entity);
             return Ok(value);
 
+        }
+
+        [Route("new-room")]
+        [HttpPost]
+        public IHttpActionResult NewRoom([FromBody] RoomDto value)
+        {
+            var entity = Mapper.Map<Room>(value);
+            entity = this._roomService.Add(entity);
+            value = Mapper.Map<RoomDto>(entity);
+            return Ok(value);
         }
 
         [Route("{id}")]
