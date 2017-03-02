@@ -225,6 +225,7 @@
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Dto\AccountDto.cs" />
     <Compile Include="Models\Dto\AdditionalInfoDto.cs" />
     <Compile Include="Models\Dto\BranchDto.cs" />
     <Compile Include="Models\Dto\CityDto.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Models\Dto\ReviewDto.cs" />
     <Compile Include="Models\Dto\RoomDto.cs" />
     <Compile Include="Models\Dto\SpaceDto.cs" />
+    <Compile Include="Models\Mapping\AccountProfile.cs" />
     <Compile Include="Models\Mapping\AdditionalInfoProfile.cs" />
     <Compile Include="Models\Mapping\BranchProfile.cs" />
     <Compile Include="Models\Mapping\CityProfile.cs" />

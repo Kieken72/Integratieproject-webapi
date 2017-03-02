@@ -19,6 +19,7 @@ namespace WebApi
                 cfg.AddProfile<ReviewProfile>();
                 cfg.AddProfile<SpaceProfile>();
                 cfg.AddProfile<RoomProfile>();
+                cfg.AddProfile<AccountProfile>();
             });
         }
     }

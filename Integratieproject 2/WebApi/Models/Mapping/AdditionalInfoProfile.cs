@@ -11,5 +11,6 @@ namespace WebApi.Models.Mapping
             this.CreateMap<AdditionalInfo, AdditionalInfoDto>();
             this.CreateMap<AdditionalInfoDto, AdditionalInfo>();
         }
+
     }
 }

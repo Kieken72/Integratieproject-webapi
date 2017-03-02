@@ -15,7 +15,6 @@ namespace WebApi.Controllers
     [RoutePrefix("api/messages")]
     public class MessageController : ApiController
     {
-
         private readonly IService<Message> _service;
 
         public MessageController(IService<Message> service)
@@ -23,27 +22,31 @@ namespace WebApi.Controllers
             _service = service;
         }
 
-        // GET: api/Message
-        public IHttpActionResult Get()
-        {
-            var entities = this._service.Get();
-            var dtos = Mapper.Map<IEnumerable<MessageDto>>(entities);
-            return Ok(dtos);
-        }
+        //[Route("")]
+        //// GET: api/Message
+        //public IHttpActionResult Get()
+        //{
+        //    var entities = this._service.Get();
+        //    var dtos = Mapper.Map<IEnumerable<MessageDto>>(entities);
+        //    return Ok(dtos);
+        //}
 
+        [Route("{id}")]
         // GET: api/Message/5
         public IHttpActionResult Get(int id)
         {
-            var entity = this._service.Get(id, collections: true);
-            if (entity == null)
+            var entity = this._service.Get(e=>e.ReservationId==id, collections: true);
+            if (!entity.Any())
             {
                 return NotFound();
             }
-            var dto = Mapper.Map<MessageDto>(entity);
+            var dto = Mapper.Map<IEnumerable<MessageDto>>(entity);
             return Ok(dto);
         }
 
         // POST: api/Message
+        [Route("")]
+        [Authorize]
         public IHttpActionResult Post([FromBody]MessageDto value)
         {
             value.UserId = User.Identity.GetUserId();
