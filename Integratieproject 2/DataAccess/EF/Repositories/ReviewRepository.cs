@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Leisurebooker.Business.Domain;
 using Leisurebooker.DataAccess.EF.Connection;
+using System.Linq;
+using System.Data.Entity;
 
 namespace Leisurebooker.DataAccess.EF.Repositories
 {
@@ -15,27 +17,45 @@ namespace Leisurebooker.DataAccess.EF.Repositories
 
         public override Review Create(Review entity)
         {
-            throw new NotImplementedException();
+            this.Context.Reviews.Add(entity);
+            this.Context.SaveChanges();
+            return entity;
         }
 
         public override Review Read(int id, bool eager = false)
         {
-            throw new NotImplementedException();
+            if (eager)
+            {
+                return this.Context.Reviews
+                    .Include(e=>e.Reservation)
+                    .SingleOrDefault(t => t.Id == id);
+            }
+            return this.Context.Reviews
+                    .SingleOrDefault(t => t.Id == id);
         }
 
         public override void Update(Review entity)
         {
-            throw new NotImplementedException();
+            this.Context.Reviews.Attach(entity);
+            this.Context.Entry(entity).State = EntityState.Modified;
+            this.Context.SaveChanges();
         }
 
         public override void Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = Read(id);
+            this.Context.Reviews.Remove(entity);
         }
 
         public override IEnumerable<Review> Read(bool eager = false)
         {
-            throw new NotImplementedException();
+            if (eager)
+            {
+                return this.Context.Reviews
+                    .Include(e => e.Reservation)
+                    .AsEnumerable();
+            }
+            return this.Context.Reviews.AsEnumerable();
         }
     }
 }
