@@ -81,6 +81,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="EF\Connection\ContextFactoryTests.cs" />
+    <Compile Include="EF\Repositories\ReviewRepositoryTest.cs" />
+    <Compile Include="EF\Repositories\MessagesRepositoryTest.cs" />
     <Compile Include="EF\Repositories\SpaceRepositoryTests.cs" />
     <Compile Include="EF\Repositories\RoomRepositoryTests.cs" />
     <Compile Include="EF\Repositories\ReservationRepositoryTests.cs" />
