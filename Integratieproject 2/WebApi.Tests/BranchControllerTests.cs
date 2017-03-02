@@ -26,7 +26,7 @@ namespace WebApi.Tests
                 cfg.AddProfile<OpeningHourProfile>();
                 cfg.AddProfile<AdditionalInfoProfile>();
             });
-            _controller = new BranchController(new BranchService(), new CityService(), new SpaceService());
+            _controller = new BranchController(new BranchService(), new CityService(), new SpaceService(), new RoomService());
         }
         [Test]
         public void Get_ReturnsMultipleBranches()
