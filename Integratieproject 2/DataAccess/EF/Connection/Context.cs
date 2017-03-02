@@ -64,9 +64,9 @@ namespace Leisurebooker.DataAccess.EF.Connection
             modelBuilder.Entity<Account>().HasKey(e => e.Id);
             modelBuilder.Entity<City>().HasKey(e => e.Id);
             modelBuilder.Entity<Event>().HasKey(e => e.Id);
-            modelBuilder.Entity<ReviewEvent>().HasKey(e => e.Id);
-            modelBuilder.Entity<MessageEvent>().HasKey(e => e.Id);
-            modelBuilder.Entity<ReservationEvent>().HasKey(e => e.Id);
+            //modelBuilder.Entity<ReviewEvent>().HasKey(e => e.Id);
+            //modelBuilder.Entity<MessageEvent>().HasKey(e => e.Id);
+            //modelBuilder.Entity<ReservationEvent>().HasKey(e => e.Id);
         }
 
         private static void SetForeignKeys(DbModelBuilder modelBuilder)
@@ -199,13 +199,33 @@ namespace Leisurebooker.DataAccess.EF.Connection
 
             modelBuilder.Entity<Reservation>()
                 .HasOptional(e => e.Event)
-                .WithRequired(e => e.Reservation);
+                .WithMany()
+                .HasForeignKey(e => e.EventId);
+
             modelBuilder.Entity<Message>()
                 .HasOptional(e => e.Event)
-                .WithRequired(e => e.Message);
+                .WithMany()
+                .HasForeignKey(e => e.EventId);
+
             modelBuilder.Entity<Review>()
                 .HasOptional(e => e.Event)
-                .WithRequired(e => e.Review);
+                .WithMany()
+                .HasForeignKey(e => e.EventId);
+
+            //modelBuilder.Entity<ReservationEvent>()
+            //    .HasOptional(e => e.Reservation)
+            //    .WithMany()
+            //    .HasForeignKey(e => e.ReservationId);
+
+            //modelBuilder.Entity<MessageEvent>()
+            //    .HasOptional(e => e.Message)
+            //    .WithMany()
+            //    .HasForeignKey(e => e.MessageId);
+
+            //modelBuilder.Entity<ReviewEvent>()
+            //    .HasOptional(e => e.Review)
+            //    .WithMany()
+            //    .HasForeignKey(e => e.ReviewId);
 
 
 

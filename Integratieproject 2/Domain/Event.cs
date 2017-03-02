@@ -20,16 +20,19 @@ namespace Leisurebooker.Business.Domain
 
     public class ReservationEvent : Event
     {
+        public int? ReservationId { get; set; }
         public Reservation Reservation { get; set; }
     }
 
     public class MessageEvent : Event
     {
+        public int? MessageId { get; set; }
         public Message Message { get; set; }
     }
 
     public class ReviewEvent : Event
     {
+        public int? ReviewId { get; set; }
         public Review Review { get; set; }
     }
 }

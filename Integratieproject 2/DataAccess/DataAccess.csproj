@@ -100,9 +100,9 @@
     <Compile Include="EF\Repositories\RoomRepository.cs" />
     <Compile Include="EF\Repositories\SpaceRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="Migrations\201702272115210_Initial.cs" />
-    <Compile Include="Migrations\201702272115210_Initial.Designer.cs">
-      <DependentUpon>201702272115210_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201703011629519_Inheritance.cs" />
+    <Compile Include="Migrations\201703011629519_Inheritance.Designer.cs">
+      <DependentUpon>201703011629519_Inheritance.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -120,8 +120,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702272115210_Initial.resx">
-      <DependentUpon>201702272115210_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703011629519_Inheritance.resx">
+      <DependentUpon>201703011629519_Inheritance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
