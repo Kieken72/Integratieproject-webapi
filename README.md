@@ -56,3 +56,16 @@
 | [/accounts/](http://leisurebooker.azurewebsites.net/api/accounts/) | AccountController | GET |  |  |
 | [OAUTH/token](http://leisurebooker.azurewebsites.net/oauth/token) | Bearer | POST |  USER |  |
 Todo: External Providers 
+
+### Messages
+
+| URI | Controller | VERB | Role | Test |
+| --- | --- | --- | --- | --- |
+| [/messages/{id}](http://leisurebooker.azurewebsites.net/api/accounts/create) | MessageController | GET | USER |  |
+| [/messages/](http://leisurebooker.azurewebsites.net/api/accounts/) | MessageController | POST | USER |  |
+
+### Reviews
+
+| URI | Controller | VERB | Role | Test |
+| --- | --- | --- | --- | --- |
+| [/reviews/](http://leisurebooker.azurewebsites.net/api/accounts/) | ReviewController | POST | USER |  |

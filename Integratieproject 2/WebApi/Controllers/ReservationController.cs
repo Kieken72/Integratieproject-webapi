@@ -46,6 +46,10 @@ namespace WebApi.Controllers
 
             var branches = new List<CheckBranchDto>();
             var date = new DateTime(parameters.DateTime.Year, parameters.DateTime.Month, parameters.DateTime.Day, parameters.DateTime.Hour, parameters.DateTime.Minute, 0);
+            if (date < DateTime.Now)
+            {
+                return BadRequest("Reservation needs to be in future");
+            }
             foreach (var entity in entities)
             {
                 var branch = Mapper.Map<CheckBranchDto>(entity);
@@ -102,7 +106,14 @@ namespace WebApi.Controllers
         [HttpGet]
         public IHttpActionResult IsPlaceInBranch(int branchId, [FromUri] AvailableBranchUri parameters)
         {
+
+
             var date = new DateTime(parameters.DateTime.Year, parameters.DateTime.Month, parameters.DateTime.Day, parameters.DateTime.Hour, parameters.DateTime.Minute, 0);
+            if (date < DateTime.Now)
+            {
+                return BadRequest("Reservation needs to be in future");
+            }
+
             var entity = _branchService.Get(branchId, collections:true);
                 var branch = Mapper.Map<CheckBranchDto>(entity);
             var operationHour = entity.OpeningHours.Where(e => e.Day == date.DayOfWeek);
