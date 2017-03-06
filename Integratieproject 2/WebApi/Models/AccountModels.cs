@@ -29,16 +29,24 @@ namespace WebApi.Models
         public ICollection<ReviewDto> Reviews { get; set; }
         public ICollection<MessageDto> Messages { get; set; }
     }
+
+    public class EditUserBindingModel
+    {
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+    }
+
     public class CreateUserBindingModel
     {
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
-        [Required]
-        [Display(Name = "Username")]
-        public string Username { get; set; }
 
         [Required]
         [Display(Name = "First Name")]
