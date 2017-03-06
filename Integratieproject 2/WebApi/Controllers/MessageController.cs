@@ -44,6 +44,19 @@ namespace WebApi.Controllers
             return Ok(dto);
         }
 
+        [Route("by-branch/{id}")]
+        // GET: api/Message/5
+        public IHttpActionResult GetByBranch(int id)
+        {
+            var entity = this._service.Get(e => e.BranchId == id, collections: true);
+            if (!entity.Any())
+            {
+                return NotFound();
+            }
+            var dto = Mapper.Map<IEnumerable<MessageDto>>(entity);
+            return Ok(dto);
+        }
+
         // POST: api/Message
         [Route("")]
         [Authorize]

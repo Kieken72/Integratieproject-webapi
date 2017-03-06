@@ -92,6 +92,23 @@ namespace WebApi.Controllers
             return Ok(value);
         }
 
+        //[Route("operationhours/{id}")]
+        //[HttpPost]
+        //public IHttpActionResult OperationHours(int id, [FromBody] IEnumerable<OperationHoursDto> values)
+        //{
+        // FOUT MET UPDATE
+        //    var branch = _service.Get(id, collections:true);
+        //    if (branch == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var entities = Mapper.Map<IEnumerable<OperationHours>>(values);
+        //    branch.OpeningHours = entities.ToList();
+        //    _service.Change(branch);
+
+        //    return Ok();
+        //}
+
         [Route("{id}")]
         //!!Authorized as manager from this company
         // PUT: api/branches/5

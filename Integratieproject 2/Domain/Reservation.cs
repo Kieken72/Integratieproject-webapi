@@ -23,10 +23,12 @@ namespace Leisurebooker.Business.Domain
         public ReservationEvent Event { get; set; }
         public Review Review { get; set; }
         
+        public bool Arrived { get; set; }
         public bool Cancelled { get; set; }
 
         public Reservation()
         {
+            Arrived = false;
             Cancelled = false;
             CreatedOn = DateTime.Now;
             ModifiedOn = DateTime.Now;
