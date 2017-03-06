@@ -32,6 +32,7 @@ namespace WebApi.Controllers
         //}
 
         [Route("{id}")]
+        [Authorize]
         // GET: api/Message/5
         public IHttpActionResult Get(int id)
         {
