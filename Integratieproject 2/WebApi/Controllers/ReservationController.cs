@@ -240,7 +240,7 @@ namespace WebApi.Controllers
             return Ok(dtos);
         }
 
-        [Route("")]
+        [Route("{id}")]
         [Authorize]
         [HttpDelete]
         public IHttpActionResult CancelReservation(int id)
