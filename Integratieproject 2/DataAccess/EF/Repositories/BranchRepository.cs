@@ -45,6 +45,13 @@ namespace Leisurebooker.DataAccess.EF.Repositories
             this.Context.SaveChanges();
         }
 
+        public void AddFavorite(int branchId, Account account)
+        {
+            var branch = this.Context.Branches.Single(l => l.Id == branchId);
+            branch.Favorites.Add(account);
+            this.Context.SaveChanges();
+        }
+
         public override void Delete(int id)
         {
             var branch = Read(id);
