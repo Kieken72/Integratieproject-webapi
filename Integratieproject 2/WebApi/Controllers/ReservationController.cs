@@ -240,6 +240,24 @@ namespace WebApi.Controllers
             return Ok(dtos);
         }
 
+        [Route("")]
+        [Authorize]
+        [HttpDelete]
+        public IHttpActionResult CancelReservation(int id)
+        {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+            var res = _reservationService.Get(id);
+            if (res == null)
+            {
+                return NotFound();
+            }
+            if (res.AccountId != User.Identity.GetUserId()) return Unauthorized();
+            if (res.DateTime < DateTime.Now) return BadRequest();
+                res.Cancelled = true;
+            _reservationService.Change(res);
+            return Ok();
+        }
+
 
 
         public static bool IsValidReservation(OperationHours[] operationHours,DateTime start, DateTime end)
@@ -293,6 +311,8 @@ namespace WebApi.Controllers
             return !isValid;
 
         }
+
+
 
     }
 
