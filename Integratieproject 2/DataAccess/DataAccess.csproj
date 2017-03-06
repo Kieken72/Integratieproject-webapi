@@ -107,6 +107,10 @@
     <Compile Include="Migrations\201703060912376_Initial1.Designer.cs">
       <DependentUpon>201703060912376_Initial1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703061243344_Arrived.cs" />
+    <Compile Include="Migrations\201703061243344_Arrived.Designer.cs">
+      <DependentUpon>201703061243344_Arrived.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository.cs" />
@@ -128,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703060912376_Initial1.resx">
       <DependentUpon>201703060912376_Initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703061243344_Arrived.resx">
+      <DependentUpon>201703061243344_Arrived.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

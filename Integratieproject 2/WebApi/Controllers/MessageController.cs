@@ -36,13 +36,20 @@ namespace WebApi.Controllers
         // GET: api/Message/5
         public IHttpActionResult Get(int id)
         {
-            var entity = this._service.Get(e=>e.ReservationId==id, collections: true);
-            if (!entity.Any())
+            try
             {
-                return NotFound();
+                var entity = this._service.Get(e => e.ReservationId == id, collections: true);
+                if (!entity.Any())
+                {
+                    return NotFound();
+                }
+                var dto = Mapper.Map<IEnumerable<MessageDto>>(entity);
+                return Ok(dto);
             }
-            var dto = Mapper.Map<IEnumerable<MessageDto>>(entity);
-            return Ok(dto);
+            catch (Exception e)
+            {
+                return Ok(e);
+            }
         }
 
         [Route("by-branch/{id}")]
