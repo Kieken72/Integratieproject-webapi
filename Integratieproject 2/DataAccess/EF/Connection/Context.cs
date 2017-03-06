@@ -170,6 +170,13 @@ namespace Leisurebooker.DataAccess.EF.Connection
                 .WithRequired()
                 .HasForeignKey(e => e.CityId);
 
+            //Managers
+
+            modelBuilder.Entity<Branch>()
+                .HasMany(e => e.Managers)
+                .WithOptional()
+                .HasForeignKey(e => e.BranchId);
+
 
 
 

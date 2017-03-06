@@ -24,7 +24,7 @@ namespace WebApi.Models
         public bool EmailConfirmed { get; set; }
         public IList<string> Roles { get; set; }
         //public IList<System.Security.Claims.Claim> Claims { get; set; }
-        //public ICollection<BranchDto> Favorites { get; set; }
+        public ICollection<BranchDto> Favorites { get; set; }
         public ICollection<ReservationDto> Reservations { get; set; }
         public ICollection<ReviewDto> Reviews { get; set; }
         public ICollection<MessageDto> Messages { get; set; }

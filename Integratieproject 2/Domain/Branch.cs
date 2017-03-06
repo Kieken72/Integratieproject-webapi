@@ -37,5 +37,7 @@ namespace Leisurebooker.Business.Domain
 
         public ICollection<Event> Events { get; set; }
 
+        public ICollection<Account> Managers { get; set; }
+
     }
 }

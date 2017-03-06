@@ -29,7 +29,7 @@ namespace Leisurebooker.DataAccess.EF.Repositories
                     .Include(e=>e.OpeningHours)
                     .Include(e=>e.AdditionalInfos)
                     .Include(e=>e.City)
-                    //.Include(e=>e.Favorites)
+                    .Include(e=>e.Favorites)
                     .Include(e=>e.Reviews)
                     .SingleOrDefault(t => t.Id == id);
             }
@@ -59,7 +59,7 @@ namespace Leisurebooker.DataAccess.EF.Repositories
                     .Include(e => e.Rooms)
                     .Include(e => e.OpeningHours)
                     .Include(e => e.AdditionalInfos)
-                    //.Include(e => e.Favorites)
+                    .Include(e => e.Favorites)
                     .Include(e=>e.City)
                     .AsEnumerable();
             }

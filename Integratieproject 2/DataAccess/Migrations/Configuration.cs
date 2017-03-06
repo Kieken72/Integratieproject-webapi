@@ -44,6 +44,7 @@ namespace Leisurebooker.DataAccess.Migrations
             {
                 roleManager.Create(new IdentityRole { Name = "SuperAdmin" });
                 roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "Owner" });
                 roleManager.Create(new IdentityRole { Name = "Manager" });
                 roleManager.Create(new IdentityRole { Name = "User" });
             }

@@ -24,5 +24,7 @@ namespace Leisurebooker.Business.Domain
 
         public ICollection<Branch> Branches { get; set; }
 
+        public Account Owner { get; set; }
+
     }
 }

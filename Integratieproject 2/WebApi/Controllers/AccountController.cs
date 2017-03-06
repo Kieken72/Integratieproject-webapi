@@ -67,7 +67,7 @@ namespace WebApi.Controllers
 
         [Authorize]
         [Route("")]
-        [HttpPost]
+        [HttpPut]
         public async Task<IHttpActionResult> EditUser([FromBody] EditUserBindingModel model)
         {
             var account = await this.AppUserManager.FindByIdAsync(User.Identity.GetUserId());
