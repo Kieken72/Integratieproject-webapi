@@ -63,6 +63,7 @@
     <Compile Include="City.cs" />
     <Compile Include="Branch.cs" />
     <Compile Include="EventType.cs" />
+    <Compile Include="SpaceType.cs" />
     <Compile Include="UserModel.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Entity.cs" />

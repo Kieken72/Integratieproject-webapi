@@ -15,6 +15,7 @@ namespace WebApi.Models.Dto
         public ICollection<MessageDto> Messages { get; set; }
         public ReviewDto Review { get; set; }
         public bool Cancelled { get; set; }
+        public bool Arrived { get; set; }
     }
 
     public class NewReservationDto

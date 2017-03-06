@@ -79,18 +79,19 @@ namespace WebApi.Controllers
         }
 
         // PUT: api/Message/5
-        public IHttpActionResult Put(int id, [FromBody]MessageDto value)
-        {
-            var entity = Mapper.Map<Message>(value);
-            this._service.Change(entity);
-            return Ok();
-        }
+        //[Authorize]
+        //public IHttpActionResult Put(int id, [FromBody]MessageDto value)
+        //{
+        //    var entity = Mapper.Map<Message>(value);
+        //    this._service.Change(entity);
+        //    return Ok();
+        //}
 
-        // DELETE: api/Message/5
-        public IHttpActionResult Delete(int id)
-        {
-            this._service.Remove(id);
-            return Ok();
-        }
+        //// DELETE: api/Message/5
+        //public IHttpActionResult Delete(int id)
+        //{
+        //    this._service.Remove(id);
+        //    return Ok();
+        //}
     }
 }

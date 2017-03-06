@@ -82,7 +82,7 @@ namespace WebApi.Controllers
 
         }
 
-        [Route("new-room")]
+        [Route("room")]
         [HttpPost]
         public IHttpActionResult NewRoom([FromBody] RoomDto value)
         {
@@ -91,6 +91,49 @@ namespace WebApi.Controllers
             value = Mapper.Map<RoomDto>(entity);
             return Ok(value);
         }
+        [Route("room/{id}")]
+        [HttpPut]
+        public IHttpActionResult EditRoom(int id,[FromBody] RoomDto value)
+        {
+
+            var entity = Mapper.Map<Room>(value);
+            this._roomService.Change(entity);
+            //value = Mapper.Map<RoomDto>(entity);
+            return Ok();
+        }
+        [Route("room/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetRoom(int id)
+        {
+            var entity = _roomService.Get(id, true);
+            if (entity == null) return NotFound();
+            var dto = Mapper.Map<RoomDto>(entity);
+            return Ok(dto);
+        }
+
+        [Route("space")]
+        [HttpPost]
+        public IHttpActionResult NewSpace([FromBody] SpaceDto value)
+        {
+            var entity = Mapper.Map<Space>(value);
+            entity = this._spaceService.Add(entity);
+            value = Mapper.Map<SpaceDto>(entity);
+            return Ok(value);
+        }
+
+        [Route("space/{id}")]
+        [HttpPut]
+        public IHttpActionResult EditSpace(int id, [FromBody] SpaceDto value)
+        {
+
+            var entity = Mapper.Map<Space>(value);
+            this._spaceService.Change(entity);
+            //value = Mapper.Map<RoomDto>(entity);
+            return Ok();
+        }
+
+
+
 
         //[Route("operationhours/{id}")]
         //[HttpPost]
