@@ -46,7 +46,9 @@
 | --- | --- | --- | --- | --- |
 | [/reservations](http://leisurebooker.azurewebsites.net/api/reservations) | ReservationController | GET |  |  |
 | [/reservations/{postalcode}](http://leisurebooker.azurewebsites.net/api/reservations/available/2550) | ReservationController | GET |  |  |
-| [/reservations](http://leisurebooker.azurewebsites.net/api/cities/by-reservations) | ReservationController | POST |  |  |
+| [/reservations](http://leisurebooker.azurewebsites.net/api/reservations) | ReservationController | POST |  |  |
+| [/reservations/{id}](http://leisurebooker.azurewebsites.net/api/reservations{id}) | ReservationController | DELETE | USER |  |
+
 
 ### Accounts
 
@@ -55,6 +57,7 @@
 | [/accounts/create](http://leisurebooker.azurewebsites.net/api/accounts/create) | AccountController | POST |  |  |
 | [/accounts/](http://leisurebooker.azurewebsites.net/api/accounts/) | AccountController | GET |  |  |
 | [OAUTH/token](http://leisurebooker.azurewebsites.net/oauth/token) | Bearer | POST |  USER |  |
+| [/accounts/ChangePassword](http://leisurebooker.azurewebsites.net/accounts/ChangePassword) | AccountController | POST |  USER |  |
 Todo: External Providers 
 
 ### Messages

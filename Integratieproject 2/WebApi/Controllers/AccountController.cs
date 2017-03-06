@@ -67,10 +67,16 @@ namespace WebApi.Controllers
 
         [Authorize]
         [Route("")]
-        [HttpPost]
-        public async Task<IHttpActionResult> EditUser()
+        [HttpPut]
+        public async Task<IHttpActionResult> EditUser([FromBody] EditUserBindingModel model)
         {
-            return Ok();
+            var account = await this.AppUserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            account.Name = model.FirstName;
+            account.Surname = model.LastName;
+            var result = this.AppUserManager.Update(account);
+
+            return !result.Succeeded ? GetErrorResult(result) : Ok();
         }
 
 
@@ -84,7 +90,7 @@ namespace WebApi.Controllers
 
             var user = new Account()
             {
-                UserName = createUserModel.Username,
+                UserName = createUserModel.Email,
                 Email = createUserModel.Email,
                 Name = createUserModel.FirstName,
                 Surname = createUserModel.LastName,

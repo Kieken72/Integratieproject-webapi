@@ -19,6 +19,9 @@ namespace Leisurebooker.Business.Domain
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
 
+        public int? BranchId { get; set; }
+        public virtual Branch ManagerInBranch { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public Account()

@@ -32,6 +32,7 @@ namespace WebApi.Controllers
         //}
 
         [Route("{id}")]
+        [Authorize]
         // GET: api/Message/5
         public IHttpActionResult Get(int id)
         {
@@ -64,6 +65,7 @@ namespace WebApi.Controllers
         {
             value.UserId = User.Identity.GetUserId();
             var entity = Mapper.Map<Message>(value);
+            entity.DateTime = DateTime.Now;
             entity = this._service.Add(entity);
             value = Mapper.Map<MessageDto>(entity);
             return Ok(value);

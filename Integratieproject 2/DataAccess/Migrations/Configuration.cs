@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 using Leisurebooker.Business.Domain;
 using Leisurebooker.DataAccess.EF.Connection;
 using Microsoft.AspNet.Identity;
@@ -38,18 +40,21 @@ namespace Leisurebooker.DataAccess.Migrations
                 Surname = "booker"
             };
 
-            manager.Create(user, "MySuperP@ssword!");
-
+            var result = manager.Create(user, "MySuperP@ssword!");
+            user = manager.FindByEmail("hello@leisurebooker.me");
             if (!roleManager.Roles.Any())
             {
                 roleManager.Create(new IdentityRole { Name = "SuperAdmin" });
                 roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "Owner" });
                 roleManager.Create(new IdentityRole { Name = "Manager" });
                 roleManager.Create(new IdentityRole { Name = "User" });
             }
             var id = manager.FindByEmail("hello@leisurebooker.me").Id;
 
             manager.AddToRoles(id, new string[] { "SuperAdmin", "Admin", "Manager" });
+
+            
 
             var date = DateTime.Now.AddDays(1);
             context.Companies.Add(
@@ -441,8 +446,25 @@ namespace Leisurebooker.DataAccess.Migrations
                         }
                     }
                 });
-
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+              
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var validationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        Trace.TraceInformation("Property: {0} Error: {1}",
+                                                validationError.PropertyName,
+                                                validationError.ErrorMessage);
+                    }
+                }
+                throw;
+            }
+            
 
 
 
