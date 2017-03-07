@@ -23,12 +23,12 @@ namespace Leisurebooker.Business.Domain
 
         public OperationHours(DayOfWeek dayOfWeek, int fromHours, int fromMinutes, int toHours, int toMinutes)
         {
-            if (fromHours < 0 || fromHours > 23)
+            if (fromHours < 0 || fromHours > 24)
             {
                 throw new ArgumentOutOfRangeException(nameof(fromHours), "fromHours must be in the range 0 to 23 inclusive");
             }
 
-            if (toHours < 0 || toHours > 23)
+            if (toHours < 0 || toHours > 24)
             {
                 throw new ArgumentOutOfRangeException(nameof(toHours), "toHours must be in the range 0 to 23 inclusive");
             }
@@ -52,22 +52,6 @@ namespace Leisurebooker.Business.Domain
             }
 
             this.Day = dayOfWeek;
-        }
-
-        public bool IsOpen(int hours, int minutes)
-        {
-            if (hours < 0 || hours > 23)
-            {
-                throw new ArgumentOutOfRangeException(nameof(hours), "Hour must be in the range 0 to 23 inclusive");
-            }
-
-            if (minutes < 0 || minutes > 59)
-            {
-                throw new ArgumentOutOfRangeException(nameof(minutes), "Minutes must be in the range 0 to 59 inclusive");
-            }
-
-            var timespan = new TimeSpan(hours,minutes,0);
-            return timespan >= FromTime && timespan <= ToTime;
         }
     }
 }

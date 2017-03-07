@@ -5,13 +5,13 @@ using Leisurebooker.Business.Domain;
 using Leisurebooker.DataAccess.EF.Connection;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System;
+using System.Data.Entity.Migrations;
+using System.Linq;
+using Leisurebooker.DataAccess.Migrations.Seeding;
 
 namespace Leisurebooker.DataAccess.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Context>
     {
@@ -24,38 +24,11 @@ namespace Leisurebooker.DataAccess.Migrations
         protected override void Seed(Context context)
         {
             CitiesSeeder.Seed(context);
-
-
-            var manager = new UserManager<Account>(new UserStore<Account>(ContextFactory.GetContext()));
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(ContextFactory.GetContext()));
-            
-
-
-            var user = new Account()
-            {
-                UserName = "hello@leisurebooker.me",
-                Email = "hello@leisurebooker.me",
-                EmailConfirmed = true,
-                Name = "Leisure",
-                Lastname = "booker"
-            };
-
-            var result = manager.Create(user, "MySuperP@ssword!");
-            user = manager.FindByEmail("hello@leisurebooker.me");
-            if (!roleManager.Roles.Any())
-            {
-                roleManager.Create(new IdentityRole { Name = "SuperAdmin" });
-                roleManager.Create(new IdentityRole { Name = "Admin" });
-                roleManager.Create(new IdentityRole { Name = "Owner" });
-                roleManager.Create(new IdentityRole { Name = "Manager" });
-                roleManager.Create(new IdentityRole { Name = "User" });
-            }
-            var id = manager.FindByEmail("hello@leisurebooker.me").Id;
-
-            manager.AddToRoles(id, new string[] { "SuperAdmin", "Admin", "Manager" });
+            var users = AccountSeeder.Seed(context);
+            CompanySeeder.Seed(context);
 
             
-
+            /*
             var date = DateTime.Now.AddDays(1);
             context.Companies.Add(
             
@@ -464,7 +437,7 @@ namespace Leisurebooker.DataAccess.Migrations
                 }
                 throw;
             }
-            
+            */
 
 
 

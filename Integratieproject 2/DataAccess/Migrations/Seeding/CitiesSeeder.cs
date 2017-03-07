@@ -1,10 +1,8 @@
-
-
 using System.Collections.Generic;
 using Leisurebooker.Business.Domain;
 using Leisurebooker.DataAccess.EF.Connection;
 
-namespace Leisurebooker.DataAccess.Migrations
+namespace Leisurebooker.DataAccess.Migrations.Seeding
 {
     public class CitiesSeeder
     {

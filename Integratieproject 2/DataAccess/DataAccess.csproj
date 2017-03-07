@@ -119,8 +119,10 @@
     <Compile Include="Migrations\201703071527497_NameEquality.Designer.cs">
       <DependentUpon>201703071527497_NameEquality.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\CitiesSeeder.cs" />
+    <Compile Include="Migrations\Seeding\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\Seeding\AccountSeeder.cs" />
+    <Compile Include="Migrations\Seeding\CompanySeeder.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -137,6 +139,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703060904181_Initial.resx">
       <DependentUpon>201703060904181_Initial.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703060912376_Initial1.resx">
       <DependentUpon>201703060912376_Initial1.cs</DependentUpon>
