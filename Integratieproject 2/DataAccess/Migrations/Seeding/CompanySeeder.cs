@@ -631,6 +631,8 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
                     }
                 }
             };
+            context.Companies.Add(company2);
+            context.SaveChanges();
         }
     }
 }
