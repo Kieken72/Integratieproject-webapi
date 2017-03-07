@@ -33,7 +33,7 @@ namespace WebApi.Tests
             var accountModel = new CreateUserBindingModel()
             {
                 Email = "Test@test.be",
-                FirstName = "test",
+                Name = "test",
                 LastName = "Test",
                 ConfirmPassword = "MyVeryStrongPassword123$",
                 Password = "MyVeryStrongPassword123$"
