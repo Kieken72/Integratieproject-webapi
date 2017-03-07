@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Leisurebooker.Business.Domain
 {
@@ -25,6 +26,9 @@ namespace Leisurebooker.Business.Domain
         
         public bool Arrived { get; set; }
         public bool Cancelled { get; set; }
+
+        [NotMapped]
+        public bool Passed => (DateTime.Now > DateTime);
 
         public Reservation()
         {

@@ -26,8 +26,8 @@ namespace WebApi.Models
             {
                 Url = _urlHelper.Link("GetUserById", new { id = appUser.Id }),
                 Id = appUser.Id,
-                Firstname = appUser.Name,
-                Surname = appUser.Surname,
+                Name = appUser.Name,
+                Lastname = appUser.Lastname,
                 Email = appUser.Email,
                 EmailConfirmed = appUser.EmailConfirmed,
                 Roles = _appUserManager.GetRolesAsync(appUser.Id).Result,

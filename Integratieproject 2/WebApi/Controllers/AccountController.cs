@@ -5,11 +5,13 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using AutoMapper;
 using Leisurebooker.Business.Domain;
 using Leisurebooker.Business.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using WebApi.Models;
+using WebApi.Models.Dto;
 
 namespace WebApi.Controllers
 {
@@ -60,7 +62,17 @@ namespace WebApi.Controllers
             var user = this.AppUserManager.FindUserByIdInclude(User.Identity.GetUserId());
             if (user != null)
             {
-                return Ok(this.TheModelFactory.Create(user));
+                var service = new MessageService();
+                var mdl = this.TheModelFactory.Create(user);
+                foreach (var reservation in mdl.Reservations)
+                {
+                    var messages = service.Get(e => e.ReservationId == reservation.Id).ToList();
+                    var dtos = Mapper.Map<List<MessageDto>>(messages);
+                    //reservation.Review = null;
+                    reservation.Messages = dtos;
+                }
+
+                return Ok(mdl);
             }
             return NotFound();
         }
@@ -72,8 +84,8 @@ namespace WebApi.Controllers
         {
             var account = await this.AppUserManager.FindByIdAsync(User.Identity.GetUserId());
 
-            account.Name = model.FirstName;
-            account.Surname = model.LastName;
+            account.Name = model.Name;
+            account.Lastname = model.LastName;
             var result = this.AppUserManager.Update(account);
 
             return !result.Succeeded ? GetErrorResult(result) : Ok();
@@ -92,8 +104,8 @@ namespace WebApi.Controllers
             {
                 UserName = createUserModel.Email,
                 Email = createUserModel.Email,
-                Name = createUserModel.FirstName,
-                Surname = createUserModel.LastName,
+                Name = createUserModel.Name,
+                Lastname = createUserModel.LastName,
             };
 
             IdentityResult addUserResult = await this.AppUserManager.CreateAsync(user, createUserModel.Password);

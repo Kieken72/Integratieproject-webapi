@@ -11,7 +11,7 @@ namespace Leisurebooker.Business.Domain
     {
         
         public string Name { get; set; }
-        public string Surname { get; set; }
+        public string Lastname { get; set; }
         public string Picture { get; set; }
 
         public virtual ICollection<Branch> Favorites { get; set; }

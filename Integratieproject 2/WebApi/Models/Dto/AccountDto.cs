@@ -8,7 +8,7 @@ namespace WebApi.Models.Dto
     public class AccountDto
     {
         public string Name { get; set; }
-        public string Surname { get; set; }
+        public string Lastname { get; set; }
     }
 
     //public class AccountDto

@@ -115,6 +115,10 @@
     <Compile Include="Migrations\201703061332449_LocationSpace.Designer.cs">
       <DependentUpon>201703061332449_LocationSpace.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703071527497_NameEquality.cs" />
+    <Compile Include="Migrations\201703071527497_NameEquality.Designer.cs">
+      <DependentUpon>201703071527497_NameEquality.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository.cs" />
@@ -142,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703061332449_LocationSpace.resx">
       <DependentUpon>201703061332449_LocationSpace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703071527497_NameEquality.resx">
+      <DependentUpon>201703071527497_NameEquality.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

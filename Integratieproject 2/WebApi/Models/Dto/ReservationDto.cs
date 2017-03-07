@@ -16,6 +16,7 @@ namespace WebApi.Models.Dto
         public ReviewDto Review { get; set; }
         public bool Cancelled { get; set; }
         public bool Arrived { get; set; }
+        public bool Passed { get; set; }
     }
 
     public class NewReservationDto

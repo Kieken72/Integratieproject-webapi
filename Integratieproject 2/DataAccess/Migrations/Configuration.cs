@@ -37,7 +37,7 @@ namespace Leisurebooker.DataAccess.Migrations
                 Email = "hello@leisurebooker.me",
                 EmailConfirmed = true,
                 Name = "Leisure",
-                Surname = "booker"
+                Lastname = "booker"
             };
 
             var result = manager.Create(user, "MySuperP@ssword!");
