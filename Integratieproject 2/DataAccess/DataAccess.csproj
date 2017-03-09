@@ -119,6 +119,10 @@
     <Compile Include="Migrations\201703071527497_NameEquality.Designer.cs">
       <DependentUpon>201703071527497_NameEquality.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703091435488_Acc.cs" />
+    <Compile Include="Migrations\201703091435488_Acc.Designer.cs">
+      <DependentUpon>201703091435488_Acc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Seeding\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Seeding\AccountSeeder.cs" />
@@ -152,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703071527497_NameEquality.resx">
       <DependentUpon>201703071527497_NameEquality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703091435488_Acc.resx">
+      <DependentUpon>201703091435488_Acc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
