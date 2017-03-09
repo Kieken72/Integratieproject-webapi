@@ -53,8 +53,8 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
                 UserName = email,
                 Email = email,
                 EmailConfirmed = true,
-                Name = "Leisure",
-                Lastname = "booker"
+                Name = "Seppe",
+                Lastname = "Van Winkel"
             };
             manager.Create(user2, password);
             user2 = manager.FindByEmail(email);
