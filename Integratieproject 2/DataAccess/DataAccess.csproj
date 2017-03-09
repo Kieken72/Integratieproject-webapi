@@ -99,29 +99,9 @@
     <Compile Include="EF\Repositories\RoomRepository.cs" />
     <Compile Include="EF\Repositories\SpaceRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="Migrations\201703060904181_Initial.cs" />
-    <Compile Include="Migrations\201703060904181_Initial.Designer.cs">
-      <DependentUpon>201703060904181_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703060912376_Initial1.cs" />
-    <Compile Include="Migrations\201703060912376_Initial1.Designer.cs">
-      <DependentUpon>201703060912376_Initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703061243344_Arrived.cs" />
-    <Compile Include="Migrations\201703061243344_Arrived.Designer.cs">
-      <DependentUpon>201703061243344_Arrived.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703061332449_LocationSpace.cs" />
-    <Compile Include="Migrations\201703061332449_LocationSpace.Designer.cs">
-      <DependentUpon>201703061332449_LocationSpace.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703071527497_NameEquality.cs" />
-    <Compile Include="Migrations\201703071527497_NameEquality.Designer.cs">
-      <DependentUpon>201703071527497_NameEquality.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703091435488_Acc.cs" />
-    <Compile Include="Migrations\201703091435488_Acc.Designer.cs">
-      <DependentUpon>201703091435488_Acc.cs</DependentUpon>
+    <Compile Include="Migrations\201703091443414_Initial.cs" />
+    <Compile Include="Migrations\201703091443414_Initial.Designer.cs">
+      <DependentUpon>201703091443414_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Seeding\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -141,24 +121,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201703060904181_Initial.resx">
-      <DependentUpon>201703060904181_Initial.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703060912376_Initial1.resx">
-      <DependentUpon>201703060912376_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703061243344_Arrived.resx">
-      <DependentUpon>201703061243344_Arrived.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703061332449_LocationSpace.resx">
-      <DependentUpon>201703061332449_LocationSpace.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703071527497_NameEquality.resx">
-      <DependentUpon>201703071527497_NameEquality.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703091435488_Acc.resx">
-      <DependentUpon>201703091435488_Acc.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703091443414_Initial.resx">
+      <DependentUpon>201703091443414_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

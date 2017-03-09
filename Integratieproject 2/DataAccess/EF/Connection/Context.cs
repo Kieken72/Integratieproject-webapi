@@ -121,7 +121,7 @@ namespace Leisurebooker.DataAccess.EF.Connection
             modelBuilder.Entity<Account>()
                 .HasMany(e => e.Reservations)
                 .WithRequired()
-                .HasForeignKey(e => e.AccountId);
+                .HasForeignKey(e => e.UserId);
             
 
             //Messages
