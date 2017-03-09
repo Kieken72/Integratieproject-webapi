@@ -827,7 +827,7 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
                             },
                             new AdditionalInfo()
                             {
-                                Type = AdditionalInfoType.Accessibility,
+                                Type = AdditionalInfoType.Facility,
                                 Value = "WIFI"
                             },
                         },
@@ -973,7 +973,7 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
                             },
                             new AdditionalInfo()
                             {
-                                Type = AdditionalInfoType.Accessibility,
+                                Type = AdditionalInfoType.Facility,
                                 Value = "WIFI"
                             },
                         },
