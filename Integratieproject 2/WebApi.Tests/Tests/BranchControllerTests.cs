@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
-using System.Net;
 using System.Web.Http.Results;
 using AutoMapper;
-using Leisurebooker.Business.Domain;
 using Leisurebooker.Business.Services;
 using NUnit.Framework;
 using WebApi.Controllers;
 using WebApi.Models.Dto;
 using WebApi.Models.Mapping;
 
-namespace WebApi.Tests
+namespace WebApi.Tests.Tests
 {
     [TestFixture()]
     public class BranchControllerTests

@@ -17,7 +17,8 @@ namespace Leisurebooker.Business.Domain
 
         public int SpaceId { get; set; }
         public int BranchId { get; set; }
-        public string AccountId { get; set; }
+        public string UserId { get; set; }
+        public virtual Account User { get; set; }
 
         public ICollection<Message> Messages { get; set; }
         public int? EventId { get; set; }

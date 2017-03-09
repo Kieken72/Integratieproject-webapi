@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Net;
 using System.Web.Http.Results;
 using AutoMapper;
 using Leisurebooker.Business.Services;
@@ -8,7 +7,7 @@ using WebApi.Controllers;
 using WebApi.Models.Dto;
 using WebApi.Models.Mapping;
 
-namespace WebApi.Tests
+namespace WebApi.Tests.Tests
 {
     [TestFixture()]
     public class CityControllerTests

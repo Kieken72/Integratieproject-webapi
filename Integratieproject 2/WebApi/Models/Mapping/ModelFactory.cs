@@ -20,9 +20,9 @@ namespace WebApi.Models
             _appUserManager = appUserManager;
         }
 
-        public UserReturnModel Create(Account appUser)
+        public UserReturnDto Create(Account appUser)
         {
-            return new UserReturnModel
+            return new UserReturnDto
             {
                 Url = _urlHelper.Link("GetUserById", new { id = appUser.Id }),
                 Id = appUser.Id,
@@ -39,10 +39,10 @@ namespace WebApi.Models
 
             };
         }
-        public RoleReturnModel Create(IdentityRole appRole)
+        public RoleReturnDto Create(IdentityRole appRole)
         {
 
-            return new RoleReturnModel
+            return new RoleReturnDto
             {
                 Url = _urlHelper.Link("GetRoleById", new { id = appRole.Id }),
                 Id = appRole.Id,

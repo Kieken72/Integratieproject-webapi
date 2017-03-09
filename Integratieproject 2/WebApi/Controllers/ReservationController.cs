@@ -215,7 +215,7 @@ namespace WebApi.Controllers
                     if (!isAvailable) continue;
                     var newReservation = new Reservation()
                     {
-                        AccountId = User.Identity.GetUserId(),
+                        UserId = User.Identity.GetUserId(),
                         BranchId = branch.Id,
                         AmountOfPersons = reservation.Amount,
                         DateTime = reservation.DateTime,
@@ -251,7 +251,7 @@ namespace WebApi.Controllers
             {
                 return NotFound();
             }
-            if (res.AccountId != User.Identity.GetUserId()) return Unauthorized();
+            if (res.UserId != User.Identity.GetUserId()) return Unauthorized();
             if (res.DateTime < DateTime.Now) return BadRequest();
                 res.Cancelled = true;
             _reservationService.Change(res);

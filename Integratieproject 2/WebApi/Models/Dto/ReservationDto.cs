@@ -14,6 +14,7 @@ namespace WebApi.Models.Dto
         public string AccountId { get; set; }
         public ICollection<MessageDto> Messages { get; set; }
         public ReviewDto Review { get; set; }
+        public FullAccountDto User { get; set; }
         public bool Cancelled { get; set; }
         public bool Arrived { get; set; }
         public bool Passed { get; set; }
