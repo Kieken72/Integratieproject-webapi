@@ -8,6 +8,7 @@ using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using WebApi.Models;
+using WebApi.Models.Dto;
 
 namespace WebApi.Controllers
 {
@@ -84,7 +85,7 @@ namespace WebApi.Controllers
         }
 
         [Route("ManageUsersInRole")]
-        public async Task<IHttpActionResult> ManageUsersInRole(UsersInRoleModel model)
+        public async Task<IHttpActionResult> ManageUsersInRole(UsersInRoleDto model)
         {
             var role = await this.AppRoleManager.FindByIdAsync(model.Id);
 
