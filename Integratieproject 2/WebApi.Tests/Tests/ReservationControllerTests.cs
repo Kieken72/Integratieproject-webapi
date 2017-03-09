@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http.Results;
 using AutoMapper;
 using Leisurebooker.Business.Services;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 using WebApi.Controllers;
 using WebApi.Models.Dto;
 using WebApi.Models.Mapping;
 
-namespace WebApi.Tests
+namespace WebApi.Tests.Tests
 {
     [TestFixture()]
     public class ReservationControllerTests

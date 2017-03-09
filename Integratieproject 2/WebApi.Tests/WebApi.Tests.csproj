@@ -79,12 +79,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AccountControllerTests.cs" />
-    <Compile Include="CityControllerTests.cs" />
-    <Compile Include="BranchControllerTests.cs" />
-    <Compile Include="CompanyControllerTests.cs" />
+    <Compile Include="Tests\AccountControllerTests.cs" />
+    <Compile Include="Tests\CityControllerTests.cs" />
+    <Compile Include="Tests\BranchControllerTests.cs" />
+    <Compile Include="Tests\CompanyControllerTests.cs" />
+    <Compile Include="Tests\MessageControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReservationControllerTests.cs" />
+    <Compile Include="Tests\ReservationControllerTests.cs" />
+    <Compile Include="Tests\ReviewControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
