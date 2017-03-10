@@ -33,11 +33,7 @@ namespace Leisurebooker.Business.Domain
         public ICollection<Message> Messages { get; set; }
         public ICollection<Reservation> Reservations { get; set; }
 
-        public ICollection<Account> Favorites { get; set; }
-
         public ICollection<Event> Events { get; set; }
-
-        public ICollection<Account> Managers { get; set; }
 
     }
 }

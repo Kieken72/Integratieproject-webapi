@@ -26,7 +26,7 @@ namespace Leisurebooker.Business.Services
 
         public Account FindUserByIdInclude(string id)
         {
-            var user = this.Users.Include(x => x.Favorites).FirstOrDefault(u => u.Id == id);
+            var user = this.Users.FirstOrDefault(u => u.Id == id);
             return user;
         }
 

@@ -13,14 +13,11 @@ namespace Leisurebooker.Business.Domain
         public string Name { get; set; }
         public string Lastname { get; set; }
         public string Picture { get; set; }
-
-        public virtual ICollection<Branch> Favorites { get; set; }
+        
         public virtual ICollection<Message> Messages { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<Reservation> Reservations { get; set; }
 
-        public int? BranchId { get; set; }
-        public virtual Branch ManagerInBranch { get; set; }
 
         public DateTime CreatedOn { get; set; }
 

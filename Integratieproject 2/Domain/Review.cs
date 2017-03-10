@@ -11,8 +11,9 @@ namespace Leisurebooker.Business.Domain
 
         public int ReservationId { get; set; }
         public Reservation Reservation { get; set; }
+
         public int? EventId { get; set; }
-        public ReviewEvent Event { get; set; }
+        public Event Event { get; set; }
         public int BranchId { get; set; }
         public string UserId { get; set; }
         public virtual Account User { get; set; }

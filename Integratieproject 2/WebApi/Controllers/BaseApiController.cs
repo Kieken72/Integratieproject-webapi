@@ -18,12 +18,14 @@ namespace WebApi.Controllers
         private ModelFactory _modelFactory;
         private readonly AuthService _authService = null;
         private readonly RoleService _roleService = null;
+        protected readonly BranchService _branchService;
 
         protected AuthService AppUserManager => _authService ?? Request.GetOwinContext().GetUserManager<AuthService>();
         protected RoleService AppRoleManager => _roleService ?? Request.GetOwinContext().GetUserManager<RoleService>();
 
-        public BaseApiController()
+        public BaseApiController(BranchService branchService)
         {
+            this._branchService = branchService;
         }
 
         protected ModelFactory TheModelFactory

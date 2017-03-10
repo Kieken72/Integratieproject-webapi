@@ -32,6 +32,7 @@ namespace Leisurebooker.DataAccess.EF.Connection
         public DbSet<AdditionalInfo> AdditionalInfos { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
         //public DbSet<Account> Accounts { get; set; }
 
 
@@ -63,7 +64,11 @@ namespace Leisurebooker.DataAccess.EF.Connection
             modelBuilder.Entity<AdditionalInfo>().HasKey(e => e.Id);
             modelBuilder.Entity<Account>().HasKey(e => e.Id);
             modelBuilder.Entity<City>().HasKey(e => e.Id);
-            modelBuilder.Entity<Event>().HasKey(e => e.Id);
+
+            modelBuilder.Entity<Favorite>().HasKey(e => new {e.BranchId, e.AccoundId});
+
+            //modelBuilder.Entity<Event>().HasKey(e => e.Id);
+
             //modelBuilder.Entity<ReviewEvent>().HasKey(e => e.Id);
             //modelBuilder.Entity<MessageEvent>().HasKey(e => e.Id);
             //modelBuilder.Entity<ReservationEvent>().HasKey(e => e.Id);
@@ -169,13 +174,7 @@ namespace Leisurebooker.DataAccess.EF.Connection
                 .HasMany(e => e.Branches)
                 .WithRequired()
                 .HasForeignKey(e => e.CityId);
-
-            //Managers
-
-            modelBuilder.Entity<Branch>()
-                .HasMany(e => e.Managers)
-                .WithOptional()
-                .HasForeignKey(e => e.BranchId);
+            
 
 
 
@@ -185,16 +184,6 @@ namespace Leisurebooker.DataAccess.EF.Connection
 
         private static void SetManyToMany(DbModelBuilder modelBuilder)
         {
-            //0..N - 0..N Users-Branches (Favorites)
-            modelBuilder.Entity<Account>()
-                .HasMany<Branch>(e => e.Favorites)
-                .WithMany(e => e.Favorites)
-                .Map(cs =>
-                {
-                    cs.MapLeftKey("AccountId");
-                    cs.MapRightKey("BranchId");
-                    cs.ToTable("Favorites");
-                });
 
         }
 

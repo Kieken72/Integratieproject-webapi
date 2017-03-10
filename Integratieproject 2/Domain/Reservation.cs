@@ -22,7 +22,7 @@ namespace Leisurebooker.Business.Domain
 
         public ICollection<Message> Messages { get; set; }
         public int? EventId { get; set; }
-        public ReservationEvent Event { get; set; }
+        public Event Event { get; set; }
         public Review Review { get; set; }
         
         public bool Arrived { get; set; }

@@ -15,7 +15,7 @@ namespace Leisurebooker.Business.Domain
         public string Text { get; set; }
         public DateTime DateTime { get; set; }
         public int? EventId { get; set; }
-        public MessageEvent Event { get; set; }
+        public Event Event { get; set; }
 
         public Message()
         {

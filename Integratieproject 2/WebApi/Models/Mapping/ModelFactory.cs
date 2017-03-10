@@ -34,8 +34,7 @@ namespace WebApi.Models
                 //Claims = _AppUserManager.GetClaimsAsync(appUser.Id).Result,
                 Reservations = Mapper.Map<ICollection<ReservationDto>>(appUser.Reservations),
                 Reviews = Mapper.Map<ICollection<ReviewDto>>(appUser.Reviews),
-                Messages = Mapper.Map<ICollection<MessageDto>>(appUser.Messages),
-                Favorites = Mapper.Map<ICollection<BranchDto>>(appUser.Favorites)
+                Messages = Mapper.Map<ICollection<MessageDto>>(appUser.Messages)
 
             };
         }

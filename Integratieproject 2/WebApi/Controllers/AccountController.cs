@@ -18,6 +18,10 @@ namespace WebApi.Controllers
     [RoutePrefix("api/accounts")]
     public class AccountsController : BaseApiController
     {
+        public AccountsController(BranchService branchService) : base(branchService)
+        {
+        }
+
         [Authorize(Roles = "Admin")]
         [Route("users")]
         public IHttpActionResult GetUsers()
@@ -72,9 +76,45 @@ namespace WebApi.Controllers
                     reservation.Messages = dtos;
                 }
 
+                var favorites = _branchService.GetFavorites(User.Identity.GetUserId());
+                mdl.Favorites = new List<BranchDto>();
+                foreach (var favorite in favorites)
+                {
+                    var branch = _branchService.Get(favorite.BranchId);
+                    var dto = Mapper.Map<BranchDto>(branch);
+                    mdl.Favorites.Add(dto);
+                }
+
                 return Ok(mdl);
             }
             return NotFound();
+        }
+
+        [Authorize]
+        [Route("favorite/{id}")]
+        [HttpGet]
+        public IHttpActionResult AddFavorite(int id)
+        {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+            var added = this._branchService.AddFavorite(id, User.Identity.GetUserId());
+            if (added)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+        [Authorize]
+        [Route("favorite/{id}")]
+        [HttpDelete]
+        public IHttpActionResult RemoveFavorite(int id)
+        {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+            var removed = this._branchService.RemoveFavorite(id, User.Identity.GetUserId());
+            if (removed)
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
 
         [Authorize]
