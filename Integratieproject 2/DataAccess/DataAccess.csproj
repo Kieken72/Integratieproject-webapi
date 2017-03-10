@@ -107,6 +107,10 @@
     <Compile Include="Migrations\201703101304215_Favorites.Designer.cs">
       <DependentUpon>201703101304215_Favorites.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703101431526_nshow.cs" />
+    <Compile Include="Migrations\201703101431526_nshow.Designer.cs">
+      <DependentUpon>201703101431526_nshow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Seeding\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Seeding\AccountSeeder.cs" />
@@ -130,6 +134,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703101304215_Favorites.resx">
       <DependentUpon>201703101304215_Favorites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703101431526_nshow.resx">
+      <DependentUpon>201703101431526_nshow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
