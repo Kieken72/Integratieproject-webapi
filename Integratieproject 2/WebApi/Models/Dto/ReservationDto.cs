@@ -18,6 +18,8 @@ namespace WebApi.Models.Dto
         public bool Cancelled { get; set; }
         public bool Arrived { get; set; }
         public bool Passed { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 
     public class NewReservationDto
