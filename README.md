@@ -56,6 +56,8 @@
 | --- | --- | --- | --- | --- |
 | [/accounts/create](http://leisurebooker.azurewebsites.net/api/accounts/create) | AccountController | POST |  |  |
 | [/accounts/](http://leisurebooker.azurewebsites.net/api/accounts/) | AccountController | GET |  |  |
+| [/accounts/favorite/1](http://leisurebooker.azurewebsites.net/api/accounts/favorite/1) | AccountController | GET |  |  |
+| [/accounts/favorite/1](http://leisurebooker.azurewebsites.net/api/accounts/favorite/1) | AccountController | DELETE |  |  |
 | [OAUTH/token](http://leisurebooker.azurewebsites.net/oauth/token) | Bearer | POST |  USER |  |
 | [/accounts/ChangePassword](http://leisurebooker.azurewebsites.net/accounts/ChangePassword) | AccountController | POST |  USER |  |
 Todo: External Providers 
