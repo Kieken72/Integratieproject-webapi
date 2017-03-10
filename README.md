@@ -48,6 +48,9 @@
 | [/reservations/{postalcode}](http://leisurebooker.azurewebsites.net/api/reservations/available/2550) | ReservationController | GET |  |  |
 | [/reservations](http://leisurebooker.azurewebsites.net/api/reservations) | ReservationController | POST |  |  |
 | [/reservations/{id}](http://leisurebooker.azurewebsites.net/api/reservations{id}) | ReservationController | DELETE | USER |  |
+| [/reservations/arrived/{id}](http://leisurebooker.azurewebsites.net/api/reservations/arrived/{id}) | ReservationController | POST | MANAGER |  |
+| [/reservations/noshow/{id}](http://leisurebooker.azurewebsites.net/api/reservations/noshow/{id}) | ReservationController | POST | MANAGER |  |
+| [/reservations/cancel/{id}](http://leisurebooker.azurewebsites.net/api/reservations/cancel/{id}) | ReservationController | POST | MANAGER |  |
 
 
 ### Accounts
