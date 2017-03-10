@@ -17,6 +17,7 @@ namespace WebApi.Models.Dto
         public FullAccountDto User { get; set; }
         public bool Cancelled { get; set; }
         public bool Arrived { get; set; }
+        public bool NoShow { get; set; }
         public bool Passed { get; set; }
 
         public DateTime CreatedOn { get; set; }

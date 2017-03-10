@@ -261,6 +261,43 @@ namespace WebApi.Controllers
         }
 
 
+        [Route("arrived/{id}")]
+        [Authorize]
+        [HttpPost]
+        public IHttpActionResult ArrivedReservation(int id)
+        {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+            var res = _reservationService.Get(id);
+            if (res == null)
+            {
+                return NotFound();
+            }
+            res.Arrived = true;
+            res.NoShow = false;
+            _reservationService.Change(res);
+            return Ok();
+        }
+
+        [Route("noshow/{id}")]
+        [Authorize]
+        [HttpPost]
+        public IHttpActionResult NoShowReservation(int id)
+        {
+            if (!User.Identity.IsAuthenticated) return Unauthorized();
+            var res = _reservationService.Get(id);
+            if (res == null)
+            {
+                return NotFound();
+            }
+            res.Arrived = false;
+            res.NoShow = true;
+            _reservationService.Change(res);
+            return Ok();
+        }
+
+
+
+
 
         public static bool IsValidReservation(OperationHours[] operationHours,DateTime start, DateTime end)
         {

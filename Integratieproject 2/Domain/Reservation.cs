@@ -26,6 +26,7 @@ namespace Leisurebooker.Business.Domain
         public Review Review { get; set; }
         
         public bool Arrived { get; set; }
+        public bool NoShow { get; set; }
         public bool Cancelled { get; set; }
 
         [NotMapped]
