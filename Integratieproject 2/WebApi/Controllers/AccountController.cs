@@ -92,7 +92,7 @@ namespace WebApi.Controllers
 
         [Authorize]
         [Route("favorite/{id}")]
-        [HttpGet]
+        [HttpPost]
         public IHttpActionResult AddFavorite(int id)
         {
             if (!User.Identity.IsAuthenticated) return Unauthorized();

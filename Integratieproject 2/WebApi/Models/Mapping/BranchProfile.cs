@@ -13,6 +13,9 @@ namespace WebApi.Models.Mapping
 
             this.CreateMap<Branch, CheckBranchDto>();
             this.CreateMap<CheckBranchDto, Branch>();
+
+            this.CreateMap<Branch, ShortBranchDto>();
+            this.CreateMap<ShortBranchDto, Branch>();
         }
     }
 }
