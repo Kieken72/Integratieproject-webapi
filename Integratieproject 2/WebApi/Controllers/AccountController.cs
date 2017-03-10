@@ -77,11 +77,11 @@ namespace WebApi.Controllers
                 }
 
                 var favorites = _branchService.GetFavorites(User.Identity.GetUserId());
-                mdl.Favorites = new List<BranchDto>();
+                mdl.Favorites = new List<ShortBranchDto>();
                 foreach (var favorite in favorites)
                 {
                     var branch = _branchService.Get(favorite.BranchId);
-                    var dto = Mapper.Map<BranchDto>(branch);
+                    var dto = Mapper.Map<ShortBranchDto>(branch);
                     mdl.Favorites.Add(dto);
                 }
 

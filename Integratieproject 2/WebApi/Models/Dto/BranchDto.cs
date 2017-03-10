@@ -31,6 +31,19 @@ namespace WebApi.Models.Dto
         public ICollection<ReservationDto> Reservations { get; set; }
     }
 
+    public class ShortBranchDto
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Street { get; set; }
+        public string Number { get; set; }
+        public string Box { get; set; }
+        public int CityId { get; set; }
+        public CityDto City { get; set; }
+    }
+
+
+
     public class CheckBranchDto
     {
         public int Id { get; set; }
