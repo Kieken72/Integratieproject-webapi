@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Leisurebooker.Business.Services;
+using NUnit.Framework;
 using WebApi.Controllers;
 
 namespace WebApi.Tests.Tests
@@ -12,7 +13,7 @@ namespace WebApi.Tests.Tests
         [SetUp]
         public void SetUp()
         {
-            _controller = new AccountsController();
+            _controller = new AccountsController(new BranchService());
 
 
 
