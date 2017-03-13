@@ -18,13 +18,22 @@ namespace WebApi.Controllers
         private readonly IService<City> _cityService;
         private readonly IService<Space> _spaceService;
         private readonly IService<Room> _roomService;
+        private readonly IService<AdditionalInfo> _additionalInfoService;
+        private readonly IService<OperationHours> _operationHoursService;
 
-        public BranchController(IService<Branch> service, IService<City> cityService, IService<Space> spaceService, IService<Room> roomService  )
+        public BranchController(IService<Branch> service, 
+            IService<City> cityService, 
+            IService<Space> spaceService, 
+            IService<Room> roomService,
+            IService<AdditionalInfo> additionalInfoService,
+            IService<OperationHours> operationHoursService )
         {
             _service = service;
             _cityService = cityService;
             _spaceService = spaceService;
             _roomService = roomService;
+            _operationHoursService = operationHoursService;
+            _additionalInfoService = additionalInfoService;
         }
 
         [Route("")]
@@ -135,22 +144,51 @@ namespace WebApi.Controllers
 
 
 
-        //[Route("operationhours/{id}")]
-        //[HttpPost]
-        //public IHttpActionResult OperationHours(int id, [FromBody] IEnumerable<OperationHoursDto> values)
-        //{
-        // FOUT MET UPDATE
-        //    var branch = _service.Get(id, collections:true);
-        //    if (branch == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var entities = Mapper.Map<IEnumerable<OperationHours>>(values);
-        //    branch.OpeningHours = entities.ToList();
-        //    _service.Change(branch);
+        [Route("operationhours/{id}")]
+        [HttpPost]
+        public IHttpActionResult OperationHours(int id, [FromBody] IEnumerable<OperationHoursDto> values)
+        {
+            var branch = _service.Get(id, collections: true);
+            if (branch == null)
+            {
+                return NotFound();
+            }
+            var openingId = branch.OpeningHours.Select(e => e.Id).ToList();
+            foreach (var f in openingId)
+            {
+                _operationHoursService.Remove(f);   
+            }
+            var entities = Mapper.Map<IEnumerable<OperationHours>>(values);
+            foreach (var entity in entities)
+            {
+                entity.BranchId = branch.Id;
+                _operationHoursService.Add(entity);
+            }
+            return Ok();
+        }
 
-        //    return Ok();
-        //}
+        [Route("additionalinfo/{id}")]
+        [HttpPost]
+        public IHttpActionResult AdditionalInfo(int id, [FromBody] IEnumerable<AdditionalInfoDto> values)
+        {
+            var branch = _service.Get(id, collections: true);
+            if (branch == null)
+            {
+                return NotFound();
+            }
+            var addInfoId = branch.AdditionalInfos.Select(e => e.Id).ToList();
+            foreach (var f in addInfoId)
+            {
+                _additionalInfoService.Remove(f);
+            }
+            var entities = Mapper.Map<IEnumerable<AdditionalInfo>>(values);
+            foreach (var entity in entities)
+            {
+                entity.BranchId = branch.Id;
+                _additionalInfoService.Add(entity);
+            }
+            return Ok();
+        }
 
         [Route("{id}")]
         //!!Authorized as manager from this company

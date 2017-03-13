@@ -21,6 +21,8 @@ namespace WebApi
             container.RegisterType<IService<Reservation>, ReservationService>(new HierarchicalLifetimeManager());
             container.RegisterType<IService<Message>, MessageService>(new HierarchicalLifetimeManager());
             container.RegisterType<IService<Review>, ReviewService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IService<AdditionalInfo>, AdditionalInfoService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IService<OperationHours>, OperationHourService>(new HierarchicalLifetimeManager());
 
             config.DependencyResolver = new UnityResolver(container);
         }

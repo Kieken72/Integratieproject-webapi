@@ -262,7 +262,7 @@ namespace WebApi.Controllers
 
 
         [Route("arrived/{id}")]
-        [Authorize(Roles = "Manager")]
+        [Authorize]
         [HttpPost]
         public IHttpActionResult ArrivedReservation(int id)
         {
@@ -279,7 +279,7 @@ namespace WebApi.Controllers
         }
 
         [Route("noshow/{id}")]
-        [Authorize(Roles = "Manager")]
+        [Authorize]
         [HttpPost]
         public IHttpActionResult NoShowReservation(int id)
         {
@@ -296,7 +296,7 @@ namespace WebApi.Controllers
         }
 
         [Route("cancel/{id}")]
-        [Authorize(Roles = "Manager")]
+        [Authorize]
         [HttpPost]
         public IHttpActionResult CancelManagerReservation(int id)
         {

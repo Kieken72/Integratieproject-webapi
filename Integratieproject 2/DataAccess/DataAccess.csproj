@@ -90,6 +90,8 @@
     <Compile Include="EF\Connection\ContextFactory.cs" />
     <Compile Include="EF\Connection\Initialiser.cs" />
     <Compile Include="EF\Connection\CheckAndMigrateDatabaseToLatestVersion.cs" />
+    <Compile Include="EF\Repositories\AdditionalInfoRepository.cs" />
+    <Compile Include="EF\Repositories\OperationHourRepository.cs" />
     <Compile Include="EF\Repositories\CityRepository.cs" />
     <Compile Include="EF\Repositories\BranchRepository.cs" />
     <Compile Include="EF\Repositories\CompanyRepository.cs" />
