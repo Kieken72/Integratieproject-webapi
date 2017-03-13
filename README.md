@@ -39,6 +39,8 @@
 | [/branches/{branch in body}](http://leisurebooker.azurewebsites.net/api/branches/) | BranchesController | POST |  | :white_check_mark: |
 | [/branches/{id}{branch in body}](http://leisurebooker.azurewebsites.net/api/branches/) | BranchesController | PUT |  | :white_check_mark: |
 | [/branches/{id}](http://leisurebooker.azurewebsites.net/api/branches/) | BranchesController | DELETE |  | :white_check_mark: |
+| [/branches/additionalinfo/{id}](http://leisurebooker.azurewebsites.net/api/branches/additionalinfo/1) | BranchesController | POST |  |  |
+| [/branches/operationhours/{id}](http://leisurebooker.azurewebsites.net/api/branches/operationhours/1) | BranchesController | POST |  |  |
 
 
 ## Reservations
