@@ -231,11 +231,12 @@ namespace WebApi.Controllers
             return BadRequest("No free space.");
         }
 
-        [Route("branch/{id}")]
+        [Route("branch/{id}/{day}/{month}/{year}")]
         [HttpGet]
-        public IHttpActionResult ForBranch(int id)
+        public IHttpActionResult ForBranch(int id, int day,int month, int year)
         {
-            var entities = this._reservationService.Get(e=>e.BranchId==id, e=>e.DateTime > (DateTime.Today.AddDays(-1)));
+            var date = new DateTime(year,month,day);
+            var entities = this._reservationService.Get(e=>e.BranchId==id,e=>e.DateTime.Date == date.Date);
             var dtos = Mapper.Map<IEnumerable<ReservationDto>>(entities);
             return Ok(dtos);
         }
