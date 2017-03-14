@@ -195,8 +195,17 @@ namespace WebApi.Controllers
         // PUT: api/branches/5
         public IHttpActionResult Put(int id, [FromBody]BranchDto value)
         {
-            var entity = Mapper.Map<Branch>(value);
-            this._service.Change(entity);
+            var branch = _service.Get(id);
+            branch.Name = value.Name;
+            branch.Description = value.Description;
+            branch.Email = value.Email;
+            branch.PhoneNumber = value.PhoneNumber;
+            branch.Street = value.Street;
+            branch.Number = value.Number;
+            branch.Box = value.Box;
+            branch.CityId = value.CityId;
+
+            this._service.Change(branch);
             return Ok();
         }
 
