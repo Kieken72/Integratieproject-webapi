@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Web.Http;
-using Leisurebooker.Business;
 using Leisurebooker.Business.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using WebApi.Models;
 
-namespace WebApi.Controllers
+namespace WebApi.Controllers.Account
 {
     public class BaseApiController : ApiController
     {

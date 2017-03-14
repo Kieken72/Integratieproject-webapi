@@ -1,6 +1,7 @@
 ﻿using Leisurebooker.Business.Services;
 using NUnit.Framework;
 using WebApi.Controllers;
+using WebApi.Controllers.Account;
 
 namespace WebApi.Tests.Tests
 {

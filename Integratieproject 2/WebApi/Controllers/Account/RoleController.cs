@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Leisurebooker.Business.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using WebApi.Models;
 using WebApi.Models.Dto;
 
-namespace WebApi.Controllers
+namespace WebApi.Controllers.Account
 {
     [Authorize(Roles = "Admin")]
     [RoutePrefix("api/roles")]

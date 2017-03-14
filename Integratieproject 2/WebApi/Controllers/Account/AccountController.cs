@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using AutoMapper;
-using Leisurebooker.Business.Domain;
 using Leisurebooker.Business.Services;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using WebApi.Models;
 using WebApi.Models.Dto;
 
-namespace WebApi.Controllers
+namespace WebApi.Controllers.Account
 {
     [RoutePrefix("api/accounts")]
     public class AccountsController : BaseApiController
@@ -140,7 +135,7 @@ namespace WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new Account()
+            var user = new Leisurebooker.Business.Domain.Account()
             {
                 UserName = createUserModel.Email,
                 Email = createUserModel.Email,

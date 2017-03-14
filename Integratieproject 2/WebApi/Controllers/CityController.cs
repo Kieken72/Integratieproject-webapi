@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
 using Leisurebooker.Business;
@@ -61,21 +59,21 @@ namespace WebApi.Controllers
         // POST: api/cities
         public IHttpActionResult Post([FromBody] FullCityDto dto)
         {
-            return BadRequest();
+            return StatusCode(HttpStatusCode.MethodNotAllowed);
         }
 
         [Route("")]
         // PUT: api/cities
         public IHttpActionResult Put([FromBody]FullCityDto dto)
         {
-            return BadRequest();
+            return StatusCode(HttpStatusCode.MethodNotAllowed);
         }
 
         [Route("{id}")]
         // DELETE: api/cities
         public IHttpActionResult Delete(int id)
         {
-            return BadRequest();
+            return StatusCode(HttpStatusCode.MethodNotAllowed);
         }
     }
 }
