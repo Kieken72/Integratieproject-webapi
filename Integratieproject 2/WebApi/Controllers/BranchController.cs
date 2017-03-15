@@ -135,8 +135,16 @@ namespace WebApi.Controllers
         public IHttpActionResult EditSpace(int id, [FromBody] SpaceDto value)
         {
 
-            var entity = Mapper.Map<Space>(value);
-            this._spaceService.Change(entity);
+            var space = this._spaceService.Get(id);
+            space.Name = value.Name;
+            space.Enabled = value.Enabled;
+            space.MinPersons = value.MinPersons;
+            space.Persons = value.Persons;
+            space.Type = value.Type;
+            space.X = value.X;
+            space.Y = value.Y;
+            //var entity = Mapper.Map<Space>(value);
+            this._spaceService.Change(space);
             //value = Mapper.Map<RoomDto>(entity);
             return Ok();
         }
