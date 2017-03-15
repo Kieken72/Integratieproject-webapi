@@ -1083,32 +1083,34 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
 
             var company5 = new Company
             {
-                Name = "Wima-Bowling en Partycenters BVBA",
-                VATNumber = "BE0403699251",
-                CityId = 355,
-                Street = "Boomsesteenweg ",
-                Number = "9",
+                Name = "ANTWERP BOWLING MARKETING EN LOGISTICS",
+                VATNumber = "BE0597628381",
+                CityId = 246,
+                Street = "Blancefloerlaan ",
+                Number = "181",
+                Box = "C",
                 Branches = new List<Branch>()
                 {
                     new Branch()
                     {
-                        Name = "Wima Sint-Niklaas",
-                        Street = "Grote markt",
-                        Number = "25",
-                        CityId = 2493,
-                        Email = "wima.sintniklaas@wima.be",
-                        PhoneNumber = "037773499",
+                        Name = "Antwerp Bowling",
+                        Street = "Blancefloerlaan",
+                        Number = "181",
+                        Box = "C",
+                        CityId = 246,
+                        Email = "info@antwerpbowling.be",
+                        PhoneNumber = "032386636",
                         Description =
-                            "Sportieve ontspanning in een gezellig kader... dat is Superbowl! Tien bowlingbanen, drie pooltafels, een airhockey tafel en een uitgebreide keuze snacks en drankjes, alles tegen democratische prijzen. U kunt tevens deelnemen aan onze competities. En... waarom viert u het volgende verjaardagsfeestje van U of een van uw kinderen niet in Superbowl? Wij zijn er klaar voor!",
+                            "Bij Antwerp Bowling kan u terecht voor een gezellig spelletje bowlen. We beschikken hiervoor over 16 volautomatische wedstrijd banen die met een simpele druk op de knop aangepast kunnen worden aan kinderen, volwassenen of zelfs mindervalide spelers.",
                         OpeningHours = new List<OperationHours>()
                         {
-                            new OperationHours(DayOfWeek.Monday, 14, 00, 23, 00),
-                            new OperationHours(DayOfWeek.Tuesday, 14, 00, 23, 00),
-                            new OperationHours(DayOfWeek.Wednesday, 14, 00, 23, 00),
-                            new OperationHours(DayOfWeek.Thursday, 14, 00, 23, 00),
-                            new OperationHours(DayOfWeek.Friday, 14, 00, 23, 59),
-                            new OperationHours(DayOfWeek.Saturday, 10, 30, 23, 59),
-                            new OperationHours(DayOfWeek.Sunday, 9, 30, 23, 59),
+                            new OperationHours(DayOfWeek.Monday, 18, 00, 23, 00),
+                            new OperationHours(DayOfWeek.Tuesday, 13, 30, 22, 00),
+                            new OperationHours(DayOfWeek.Wednesday, 13, 30, 22, 00),
+                            new OperationHours(DayOfWeek.Thursday, 13, 30, 22, 00),
+                            new OperationHours(DayOfWeek.Friday, 13, 30, 23, 59),
+                            new OperationHours(DayOfWeek.Saturday, 12, 00, 23, 59),
+                            new OperationHours(DayOfWeek.Sunday, 11, 00, 20, 00),
                         },
                         AdditionalInfos = new List<AdditionalInfo>()
                         {
@@ -1240,6 +1242,171 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
             };
 
             context.Companies.Add(company5);
+            context.SaveChanges();
+
+            var company6 = new Company
+            {
+                Name = "Dropshotbeveren",
+                VATNumber = "BE0123456789",
+                CityId = 2496,
+                Street = "H. Consciencestraat",
+                Number = "45",
+                Branches = new List<Branch>()
+                {
+                    new Branch()
+                    {
+                        Name = "Dropshot Beveren",
+                        Street = "H. Consciencestraat",
+                        Number = "45",
+                        CityId = 2496,
+                        Email = "dropshot@edpnet.be",
+                        PhoneNumber = "037750957",
+                        Description =
+                            "Wij hebben momenteel de nieuwste versie van computerprogramma voor de bowling. De scores zijn samen met het nieuwste tekenpakket en bewegende beelden af te lezen op flatscreens.",
+                        OpeningHours = new List<OperationHours>()
+                        {
+                            new OperationHours(DayOfWeek.Tuesday, 17, 00, 23, 59),
+                            new OperationHours(DayOfWeek.Wednesday, 14, 00, 23, 59),
+                            new OperationHours(DayOfWeek.Thursday, 14, 00, 23, 59),
+                            new OperationHours(DayOfWeek.Friday, 14, 00, 23, 59),
+                            new OperationHours(DayOfWeek.Saturday, 10, 00, 23, 59),
+                            new OperationHours(DayOfWeek.Sunday, 10, 00, 22, 30),
+                        },
+                        AdditionalInfos = new List<AdditionalInfo>()
+                        {
+                            new AdditionalInfo()
+                            {
+                                Type = AdditionalInfoType.PaymentMethod,
+                                Value = "VISA"
+                            },
+                            new AdditionalInfo()
+                            {
+                                Type = AdditionalInfoType.PaymentMethod,
+                                Value = "BANCONTACT"
+                            },
+                            new AdditionalInfo()
+                            {
+                                Type = AdditionalInfoType.PaymentMethod,
+                                Value = "MASTERCARD"
+                            },
+                            new AdditionalInfo()
+                            {
+                                Type = AdditionalInfoType.Accessibility,
+                                Value = "WHEELCHAIR"
+                            },
+                            new AdditionalInfo()
+                            {
+                                Type = AdditionalInfoType.Facility,
+                                Value = "WIFI"
+                            },
+                            new AdditionalInfo()
+                            {
+                                Type = AdditionalInfoType.Homepage,
+                                Value = "http://www.dropshotbeveren.be"
+                            }
+                        },
+                        Rooms = new List<Room>()
+                        {
+                            new Room()
+                            {
+                                Enabled = true,
+                                Name = "Hoofdgebouw",
+                                Height = 100,
+                                Width = 500,
+                                Spaces = new List<Space>()
+                                {
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 1",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 2",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 3",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 4",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 5",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 6",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 7",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 8",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 9",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 10",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 11",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 12",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            context.Companies.Add(company6);
             context.SaveChanges();
 
         }
