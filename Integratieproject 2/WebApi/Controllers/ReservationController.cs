@@ -134,7 +134,7 @@ namespace WebApi.Controllers
                 {
                 //MAX HOURS?
                 var reservations =
-                    space.Reservations.Where(e => e.DateTime.Date == date.Date).ToList();
+                    space.Reservations.Where(e=>!e.Cancelled).Where(e => e.DateTime.Date == date.Date).ToList();
 
 
 
@@ -206,7 +206,7 @@ namespace WebApi.Controllers
                 {
                     //MAX HOURS?
                     var reservations =
-                        space.Reservations.Where(e => e.DateTime.Date == date.Date).ToList();
+                        space.Reservations.Where(e=>!e.Cancelled).Where(e => e.DateTime.Date == date.Date).ToList();
 
                 
 

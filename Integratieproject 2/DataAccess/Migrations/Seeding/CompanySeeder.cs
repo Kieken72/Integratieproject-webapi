@@ -1080,6 +1080,168 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
 
             context.Companies.Add(company4);
             context.SaveChanges();
+
+            var company5 = new Company
+            {
+                Name = "Wima-Bowling en Partycenters BVBA",
+                VATNumber = "BE0403699251",
+                CityId = 355,
+                Street = "Boomsesteenweg ",
+                Number = "9",
+                Branches = new List<Branch>()
+                {
+                    new Branch()
+                    {
+                        Name = "Wima Sint-Niklaas",
+                        Street = "Grote markt",
+                        Number = "25",
+                        CityId = 2493,
+                        Email = "wima.sintniklaas@wima.be",
+                        PhoneNumber = "037773499",
+                        Description =
+                            "Sportieve ontspanning in een gezellig kader... dat is Superbowl! Tien bowlingbanen, drie pooltafels, een airhockey tafel en een uitgebreide keuze snacks en drankjes, alles tegen democratische prijzen. U kunt tevens deelnemen aan onze competities. En... waarom viert u het volgende verjaardagsfeestje van U of een van uw kinderen niet in Superbowl? Wij zijn er klaar voor!",
+                        OpeningHours = new List<OperationHours>()
+                        {
+                            new OperationHours(DayOfWeek.Monday, 14, 00, 23, 00),
+                            new OperationHours(DayOfWeek.Tuesday, 14, 00, 23, 00),
+                            new OperationHours(DayOfWeek.Wednesday, 14, 00, 23, 00),
+                            new OperationHours(DayOfWeek.Thursday, 14, 00, 23, 00),
+                            new OperationHours(DayOfWeek.Friday, 14, 00, 23, 59),
+                            new OperationHours(DayOfWeek.Saturday, 10, 30, 23, 59),
+                            new OperationHours(DayOfWeek.Sunday, 9, 30, 23, 59),
+                        },
+                        AdditionalInfos = new List<AdditionalInfo>()
+                        {
+                            new AdditionalInfo()
+                            {
+                                Type = AdditionalInfoType.PaymentMethod,
+                                Value = "VISA"
+                            },
+                            new AdditionalInfo()
+                            {
+                                Type = AdditionalInfoType.PaymentMethod,
+                                Value = "BANCONTACT"
+                            },
+                            new AdditionalInfo()
+                            {
+                                Type = AdditionalInfoType.PaymentMethod,
+                                Value = "MASTERCARD"
+                            },
+                            new AdditionalInfo()
+                            {
+                                Type = AdditionalInfoType.Accessibility,
+                                Value = "WHEELCHAIR"
+                            },
+                            new AdditionalInfo()
+                            {
+                                Type = AdditionalInfoType.Facility,
+                                Value = "WIFI"
+                            },
+                        },
+                        Rooms = new List<Room>()
+                        {
+                            new Room()
+                            {
+                                Enabled = true,
+                                Name = "Hoofdgebouw",
+                                Height = 100,
+                                Width = 500,
+                                Spaces = new List<Space>()
+                                {
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 1",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 2",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 3",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 4",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 5",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 6",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 7",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 8",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 9",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 10",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 11",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    },
+                                    new Space()
+                                    {
+                                        Enabled = true,
+                                        Name = "Baan 12",
+                                        MinPersons = 1,
+                                        Persons = 8
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            context.Companies.Add(company5);
+            context.SaveChanges();
+
         }
     }
 }
