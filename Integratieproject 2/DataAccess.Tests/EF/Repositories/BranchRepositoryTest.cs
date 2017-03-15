@@ -19,11 +19,8 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
         [SetUp]
         public void Setup()
         {
-            //var context = new FakeContext();
-
             _branches = new FakeRepository<Branch>();
             _companies = new FakeRepository<Company>();
-            //var cities = new FakeRepository<City>();
 
             
             _city = new City()

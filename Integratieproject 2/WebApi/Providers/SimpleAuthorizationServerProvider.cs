@@ -12,6 +12,7 @@ using Microsoft.Owin.Security.OAuth;
 
 namespace WebApi.Providers
 {
+    [Obsolete("SimpleAuthorizationServerProvider is deprecated, please use CustomOAuthProvider instead.")]
     public class SimpleAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)

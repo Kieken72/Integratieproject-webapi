@@ -92,9 +92,9 @@
     <Compile Include="Fakes\FakeContext.cs" />
     <Compile Include="Fakes\FakeRepository.cs" />
     <Compile Include="Fakes\FakeRepositoryFactory.cs" />
-    <Compile Include="Migrations\201702130950323_Initial.cs" />
-    <Compile Include="Migrations\201702130950323_Initial.Designer.cs">
-      <DependentUpon>201702130950323_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201703150941320_initial.cs" />
+    <Compile Include="Migrations\201703150941320_initial.Designer.cs">
+      <DependentUpon>201703150941320_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,8 +114,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201702130950323_Initial.resx">
-      <DependentUpon>201702130950323_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703150941320_initial.resx">
+      <DependentUpon>201703150941320_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Choose>

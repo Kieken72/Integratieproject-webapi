@@ -89,9 +89,7 @@ namespace WebApi.Tests.Tests
             var b = rResult.Content;
             b.Name = "Update";
             var cResult = _controller.Put(b.Id,b);
-            rResult = cResult as OkNegotiatedContentResult<BranchDto>;
-            Assert.IsInstanceOf<OkNegotiatedContentResult<BranchDto>>(cResult);
-            Assert.AreEqual(b.Name,rResult.Content.Name);
+            Assert.IsInstanceOf<OkResult>(cResult);
         }
         [Test]
         public void Delete_BadRequest()
