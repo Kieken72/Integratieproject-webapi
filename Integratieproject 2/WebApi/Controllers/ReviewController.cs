@@ -96,6 +96,7 @@ namespace WebApi.Controllers
         //}
 
         [Route("{id}")]
+        [Authorize(Roles = "Manager")]
         //!!Authorized only as admin
         // DELETE: api/reviews/5
         public IHttpActionResult Delete(int id)

@@ -12,11 +12,10 @@ namespace WebApi.Controllers.Account
     [RoutePrefix("api/roles")]
     public class RolesController : BaseApiController
     {
-        public RolesController(BranchService branchService) : base(branchService)
-        {
-        }
+        public RolesController(BranchService branchService) : base(branchService) {}
 
         [Route("{id:guid}", Name = "GetRoleById")]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IHttpActionResult> GetRole(string Id)
         {
             var role = await this.AppRoleManager.FindByIdAsync(Id);
@@ -31,6 +30,7 @@ namespace WebApi.Controllers.Account
         }
 
         [Route("", Name = "GetAllRoles")]
+        [Authorize(Roles = "SuperAdmin")]
         public IHttpActionResult GetAllRoles()
         {
             var roles = this.AppRoleManager.Roles;
@@ -39,6 +39,7 @@ namespace WebApi.Controllers.Account
         }
 
         [Route("create")]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IHttpActionResult> Create(CreateRoleBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -62,6 +63,7 @@ namespace WebApi.Controllers.Account
         }
 
         [Route("{id:guid}")]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IHttpActionResult> DeleteRole(string Id)
         {
 
@@ -84,6 +86,7 @@ namespace WebApi.Controllers.Account
         }
 
         [Route("ManageUsersInRole")]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IHttpActionResult> ManageUsersInRole(UsersInRoleDto model)
         {
             var role = await this.AppRoleManager.FindByIdAsync(model.Id);

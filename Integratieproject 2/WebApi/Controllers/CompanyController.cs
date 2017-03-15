@@ -22,6 +22,7 @@ namespace WebApi.Controllers
         }
 
         [Route("")]
+        [Authorize(Roles = "Owner")]
         //!!Authorized As Admin
         // GET: api/companies
         public IHttpActionResult Get()
@@ -33,6 +34,7 @@ namespace WebApi.Controllers
 
 
         [Route("{id}")]
+        [Authorize(Roles = "Owner")]
         //!!Authorized As Admin or Manager from this company
         // GET: api/companies/5
         public IHttpActionResult Get(int id)
@@ -60,7 +62,7 @@ namespace WebApi.Controllers
         }
 
         [Route("{id}")]
-        [Authorize(Roles = "Manager")]
+        [Authorize(Roles = "Owner")]
         //!!Authorized as admin or manager from this company
         // PUT: api/companies/5
         public IHttpActionResult Put(int id, [FromBody]CompanyDto value)

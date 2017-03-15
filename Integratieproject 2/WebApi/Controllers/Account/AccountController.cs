@@ -17,14 +17,14 @@ namespace WebApi.Controllers.Account
         {
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "SuperAdmin")]
         [Route("users")]
         public IHttpActionResult GetUsers()
         {
             return Ok(this.AppUserManager.Users.ToList().Select(u => this.TheModelFactory.Create(u)));
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "SuperAdmin")]
         [Route("user/{id:guid}", Name = "GetUserById")]
         public async Task<IHttpActionResult> GetUser(string id)
         {
@@ -39,7 +39,7 @@ namespace WebApi.Controllers.Account
 
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "SuperAdmin")]
         [Route("user/{username}")]
         public async Task<IHttpActionResult> GetUserByName(string username)
         {
@@ -71,11 +71,11 @@ namespace WebApi.Controllers.Account
                     reservation.Messages = dtos;
                 }
 
-                var favorites = _branchService.GetFavorites(User.Identity.GetUserId());
+                var favorites = BranchService.GetFavorites(User.Identity.GetUserId());
                 mdl.Favorites = new List<ShortBranchDto>();
                 foreach (var favorite in favorites)
                 {
-                    var branch = _branchService.Get(favorite.BranchId);
+                    var branch = BranchService.Get(favorite.BranchId);
                     var dto = Mapper.Map<ShortBranchDto>(branch);
                     mdl.Favorites.Add(dto);
                 }
@@ -91,7 +91,7 @@ namespace WebApi.Controllers.Account
         public IHttpActionResult AddFavorite(int id)
         {
             if (!User.Identity.IsAuthenticated) return Unauthorized();
-            var added = this._branchService.AddFavorite(id, User.Identity.GetUserId());
+            var added = this.BranchService.AddFavorite(id, User.Identity.GetUserId());
             if (added)
             {
                 return Ok();
@@ -104,7 +104,7 @@ namespace WebApi.Controllers.Account
         public IHttpActionResult RemoveFavorite(int id)
         {
             if (!User.Identity.IsAuthenticated) return Unauthorized();
-            var removed = this._branchService.RemoveFavorite(id, User.Identity.GetUserId());
+            var removed = this.BranchService.RemoveFavorite(id, User.Identity.GetUserId());
             if (removed)
             {
                 return Ok();
@@ -121,6 +121,7 @@ namespace WebApi.Controllers.Account
 
             account.Name = model.Name;
             account.Lastname = model.LastName;
+            account.PhoneNumber = model.PhoneNumber;
             var result = this.AppUserManager.Update(account);
 
             return !result.Succeeded ? GetErrorResult(result) : Ok();
@@ -201,7 +202,7 @@ namespace WebApi.Controllers.Account
             return Ok();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "SuperAdmin")]
         [Route("user/{id:guid}")]
         public async Task<IHttpActionResult> DeleteUser(string id)
         {
@@ -227,7 +228,7 @@ namespace WebApi.Controllers.Account
 
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "SuperAdmin")]
         [Route("user/{id:guid}/roles")]
         [HttpPut]
         public async Task<IHttpActionResult> AssignRolesToUser([FromUri] string id, [FromBody] string[] rolesToAssign)
@@ -244,10 +245,10 @@ namespace WebApi.Controllers.Account
 
             var rolesNotExists = rolesToAssign.Except(this.AppRoleManager.Roles.Select(x => x.Name)).ToArray();
 
-            if (rolesNotExists.Count() > 0)
+            if (rolesNotExists.Any())
             {
 
-                ModelState.AddModelError("", string.Format("Roles '{0}' does not exixts in the system", string.Join(",", rolesNotExists)));
+                ModelState.AddModelError("", $"Roles '{string.Join(",", rolesNotExists)}' does not exixts in the system");
                 return BadRequest(ModelState);
             }
 

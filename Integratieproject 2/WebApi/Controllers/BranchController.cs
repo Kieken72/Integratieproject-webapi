@@ -80,6 +80,7 @@ namespace WebApi.Controllers
 
 
         [Route("")]
+        [Authorize(Roles = "Owner")]
         //!!Authorized as manager from company
         // POST: api/branches
         public IHttpActionResult Post([FromBody]BranchDto value)
@@ -92,6 +93,7 @@ namespace WebApi.Controllers
         }
 
         [Route("room")]
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         public IHttpActionResult NewRoom([FromBody] RoomDto value)
         {
@@ -101,6 +103,7 @@ namespace WebApi.Controllers
             return Ok(value);
         }
         [Route("room/{id}")]
+        [Authorize(Roles = "Manager")]
         [HttpPut]
         public IHttpActionResult EditRoom(int id,[FromBody] RoomDto value)
         {
@@ -122,6 +125,7 @@ namespace WebApi.Controllers
 
         [Route("space")]
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public IHttpActionResult NewSpace([FromBody] SpaceDto value)
         {
             var entity = Mapper.Map<Space>(value);
@@ -132,6 +136,7 @@ namespace WebApi.Controllers
 
         [Route("space/{id}")]
         [HttpPut]
+        [Authorize(Roles = "Manager")]
         public IHttpActionResult EditSpace(int id, [FromBody] SpaceDto value)
         {
 
@@ -154,6 +159,7 @@ namespace WebApi.Controllers
 
         [Route("operationhours/{id}")]
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public IHttpActionResult OperationHours(int id, [FromBody] IEnumerable<OperationHoursDto> values)
         {
             var branch = _service.Get(id, collections: true);
@@ -177,6 +183,7 @@ namespace WebApi.Controllers
 
         [Route("additionalinfo/{id}")]
         [HttpPost]
+        [Authorize(Roles = "Manager")]
         public IHttpActionResult AdditionalInfo(int id, [FromBody] IEnumerable<AdditionalInfoDto> values)
         {
             var branch = _service.Get(id, collections: true);
@@ -199,6 +206,7 @@ namespace WebApi.Controllers
         }
 
         [Route("{id}")]
+        [Authorize(Roles = "Manager")]
         //!!Authorized as manager from this company
         // PUT: api/branches/5
         public IHttpActionResult Put(int id, [FromBody]BranchDto value)
@@ -218,6 +226,7 @@ namespace WebApi.Controllers
         }
 
         [Route("{id}")]
+        [Authorize(Roles = "SuperAdmin")]
         //!!Authorized only as admin
         // DELETE: api/branches/5
         public IHttpActionResult Delete(int id)

@@ -17,6 +17,8 @@ namespace WebApi.Models.Dto
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        public string PhoneNumber { get; set; }
+
         [Display(Name = "Role Name")]
         public string RoleName { get; set; }
 

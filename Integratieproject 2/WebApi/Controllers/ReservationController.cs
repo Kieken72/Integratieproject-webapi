@@ -232,6 +232,7 @@ namespace WebApi.Controllers
         }
 
         [Route("branch/{id}/{day}/{month}/{year}")]
+        [Authorize(Roles = "Manager")]
         [HttpGet]
         public IHttpActionResult ForBranch(int id, int day,int month, int year)
         {

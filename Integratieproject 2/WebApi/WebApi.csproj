@@ -220,7 +220,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\FavoritesController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\Account\RoleController.cs" />

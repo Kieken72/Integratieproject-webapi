@@ -22,15 +22,6 @@ namespace WebApi.Controllers
             _service = service;
         }
 
-        //[Route("")]
-        //// GET: api/Message
-        //public IHttpActionResult Get()
-        //{
-        //    var entities = this._service.Get();
-        //    var dtos = Mapper.Map<IEnumerable<MessageDto>>(entities);
-        //    return Ok(dtos);
-        //}
-
         [Route("{id}")]
         [Authorize]
         // GET: api/Message/5
@@ -53,6 +44,7 @@ namespace WebApi.Controllers
         }
 
         [Route("by-branch/{id}")]
+        [Authorize(Roles = "Manager")]
         // GET: api/Message/5
         public IHttpActionResult GetByBranch(int id)
         {
@@ -77,21 +69,5 @@ namespace WebApi.Controllers
             value = Mapper.Map<MessageDto>(entity);
             return Ok(value);
         }
-
-        // PUT: api/Message/5
-        //[Authorize]
-        //public IHttpActionResult Put(int id, [FromBody]MessageDto value)
-        //{
-        //    var entity = Mapper.Map<Message>(value);
-        //    this._service.Change(entity);
-        //    return Ok();
-        //}
-
-        //// DELETE: api/Message/5
-        //public IHttpActionResult Delete(int id)
-        //{
-        //    this._service.Remove(id);
-        //    return Ok();
-        //}
     }
 }
