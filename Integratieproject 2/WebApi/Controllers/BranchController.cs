@@ -234,5 +234,23 @@ namespace WebApi.Controllers
             this._service.Remove(id);
             return Ok();
         }
+
+        [Route("guests/{id}")]
+        [HttpGet]
+        [Authorize(Roles = "Manager")]
+        public IHttpActionResult GetGuests(int id)
+        {
+            var branch = _service.Get(id, true);
+            if (branch != null)
+            {
+                var branches = branch.Reservations.Select(e => e.User).Distinct();
+                return Ok(branches);
+            }
+            return NotFound();
+        }
+        
+
+
+
     }
 }
