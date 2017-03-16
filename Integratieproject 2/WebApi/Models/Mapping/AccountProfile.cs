@@ -14,6 +14,7 @@ namespace WebApi.Models.Mapping
         {
             this.CreateMap<Account, AccountDto>();
             this.CreateMap<AccountDto, Account>();
+
             this.CreateMap<Account, FullAccountDto>();
             this.CreateMap<FullAccountDto, Account>();
         }
