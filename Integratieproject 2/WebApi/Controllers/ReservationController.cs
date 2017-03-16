@@ -314,6 +314,17 @@ namespace WebApi.Controllers
             return Ok();
         }
 
+        [Route("recent/{id}")]
+        [HttpGet]
+        [Authorize(Roles = "Manager")]
+        public IHttpActionResult RecentReservations(int id)
+        {
+            var reservations = _reservationService.Get(e => e.BranchId == id).OrderByDescending(e => e.CreatedOn);
+            var entities = reservations.Count() > 20 ? reservations.Select(e=>e).Take(20).ToList() : reservations.ToList();
+            var dtos = Mapper.Map<IEnumerable<ReservationDto>>(entities);
+            return Ok(dtos);
+        }
+
 
 
 
