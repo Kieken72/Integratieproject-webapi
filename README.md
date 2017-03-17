@@ -41,18 +41,19 @@
 | [/branches/{id}](http://leisurebooker.azurewebsites.net/api/branches/) | BranchesController | DELETE |  | :white_check_mark: |
 | [/branches/additionalinfo/{id}](http://leisurebooker.azurewebsites.net/api/branches/additionalinfo/1) | BranchesController | POST |  |  |
 | [/branches/operationhours/{id}](http://leisurebooker.azurewebsites.net/api/branches/operationhours/1) | BranchesController | POST |  |  |
+| [/branches/guests/{id}](http://leisurebooker.azurewebsites.net/api/branches/guests/1) | BranchesController | GET |  |  |
 
 
 ## Reservations
 | URI | Controller | VERB | Role | Test |
 | --- | --- | --- | --- | --- |
-| [/reservations](http://leisurebooker.azurewebsites.net/api/reservations) | ReservationController | GET |  |  |
 | [/reservations/{postalcode}](http://leisurebooker.azurewebsites.net/api/reservations/available/2550) | ReservationController | GET |  |  |
 | [/reservations](http://leisurebooker.azurewebsites.net/api/reservations) | ReservationController | POST |  |  |
 | [/reservations/{id}](http://leisurebooker.azurewebsites.net/api/reservations{id}) | ReservationController | DELETE | USER |  |
 | [/reservations/arrived/{id}](http://leisurebooker.azurewebsites.net/api/reservations/arrived/{id}) | ReservationController | POST | MANAGER |  |
 | [/reservations/noshow/{id}](http://leisurebooker.azurewebsites.net/api/reservations/noshow/{id}) | ReservationController | POST | MANAGER |  |
 | [/reservations/cancel/{id}](http://leisurebooker.azurewebsites.net/api/reservations/cancel/{id}) | ReservationController | POST | MANAGER |  |
+| [/reservations/recent/{id}](http://leisurebooker.azurewebsites.net/api/reservations/recent/{id}) | ReservationController | GET | MANAGER |  |
 
 
 ### Accounts

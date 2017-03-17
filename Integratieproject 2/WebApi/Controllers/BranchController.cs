@@ -23,13 +23,15 @@ namespace WebApi.Controllers
         private readonly IService<Room> _roomService;
         private readonly IService<AdditionalInfo> _additionalInfoService;
         private readonly IService<OperationHours> _operationHoursService;
+        private readonly IService<Reservation> _reservationService;
 
         public BranchController(IService<Branch> service, 
             IService<City> cityService, 
             IService<Space> spaceService, 
             IService<Room> roomService,
             IService<AdditionalInfo> additionalInfoService,
-            IService<OperationHours> operationHoursService )
+            IService<OperationHours> operationHoursService,
+            IService<Reservation> reservationService)
         {
             _service = service;
             _cityService = cityService;
@@ -37,6 +39,7 @@ namespace WebApi.Controllers
             _roomService = roomService;
             _operationHoursService = operationHoursService;
             _additionalInfoService = additionalInfoService;
+            _reservationService = reservationService;
         }
 
         [Route("")]
@@ -257,5 +260,21 @@ namespace WebApi.Controllers
             this._service.Remove(id);
             return Ok();
         }
+
+        [Route("guests/{id}")]
+        [HttpGet]
+        [Authorize(Roles = "Manager")]
+        public IHttpActionResult GetGuests(int id)
+        {
+            var reservations = _reservationService.Get(e => e.BranchId == id);
+
+            var guests = reservations.Select(e => e.User).Distinct();
+            var dto = Mapper.Map<IEnumerable<FullAccountDto>>(guests);
+            return Ok(dto);
+        }
+        
+
+
+
     }
 }

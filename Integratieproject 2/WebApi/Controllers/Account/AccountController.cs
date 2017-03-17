@@ -142,6 +142,7 @@ namespace WebApi.Controllers.Account
                 Email = createUserModel.Email,
                 Name = createUserModel.Name,
                 Lastname = createUserModel.LastName,
+                PhoneNumber =  createUserModel.PhoneNumber
             };
 
             IdentityResult addUserResult = await this.AppUserManager.CreateAsync(user, createUserModel.Password);

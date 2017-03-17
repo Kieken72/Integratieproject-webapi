@@ -9,6 +9,7 @@ namespace WebApi
         {
             Mapper.Initialize(cfg =>
             {
+                cfg.AddProfile<AccountProfile>();
                 cfg.AddProfile<CompanyProfile>();
                 cfg.AddProfile<CityProfile>();
                 cfg.AddProfile<BranchProfile>();
@@ -19,7 +20,6 @@ namespace WebApi
                 cfg.AddProfile<ReviewProfile>();
                 cfg.AddProfile<SpaceProfile>();
                 cfg.AddProfile<RoomProfile>();
-                cfg.AddProfile<AccountProfile>();
             });
         }
     }
