@@ -15,7 +15,6 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
         {
             if (context.Reservations.Any()) return;
             var branches = context.Branches.ToList();
-            var index = 1;
             foreach (var account in users)
             {
                 if (account.Email == "hello@leisurebooker.me") continue;
@@ -26,7 +25,7 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
                     {
                         //Make new Date
                         var date = DateTime.Now;
-                        date = date.AddDays(100);
+                        date = date.AddDays(155);
                         date = date.AddDays(-i);
                        
 
@@ -36,6 +35,16 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
                             continue;
                         
                         date = new DateTime(date.Year, date.Month, date.Day, operationHours.FromTime.Hours, operationHours.FromTime.Minutes,0);
+
+                        if (date.DayOfWeek != DayOfWeek.Saturday || date.DayOfWeek != DayOfWeek.Sunday ||
+                            date.DayOfWeek != DayOfWeek.Friday)
+                        {
+                            var random = Random.Next(1, 11);
+                            if (random != 10)
+                            {
+                                continue;
+                            }
+                        }
 
                         //GetRooms And first space
                         var roomIds = context.Rooms.Where(e => e.BranchId == branch.Id).Select(e=>e.Id);
@@ -75,7 +84,6 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
                     }
                     context.Reservations.AddRange(reservations);
                 }
-                index++;
             }
             context.SaveChanges();
         }
