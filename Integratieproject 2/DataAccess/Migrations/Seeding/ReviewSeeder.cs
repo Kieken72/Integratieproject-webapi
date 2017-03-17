@@ -22,8 +22,8 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
             {
                 var random = Random.Next(1, 11);
                 if (random != 10) continue;
-                var resultRandom = Random.Next(2);
-                var result = resultRandom == 0;
+                var resultRandom = Random.Next(5);
+                var result = resultRandom != 0;
                 var publicRandom = Random.Next(2);
                 var publicB = publicRandom == 0;
                 var review = new Review()
