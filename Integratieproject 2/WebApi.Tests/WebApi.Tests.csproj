@@ -87,6 +87,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\ReservationControllerTests.cs" />
     <Compile Include="Tests\ReviewControllerTests.cs" />
+    <Compile Include="Tests\StatisticsControllerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
