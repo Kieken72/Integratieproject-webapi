@@ -65,7 +65,9 @@ namespace WebApi.Controllers
             var nine = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
                 e => e.AmountOfPersons == 9, collections: true).Count();
             var ten = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
-                e => e.AmountOfPersons > 9, collections: true).Count();
+                e => e.AmountOfPersons == 10, collections: true).Count();
+            var more = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.AmountOfPersons > 10, collections: true).Count();
 
             //For each weekday..
             //
@@ -80,7 +82,8 @@ namespace WebApi.Controllers
                 seven,
                 eight,
                 nine,
-                ten
+                ten,
+                more
             });
         }
 
