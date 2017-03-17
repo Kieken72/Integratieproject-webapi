@@ -235,6 +235,7 @@
     <Compile Include="Controllers\BranchController.cs" />
     <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Models\FileUpload.cs" />
     <Compile Include="Models\Dto\CreateRoleBindingModel.cs" />
     <Compile Include="Models\Dto\ChangePasswordBindingModel.cs" />
     <Compile Include="Models\Dto\CreateUserBindingModel.cs" />

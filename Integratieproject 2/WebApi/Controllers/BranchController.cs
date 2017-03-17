@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Linq.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Http;
 using AutoMapper;
 using Leisurebooker.Business;
 using Leisurebooker.Business.Domain;
 using Leisurebooker.Business.Services;
+using WebApi.Models;
 using WebApi.Models.Dto;
 
 namespace WebApi.Controllers
@@ -224,6 +227,26 @@ namespace WebApi.Controllers
             this._service.Change(branch);
             return Ok();
         }
+
+        public IHttpActionResult PutBranchImage(int id)
+        {
+            if (!HttpContext.Current.Request.Files.AllKeys.Any()) return Ok("Image is not Uploaded");
+            // Get the uploaded image from the Files collection  
+            var httpPostedFile = HttpContext.Current.Request.Files["UploadedImage"];
+            if (httpPostedFile == null) return Ok("Image is not Uploaded");
+            var imgupload = new FileUpload();
+            int length = httpPostedFile.ContentLength;
+            imgupload.Imagedata = new byte[length]; //get imagedata  
+            httpPostedFile.InputStream.Read(imgupload.Imagedata, 0, length);
+            imgupload.Imagename = Path.GetFileName(httpPostedFile.FileName);
+            var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/Content"), httpPostedFile.FileName);
+            httpPostedFile.SaveAs(fileSavePath);
+            var branch = _service.Get(id);
+            branch.Picture = $"Content/{imgupload.Imagename}";
+            _service.Change(branch);
+            return Ok("Image Uploaded");
+        }
+        
 
         [Route("{id}")]
         [Authorize(Roles = "SuperAdmin")]
