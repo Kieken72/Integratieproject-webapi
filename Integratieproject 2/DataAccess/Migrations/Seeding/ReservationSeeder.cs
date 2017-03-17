@@ -39,8 +39,8 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
                         if (date.DayOfWeek != DayOfWeek.Saturday || date.DayOfWeek != DayOfWeek.Sunday ||
                             date.DayOfWeek != DayOfWeek.Friday)
                         {
-                            var random = Random.Next(1, 11);
-                            if (random != 10)
+                            var random = Random.Next(1, 6);
+                            if (random != 5)
                             {
                                 continue;
                             }
