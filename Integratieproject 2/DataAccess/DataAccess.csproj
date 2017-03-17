@@ -113,6 +113,10 @@
     <Compile Include="Migrations\201703101431526_nshow.Designer.cs">
       <DependentUpon>201703101431526_nshow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703171318530_ReservationByUser.cs" />
+    <Compile Include="Migrations\201703171318530_ReservationByUser.Designer.cs">
+      <DependentUpon>201703171318530_ReservationByUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Seeding\CitiesSeeder.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Seeding\AccountSeeder.cs" />
@@ -139,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703101431526_nshow.resx">
       <DependentUpon>201703101431526_nshow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703171318530_ReservationByUser.resx">
+      <DependentUpon>201703171318530_ReservationByUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -29,4 +29,12 @@ namespace WebApi.Models.Dto
         public DateTime DateTime { get; set; }
         public int Amount { get; set; }
     }
+    public class NewManagerReservationDto
+    {
+        public int BranchId { get; set; }
+        public string UserId { get; set; }
+        public DateTime DateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
+        public int Amount { get; set; }
+    }
 }

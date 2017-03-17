@@ -21,13 +21,15 @@ namespace WebApi.Controllers
         private readonly IService<City> _cityService;
         private readonly IService<Space> _spaceService;
         private readonly IService<Reservation> _reservationService;
+        private readonly IService<Room> _roomService;
 
-        public ReservationController(IService<Branch> service, IService<City> cityService, IService<Space> spaceService, IService<Reservation> reservationService )
+        public ReservationController(IService<Branch> service, IService<City> cityService, IService<Space> spaceService, IService<Reservation> reservationService, IService<Room> roomService )
         {
             _branchService = service;
             _cityService = cityService;
             _spaceService = spaceService;
             _reservationService = reservationService;
+            _roomService = roomService;
         }
 
         [Route("available/{postalcode}")]
@@ -242,6 +244,23 @@ namespace WebApi.Controllers
             return Ok(dtos);
         }
 
+        [Route("room/{id}/{day}/{month}/{year}")]
+        [Authorize(Roles = "Manager")]
+        [HttpGet]
+        public IHttpActionResult GetRoom(int id, int day, int month, int year)
+        {
+            var date = new DateTime(year, month, day);
+            var entity = _roomService.Get(id, true);
+            if (entity == null) return NotFound();
+            var dto = Mapper.Map<RoomDto>(entity);
+            foreach (var dtoSpace in dto.Spaces)
+            {
+                var reseravations = _reservationService.Get(e => e.SpaceId == dtoSpace.Id,
+                    e => e.DateTime.Date == date.Date).ToList();
+                dtoSpace.Reservations = Mapper.Map<ICollection<ReservationDto>>(reseravations);
+            }
+            return Ok(dto);
+        }
 
 
         [Route("{id}")]
@@ -382,6 +401,75 @@ namespace WebApi.Controllers
         }
 
 
+
+        [Route("manager")]
+        [Authorize(Roles = "Manager")]
+        [HttpPost]
+        public IHttpActionResult ReserveSpaceManager([FromBody] NewManagerReservationDto reservation)
+        {
+            //Check modal
+            var branch = _branchService.Get(reservation.BranchId);
+            if (branch == null)
+            {
+                return BadRequest("Branch not found");
+            }
+            if (reservation.DateTime < DateTime.Now)
+            {
+                return BadRequest("Reservation needs to be in future");
+            }
+            if (reservation.Amount < 1)
+            {
+                return BadRequest("U need to be with atleast one person..");
+            }
+
+
+
+            //Logica voor room te vinden..
+
+            var entity = this._branchService.Get(branch.Id, collections: true);
+            var date = reservation.DateTime;
+
+            var operationHour = entity.OpeningHours.Where(e => e.Day == date.DayOfWeek);
+
+            //Openingsuren
+            if (!IsValidReservation(operationHour.ToArray(), reservation.DateTime, reservation.EndDateTime))
+            {
+                return ResponseMessage(new HttpResponseMessage(HttpStatusCode.PreconditionFailed));
+            }
+
+
+            var roomIds = entity.Rooms.Select(room => room.Id).ToList();
+            var spaces = _spaceService.Get(e => roomIds.Contains(e.RoomId), e => (e.MinPersons <= reservation.Amount && e.Persons >= reservation.Amount), collections: true).ToList();
+
+            foreach (var space in spaces)
+            {
+                //MAX HOURS?
+                var reservations =
+                    space.Reservations.Where(e => !e.Cancelled).Where(e => e.DateTime.Date == date.Date).ToList();
+
+
+
+                var isAvailable = DoesNotOverlap(reservations.ToArray(), date, reservation.EndDateTime);
+
+                if (!isAvailable) continue;
+                var newReservation = new Reservation()
+                {
+                    UserId = reservation.UserId,
+                    BranchId = branch.Id,
+                    AmountOfPersons = reservation.Amount,
+                    DateTime = reservation.DateTime,
+                    EndDateTime = reservation.EndDateTime,
+                    SpaceId = space.Id,
+                    ReservationByUser = false
+                };
+
+                newReservation = _reservationService.Add(newReservation);
+
+                //SendMail!!
+                return Ok(newReservation);
+            }
+            return BadRequest("No free space.");
+        }
 
     }
 

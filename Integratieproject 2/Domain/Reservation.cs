@@ -25,6 +25,7 @@ namespace Leisurebooker.Business.Domain
         public Event Event { get; set; }
         public Review Review { get; set; }
         
+        public bool ReservationByUser { get; set; }
         public bool Arrived { get; set; }
         public bool NoShow { get; set; }
         public bool Cancelled { get; set; }
@@ -34,6 +35,7 @@ namespace Leisurebooker.Business.Domain
 
         public Reservation()
         {
+            ReservationByUser = true;
             Arrived = false;
             Cancelled = false;
             CreatedOn = DateTime.Now;
