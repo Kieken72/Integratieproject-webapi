@@ -46,7 +46,7 @@ namespace WebApi.Controllers
 
             if (entity == null) return Ok();
 
-            var mondays = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+            var monday = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
                 e => e.DateTime.DayOfWeek == DayOfWeek.Monday,collections:true).Count();
             var tuesday = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
                 e => e.DateTime.DayOfWeek == DayOfWeek.Tuesday, collections: true).Count();
@@ -65,7 +65,7 @@ namespace WebApi.Controllers
             //
             return Ok(new
             {
-                mondays,
+                monday,
                 tuesday,
                 wednesday,
                 thursday,
