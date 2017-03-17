@@ -25,7 +25,7 @@ namespace WebApi.Tests.Tests
                 cfg.AddProfile<CityProfile>();
             });
             _controller = new ReservationController(new BranchService(), new CityService(), new SpaceService(),
-                new ReservationService());
+                new ReservationService(), new RoomService());
 
         }
 
