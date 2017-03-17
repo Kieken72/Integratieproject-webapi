@@ -165,6 +165,67 @@ namespace WebApi.Controllers
             return Ok(branch);
         }
 
+        [Route("manager/{branchId}")]
+        [HttpGet]
+        public IHttpActionResult IsPlaceInBranchManager(int branchId, [FromUri] AvailableBranchUriManager parameters)
+        {
+
+
+            var date = new DateTime(parameters.DateTime.Year, parameters.DateTime.Month, parameters.DateTime.Day, parameters.DateTime.Hour, parameters.DateTime.Minute, 0);
+            if (date < DateTime.Now)
+            {
+                return BadRequest("Reservation needs to be in future");
+            }
+
+            var entity = _branchService.Get(branchId, collections: true);
+            var branch = Mapper.Map<CheckBranchDto>(entity);
+            var operationHour = entity.OpeningHours.Where(e => e.Day == date.DayOfWeek);
+
+            //Openingsuren
+            if (!IsValidReservation(operationHour.ToArray(), parameters.DateTime, parameters.EndDateTime))
+            {
+                branch.Available = false;
+                branch.Message = CheckMessage.Closed;
+                return Ok(branch);
+            }
+            var roomIds = entity.Rooms.Select(room => room.Id).ToList();
+            var spaces = _spaceService.Get(e => roomIds.Contains(e.RoomId), e => (e.MinPersons <= parameters.Amount && e.Persons >= parameters.Amount), collections: true).ToList();
+
+
+            var freeSpaces = new List<Space>();
+            foreach (var space in spaces)
+            {
+                //MAX HOURS?
+                var reservations =
+                    space.Reservations.Where(e => !e.Cancelled).Where(e => e.DateTime.Date == date.Date).ToList();
+
+
+
+                var isAvailable = DoesNotOverlap(reservations.ToArray(), date, parameters.EndDateTime);
+                if (isAvailable)
+                {
+                    freeSpaces.Add(space);
+                }
+
+            }
+            if (freeSpaces.Any())
+            {
+                branch.Available = true;
+                branch.Message = CheckMessage.Free;
+
+            }
+            else
+            {
+                branch.Available = false;
+                branch.Message = CheckMessage.Full;
+            }
+
+
+
+
+            return Ok(branch);
+        }
+
         [Route("")]
         [Authorize]
         [HttpPost]
