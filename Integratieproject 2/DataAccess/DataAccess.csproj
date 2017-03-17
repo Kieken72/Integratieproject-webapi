@@ -121,6 +121,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Seeding\AccountSeeder.cs" />
     <Compile Include="Migrations\Seeding\CompanySeeder.cs" />
+    <Compile Include="Migrations\Seeding\ReservationSeeder.cs" />
+    <Compile Include="Migrations\Seeding\ReviewSeeder.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

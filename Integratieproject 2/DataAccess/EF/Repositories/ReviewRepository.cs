@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Leisurebooker.Business.Domain;
 using Leisurebooker.DataAccess.EF.Connection;
-using System.Linq;
 using System.Data.Entity;
 
 namespace Leisurebooker.DataAccess.EF.Repositories

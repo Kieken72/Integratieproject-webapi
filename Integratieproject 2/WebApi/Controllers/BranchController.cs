@@ -266,9 +266,7 @@ namespace WebApi.Controllers
         [Authorize(Roles = "Manager")]
         public IHttpActionResult GetGuests(int id)
         {
-            var reservations = _reservationService.Get(e => e.BranchId == id);
-
-            var guests = reservations.Select(e => e.User).Distinct();
+            var guests = _reservationService.Get(e => e.BranchId == id).Select(e => e.User).Distinct().ToList();
             var dto = Mapper.Map<IEnumerable<FullAccountDto>>(guests);
             return Ok(dto);
         }

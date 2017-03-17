@@ -24,10 +24,16 @@ namespace Leisurebooker.DataAccess.Migrations
         protected override void Seed(Context context)
         {
             CitiesSeeder.Seed(context);
+
             var users = AccountSeeder.Seed(context);
+
             CompanySeeder.Seed(context);
 
-            
+            ReservationSeeder.Seed(context, users);
+
+            ReviewSeeder.Seed(context);
+
+
             /*
             var date = DateTime.Now.AddDays(1);
             context.Companies.Add(

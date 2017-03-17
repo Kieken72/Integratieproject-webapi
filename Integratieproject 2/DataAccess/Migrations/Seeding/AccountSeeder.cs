@@ -43,7 +43,7 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
             };
             manager.Create(user1, password);
             user1 = manager.FindByEmail(email);
-            manager.AddToRoles(user1.Id, new string[] { "SuperAdmin", "Admin", "Manager","User" });
+            manager.AddToRoles(user1.Id, new string[] { "SuperAdmin", "Admin", "Manager","User","Owner" });
 
             //Acc2
 
@@ -90,6 +90,7 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
             user4 = manager.FindByEmail(email);
             manager.AddToRoles(user4.Id, new string[] { "User" });
 
+            //Acc5
             email = "jasper.vangrieken@student.kdg.be";
             var user5 = new Account()
             {
@@ -102,6 +103,22 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
             manager.Create(user5, password);
             user5 = manager.FindByEmail(email);
             manager.AddToRoles(user5.Id, new string[] { "User" });
+
+            //Acc6
+            email = "emmanuel.kouar@student.kdg.be";
+            var user6 = new Account()
+            {
+                UserName = email,
+                Email = email,
+                EmailConfirmed = true,
+                Name = "Emmanuel",
+                Lastname = "Kouar"
+            };
+            manager.Create(user6, password);
+            user5 = manager.FindByEmail(email);
+            manager.AddToRoles(user6.Id, new string[] { "User" });
+
+
 
 
             return manager.Users.AsEnumerable();

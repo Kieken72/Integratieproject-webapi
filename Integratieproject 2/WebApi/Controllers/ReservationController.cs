@@ -300,7 +300,7 @@ namespace WebApi.Controllers
         public IHttpActionResult ForBranch(int id, int day,int month, int year)
         {
             var date = new DateTime(year,month,day);
-            var entities = this._reservationService.Get(e=>e.BranchId==id,e=>e.DateTime.Date == date.Date);
+            var entities = this._reservationService.Get(e=>e.BranchId==id,e=>e.DateTime.Date == date.Date).ToList();
             var dtos = Mapper.Map<IEnumerable<ReservationDto>>(entities);
             return Ok(dtos);
         }
