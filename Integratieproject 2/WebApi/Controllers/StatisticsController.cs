@@ -38,6 +38,52 @@ namespace WebApi.Controllers
             return Ok(new { amount, positive, negative });
         }
 
+        [Route("guests/{id}")]
+        [HttpGet]
+        public IHttpActionResult AmountGuestsStatistics(int id)
+        {
+            var entity = this._reservationService.Get(e => e.BranchId == id, collections: true);
+
+            if (entity == null) return Ok();
+
+            var one = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.AmountOfPersons == 1,collections:true).Count();
+            var two = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.AmountOfPersons == 2, collections: true).Count();
+            var three = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.AmountOfPersons == 3, collections: true).Count();
+            var four = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.AmountOfPersons == 4, collections: true).Count();
+            var five = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.AmountOfPersons == 5, collections: true).Count();
+            var six = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.AmountOfPersons == 6, collections: true).Count();
+            var seven = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.AmountOfPersons == 7, collections: true).Count();
+            var eight = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.AmountOfPersons == 8, collections: true).Count();
+            var nine = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.AmountOfPersons == 9, collections: true).Count();
+            var ten = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.AmountOfPersons > 9, collections: true).Count();
+
+            //For each weekday..
+            //
+            return Ok(new
+            {
+                one,
+                two,
+                three,
+                four,
+                five,
+                six,
+                seven,
+                eight,
+                nine,
+                ten
+            });
+        }
+
         [Route("weekday/{id}")]
         [HttpGet]
         public IHttpActionResult WeekdayStatistics(int id)
@@ -47,7 +93,7 @@ namespace WebApi.Controllers
             if (entity == null) return Ok();
 
             var monday = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
-                e => e.DateTime.DayOfWeek == DayOfWeek.Monday,collections:true).Count();
+                e => e.DateTime.DayOfWeek == DayOfWeek.Monday, collections: true).Count();
             var tuesday = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
                 e => e.DateTime.DayOfWeek == DayOfWeek.Tuesday, collections: true).Count();
             var wednesday = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
@@ -74,5 +120,6 @@ namespace WebApi.Controllers
                 sunday
             });
         }
+
     }
 }
