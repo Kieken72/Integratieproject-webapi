@@ -25,6 +25,7 @@ namespace WebApi.Controllers
         }
 
         [Route("reviews/{id}")]
+        [HttpGet]
         public IHttpActionResult ReviewStatistics(int id)
         {
             var entity = this._reviewService.Get(e => e.BranchId == id, collections: true);
@@ -38,6 +39,7 @@ namespace WebApi.Controllers
         }
 
         [Route("weekday/{id}")]
+        [HttpGet]
         public IHttpActionResult WeekdayStatistics(int id)
         {
             var entity = this._reservationService.Get(e => e.BranchId == id, collections: true);
