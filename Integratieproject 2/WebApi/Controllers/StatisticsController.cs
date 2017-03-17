@@ -46,9 +46,33 @@ namespace WebApi.Controllers
 
             if (entity == null) return Ok();
 
+            var mondays = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.DateTime.DayOfWeek == DayOfWeek.Monday,collections:true).Count();
+            var tuesday = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.DateTime.DayOfWeek == DayOfWeek.Tuesday, collections: true).Count();
+            var wednesday = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.DateTime.DayOfWeek == DayOfWeek.Wednesday, collections: true).Count();
+            var thursday = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.DateTime.DayOfWeek == DayOfWeek.Thursday, collections: true).Count();
+            var friday = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.DateTime.DayOfWeek == DayOfWeek.Friday, collections: true).Count();
+            var saturday = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.DateTime.DayOfWeek == DayOfWeek.Saturday, collections: true).Count();
+            var sunday = this._reservationService.Get(e => e.BranchId == id, e => !e.Cancelled,
+                e => e.DateTime.DayOfWeek == DayOfWeek.Sunday, collections: true).Count();
+
             //For each weekday..
             //
-            return Ok();
+            return Ok(new
+            {
+                mondays,
+                tuesday,
+                wednesday,
+                thursday,
+                friday,
+                saturday,
+                sunday
+            });
         }
     }
 }

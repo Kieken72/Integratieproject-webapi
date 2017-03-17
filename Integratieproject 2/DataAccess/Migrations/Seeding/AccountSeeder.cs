@@ -90,6 +90,19 @@ namespace Leisurebooker.DataAccess.Migrations.Seeding
             user4 = manager.FindByEmail(email);
             manager.AddToRoles(user4.Id, new string[] { "User" });
 
+            email = "jasper.vangrieken@student.kdg.be";
+            var user5 = new Account()
+            {
+                UserName = email,
+                Email = email,
+                EmailConfirmed = true,
+                Name = "Jasper",
+                Lastname = "Van Grieken"
+            };
+            manager.Create(user5, password);
+            user5 = manager.FindByEmail(email);
+            manager.AddToRoles(user5.Id, new string[] { "User" });
+
 
             return manager.Users.AsEnumerable();
         }
