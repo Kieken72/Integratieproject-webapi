@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -10,6 +11,8 @@ using Itenso.TimePeriod;
 using Leisurebooker.Business;
 using Leisurebooker.Business.Domain;
 using Microsoft.AspNet.Identity;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using WebApi.Models.Dto;
 
 namespace WebApi.Controllers
@@ -288,8 +291,24 @@ namespace WebApi.Controllers
 
                     newReservation = _reservationService.Add(newReservation);
 
-                    //SendMail!!
-                    return Ok(newReservation);
+                //SendMail!!
+
+                //
+                string apiKey = ConfigurationManager.AppSettings["SENDGRID_API"];
+                dynamic sg = new SendGridAPIClient(apiKey);
+
+                Email from = new Email("hello@leisurebooker.me");
+                Email to = new Email(newReservation.User.Email);
+
+                Content content = new Content(
+                    "text/html",
+                    $"Beste {newReservation.User.Name}, U heeft gereserveerd voor {newReservation.AmountOfPersons} personen in {branch.Name} op {newReservation.DateTime.ToShortDateString()}."
+                    );
+                Mail mail = new Mail(from, "Reservatie via Leisuremanager", to, content);
+
+                dynamic response = sg.client.mail.send.post(requestBody: mail.Get());
+                //
+                return Ok(newReservation);
                 }
             return BadRequest("No free space.");
         }
