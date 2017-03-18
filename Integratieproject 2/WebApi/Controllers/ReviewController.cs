@@ -25,15 +25,6 @@ namespace WebApi.Controllers
             _reservationService = reservationService;
         }
 
-        //[Route("")]
-        //// GET: api/reviews
-        //public IHttpActionResult Get()
-        //{
-        //    var entities = this._service.Get();
-        //    var dtos = Mapper.Map<IEnumerable<ReviewDto>>(entities);
-        //    return Ok(dtos);
-        //}
-
         [Route("{id}")]
         // GET: api/reviews/5
         public IHttpActionResult Get(int id)
@@ -48,6 +39,7 @@ namespace WebApi.Controllers
         }
 
         [Route("by-branch/{id}")]
+        [Authorize(Roles = "Manager")]
         // GET: api/reviews/5
         public IHttpActionResult ByBranch(int id)
         {

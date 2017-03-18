@@ -61,6 +61,7 @@ namespace WebApi.Controllers
                 return NotFound();
             }
             var dto = Mapper.Map<BranchDto>(entity);
+            dto.Reviews = dto.Reviews.Where(e => e.Public).ToList();
             return Ok(dto);
         }
 
