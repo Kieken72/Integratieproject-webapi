@@ -296,15 +296,16 @@ namespace WebApi.Controllers
                 //
                     try
                     {
+                        var res = _reservationService.Get(newReservation.Id, true);
                         string apiKey = ConfigurationManager.AppSettings["SENDGRID_API"];
                         dynamic sg = new SendGridAPIClient(apiKey);
 
                         Email from = new Email("hello@leisurebooker.me");
-                        Email to = new Email(newReservation.User.Email);
+                        Email to = new Email(res.User.Email);
 
                         Content content = new Content(
                             "text/html",
-                            $"Beste {newReservation.User.Name}, U heeft gereserveerd voor {newReservation.AmountOfPersons} personen in {branch.Name} op {newReservation.DateTime.ToShortDateString()}."
+                            $"Beste {res.User.Name}, U heeft gereserveerd voor {res.AmountOfPersons} personen in {branch.Name} op {res.DateTime.ToShortDateString()}."
                             );
                         Mail mail = new Mail(from, "Reservatie via Leisuremanager", to, content);
 
