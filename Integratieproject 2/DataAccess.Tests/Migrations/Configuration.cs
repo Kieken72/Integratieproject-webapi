@@ -50,6 +50,7 @@ namespace Leisurebooker.DataAccess.Tests.Migrations
                 CityId = 1,
                 Street = "Straat",
                 Number = "1"
+                
             });
             context.SaveChanges();
         }

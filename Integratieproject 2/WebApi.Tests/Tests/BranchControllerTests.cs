@@ -72,7 +72,9 @@ namespace WebApi.Tests.Tests
                 Number = "1",
                 CityId = 1,
                 Email = "test@test.be",
-                CompanyId = 1
+                CompanyId = 1,
+                Description = "Lorem ipsum",
+                PhoneNumber = "032222222",
             };
 
             var cResult = _controller.Post(entity);
@@ -90,6 +92,68 @@ namespace WebApi.Tests.Tests
             b.Name = "Update";
             var cResult = _controller.Put(b.Id,b);
             Assert.IsInstanceOf<OkResult>(cResult);
+        }
+
+        [Test]
+        public void Get_WillReturnRoomOfBranch()
+        {
+            var entity = new BranchDto()
+            {
+                Name = "Super Bowl",
+                Street = "Groenplaats",
+                Number = "1",
+                CityId = 1,
+                Email = "test@test.be",
+                CompanyId = 1,
+                Description = "Lorem ipsum",
+                PhoneNumber = "032222222",
+            };
+
+            var cResult = _controller.Post(entity);
+            var rResult = cResult as OkNegotiatedContentResult<BranchDto>;
+            Assert.IsInstanceOf<OkNegotiatedContentResult<BranchDto>>(rResult);
+            var tempResult =
+                _controller.NewRoom(new RoomDto()
+                {
+                    BranchId = rResult.Content.Id,
+                    Height = 500,
+                    Enabled = true,
+                    Width = 500,
+                    Name = "Baan 1"
+                });
+            var tempRResult = tempResult as OkNegotiatedContentResult<RoomDto>;
+
+            Assert.IsInstanceOf<OkNegotiatedContentResult<RoomDto>>(tempRResult);
+            var finalResult = _controller.GetRoom(tempRResult.Content.Id);
+            var finalRResult = finalResult as OkNegotiatedContentResult<RoomDto>;
+
+            Assert.IsInstanceOf<OkNegotiatedContentResult<RoomDto>>(finalRResult);
+            Assert.AreEqual(tempRResult.Content.Id,finalRResult.Content.Id);
+
+
+        }
+
+        [Test]
+        public void Get_Guests()
+        {
+            var entity = new BranchDto()
+            {
+                Name = "Super Bowl",
+                Street = "Groenplaats",
+                Number = "1",
+                CityId = 1,
+                Email = "test@test.be",
+                CompanyId = 1,
+                Description = "Lorem ipsum",
+                PhoneNumber = "032222222",
+            };
+
+            var cResult = _controller.Post(entity);
+            cResult = _controller.GetGuests((cResult as OkNegotiatedContentResult<BranchDto>).Content.Id);
+            Assert.IsNotNull(cResult);
+
+            var rResult = cResult as OkNegotiatedContentResult<IEnumerable<FullAccountDto>>;
+            Assert.IsInstanceOf<OkNegotiatedContentResult<IEnumerable<FullAccountDto>>>(rResult);
         }
         [Test]
         public void Delete_BadRequest()

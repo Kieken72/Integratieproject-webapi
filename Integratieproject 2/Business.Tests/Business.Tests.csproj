@@ -54,7 +54,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Services\AuthServiceTests.cs" />
     <Compile Include="Services\BranchServiceTests.cs" />
     <Compile Include="Services\CityServiceTests.cs" />
     <Compile Include="Services\CompanyServiceTests.cs" />

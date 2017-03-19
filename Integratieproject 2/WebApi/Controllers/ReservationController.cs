@@ -412,7 +412,6 @@ namespace WebApi.Controllers
             {
                 return NotFound();
             }
-            if (res.DateTime < DateTime.Now) return BadRequest();
             res.Cancelled = true;
             _reservationService.Change(res);
             return Ok();
