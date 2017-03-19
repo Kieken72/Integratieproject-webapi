@@ -307,7 +307,7 @@ namespace WebApi.Controllers
                             "text/html",
                             $"Beste {user.Name}, U heeft gereserveerd voor {newReservation.AmountOfPersons} personen in {branch.Name} op {newReservation.DateTime.ToShortDateString()}."
                             );
-                        Mail mail = new Mail(from, "Reservatie via Leisuremanager", to, content);
+                        Mail mail = new Mail(from, "Reservatie via Leisurebooker", to, content);
 
                         dynamic response = sg.client.mail.send.post(requestBody: mail.Get());
                    

@@ -40,6 +40,7 @@ namespace WebApi.Controllers
 
         [Route("by-branch/{id}")]
         [Authorize(Roles = "Manager")]
+        [HttpGet]
         // GET: api/reviews/5
         public IHttpActionResult ByBranch(int id)
         {
