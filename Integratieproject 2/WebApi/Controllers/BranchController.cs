@@ -114,10 +114,13 @@ namespace WebApi.Controllers
         [HttpPut]
         public IHttpActionResult EditRoom(int id,[FromBody] RoomDto value)
         {
+            var room = _roomService.Get(id,true);
+            room.Name = value.Name;
+            room.Enabled = value.Enabled;
+            room.Height = value.Height;
+            room.Width = value.Width;
 
-            var entity = Mapper.Map<Room>(value);
-            this._roomService.Change(entity);
-            //value = Mapper.Map<RoomDto>(entity);
+            this._roomService.Change(room);
             return Ok();
         }
         [Route("room/{id}")]
