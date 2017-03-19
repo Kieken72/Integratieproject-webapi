@@ -49,7 +49,7 @@ namespace WebApi.Controllers
             {
                 return NotFound();
             }
-            var dto = Mapper.Map<ReviewDto>(entity);
+            var dto = Mapper.Map<IEnumerable<ReviewDto>>(entity);
             return Ok(dto);
         }
 
