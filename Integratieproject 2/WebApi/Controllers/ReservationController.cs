@@ -10,7 +10,9 @@ using AutoMapper;
 using Itenso.TimePeriod;
 using Leisurebooker.Business;
 using Leisurebooker.Business.Domain;
+using Leisurebooker.Business.Services;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using WebApi.Models.Dto;
@@ -294,10 +296,10 @@ namespace WebApi.Controllers
                 //SendMail!!
 
                 //
-                    Reservation res = null;
+                    Reservation res = newReservation;
                     try
                     {
-                        res = _reservationService.Get(newReservation.Id, true);
+                        res.User = Request.GetOwinContext().GetUserManager<AuthService>().FindById(newReservation.UserId);
 
                         string apiKey = ConfigurationManager.AppSettings["SENDGRID_API"];
                         dynamic sg = new SendGridAPIClient(apiKey);
