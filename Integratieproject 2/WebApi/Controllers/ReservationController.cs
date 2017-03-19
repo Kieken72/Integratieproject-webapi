@@ -234,6 +234,9 @@ namespace WebApi.Controllers
         [HttpPost]
         public IHttpActionResult ReserveSpace([FromBody] NewReservationDto reservation)
         {
+            try
+            {
+
             //Check modal
             var branch = _branchService.Get(reservation.BranchId);
             if (branch == null)
@@ -311,6 +314,11 @@ namespace WebApi.Controllers
                 return Ok(newReservation);
                 }
             return BadRequest("No free space.");
+            }
+            catch (Exception e)
+            {
+                return InternalServerError(e);
+            }
         }
 
         [Route("branch/{id}/{day}/{month}/{year}")]
