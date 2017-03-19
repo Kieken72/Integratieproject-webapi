@@ -18,8 +18,7 @@ namespace Leisurebooker.Business
         {
             await configSendGridasync(message);
         }
-
-        // Use NuGet to install SendGrid (Basic C# client lib) 
+        
         private async Task configSendGridasync(IdentityMessage message)
         {
             string apiKey = ConfigurationManager.AppSettings["SENDGRID_API"];

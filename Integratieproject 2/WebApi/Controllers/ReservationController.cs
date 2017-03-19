@@ -234,10 +234,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public IHttpActionResult ReserveSpace([FromBody] NewReservationDto reservation)
         {
-            try
-            {
-
-            //Check modal
+           //Check modal
             var branch = _branchService.Get(reservation.BranchId);
             if (branch == null)
             {
@@ -297,28 +294,32 @@ namespace WebApi.Controllers
                 //SendMail!!
 
                 //
-                string apiKey = ConfigurationManager.AppSettings["SENDGRID_API"];
-                dynamic sg = new SendGridAPIClient(apiKey);
+                    try
+                    {
+                        string apiKey = ConfigurationManager.AppSettings["SENDGRID_API"];
+                        dynamic sg = new SendGridAPIClient(apiKey);
 
-                Email from = new Email("hello@leisurebooker.me");
-                Email to = new Email(newReservation.User.Email);
+                        Email from = new Email("hello@leisurebooker.me");
+                        Email to = new Email(newReservation.User.Email);
 
-                Content content = new Content(
-                    "text/html",
-                    $"Beste {newReservation.User.Name}, U heeft gereserveerd voor {newReservation.AmountOfPersons} personen in {branch.Name} op {newReservation.DateTime.ToShortDateString()}."
-                    );
-                Mail mail = new Mail(from, "Reservatie via Leisuremanager", to, content);
+                        Content content = new Content(
+                            "text/html",
+                            $"Beste {newReservation.User.Name}, U heeft gereserveerd voor {newReservation.AmountOfPersons} personen in {branch.Name} op {newReservation.DateTime.ToShortDateString()}."
+                            );
+                        Mail mail = new Mail(from, "Reservatie via Leisuremanager", to, content);
 
-                dynamic response = sg.client.mail.send.post(requestBody: mail.Get());
+                        dynamic response = sg.client.mail.send.post(requestBody: mail.Get());
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        //throw;
+                    }
+                
                 //
                 return Ok(newReservation);
                 }
             return BadRequest("No free space.");
-            }
-            catch (Exception e)
-            {
-                return Ok(e);
-            }
         }
 
         [Route("branch/{id}/{day}/{month}/{year}")]
