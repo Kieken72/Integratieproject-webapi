@@ -294,9 +294,11 @@ namespace WebApi.Controllers
                 //SendMail!!
 
                 //
+                    Reservation res = null;
                     try
                     {
-                        var res = _reservationService.Get(newReservation.Id, true);
+                        res = _reservationService.Get(newReservation.Id, true);
+
                         string apiKey = ConfigurationManager.AppSettings["SENDGRID_API"];
                         dynamic sg = new SendGridAPIClient(apiKey);
 
@@ -313,8 +315,7 @@ namespace WebApi.Controllers
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e);
-                        //throw;
+                        return Ok(new {e, res});
                     }
                 
                 //
