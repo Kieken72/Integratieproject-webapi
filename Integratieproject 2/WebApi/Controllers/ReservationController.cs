@@ -492,6 +492,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public IHttpActionResult ReserveSpaceManager([FromBody] NewManagerReservationDto reservation)
         {
+            reservation.EndDateTime = reservation.DateTime.AddHours(2);
             //Check modal
             var branch = _branchService.Get(reservation.BranchId);
             if (branch == null)
@@ -549,8 +550,7 @@ namespace WebApi.Controllers
                 };
 
                 newReservation = _reservationService.Add(newReservation);
-
-                //SendMail!!
+                
                 return Ok(newReservation);
             }
             return BadRequest("No free space.");
