@@ -9,6 +9,7 @@ using Leisurebooker.Business.Domain;
 
 namespace WebApi.Controllers
 {
+
     [RoutePrefix("api/statistics")]
     [Authorize(Roles = "Manager")]
     public class StatisticsController : ApiController

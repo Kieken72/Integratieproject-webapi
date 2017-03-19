@@ -70,19 +70,19 @@ namespace WebApi.Tests.Tests
         public void Post_BadRequest()
         {
             var cResult = _controller.Post(null);
-            Assert.IsInstanceOf<BadRequestResult>(cResult);
+            Assert.IsInstanceOf<StatusCodeResult>(cResult);
         }
         [Test]
         public void Put_BadRequest()
         {
             var cResult = _controller.Put(null);
-            Assert.IsInstanceOf<BadRequestResult>(cResult);
+            Assert.IsInstanceOf<StatusCodeResult>(cResult);
         }
         [Test]
         public void Delete_BadRequest()
         {
             var cResult = _controller.Delete(0);
-            Assert.IsInstanceOf<BadRequestResult>(cResult);
+            Assert.IsInstanceOf<StatusCodeResult>(cResult);
         }
 
     }

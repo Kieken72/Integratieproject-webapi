@@ -81,7 +81,9 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
         public void ShouldDeleteEntity()
         {
             _reservations.Delete(_reservation.Id);
-            Assert.Throws<ArgumentOutOfRangeException>(delegate { _reservations.Read(_reservation.Id); });
+            _reservations.Delete(1);
+
+            Assert.Throws(typeof(ArgumentOutOfRangeException), delegate { _reservations.Read(_reservation.Id); });
         }
 
 

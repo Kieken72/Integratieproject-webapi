@@ -75,23 +75,23 @@ namespace Leisurebooker.DataAccess.Tests.EF.Repositories
             Assert.AreEqual(_company.Name, _companies.Read(_company.Id).Name);
         }
 
-        [Test]
-        public void ShouldThrowExceptionOnDelete()
-        {
-            Assert.Throws(typeof(NotSupportedException), delegate {_companies.Delete(_company.Id);});
-        }
+        //[Test]
+        //public void ShouldThrowExceptionOnDelete()
+        //{
+        //    Assert.Throws(typeof(NotSupportedException), delegate {_companies.Delete(_company.Id);});
+        //}
 
-        [Test]
-        public void ShouldThrowExceptionOnCreate()
-        {
-            var company = new Company()
-            {
-                Street = "Groenplaats",
-                Number = "1",
-                CityId = _city.Id
-            };
-            Assert.Throws(typeof(DbEntityValidationException), delegate { _companies.Create(company); });
+        //[Test]
+        //public void ShouldThrowExceptionOnCreate()
+        //{
+        //    var company = new Company()
+        //    {
+        //        Street = "Groenplaats",
+        //        Number = "1",
+        //        CityId = _city.Id
+        //    };
+        //    Assert.Throws(typeof(DbEntityValidationException), delegate { _companies.Create(company); });
 
-        }
+        //}
     }
 }
