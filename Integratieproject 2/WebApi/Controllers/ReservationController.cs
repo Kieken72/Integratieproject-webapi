@@ -295,30 +295,22 @@ namespace WebApi.Controllers
 
                 //SendMail!!
 
-                //
-                    Reservation res = newReservation;
-                    try
-                    {
-                        res.User = Request.GetOwinContext().GetUserManager<AuthService>().FindById(newReservation.UserId);
+                        var user = Request.GetOwinContext().GetUserManager<AuthService>().FindById(newReservation.UserId);
 
                         string apiKey = ConfigurationManager.AppSettings["SENDGRID_API"];
                         dynamic sg = new SendGridAPIClient(apiKey);
 
                         Email from = new Email("hello@leisurebooker.me");
-                        Email to = new Email(res.User.Email);
+                        Email to = new Email(user.Email);
 
                         Content content = new Content(
                             "text/html",
-                            $"Beste {res.User.Name}, U heeft gereserveerd voor {res.AmountOfPersons} personen in {branch.Name} op {res.DateTime.ToShortDateString()}."
+                            $"Beste {user.Name}, U heeft gereserveerd voor {newReservation.AmountOfPersons} personen in {branch.Name} op {newReservation.DateTime.ToShortDateString()}."
                             );
                         Mail mail = new Mail(from, "Reservatie via Leisuremanager", to, content);
 
                         dynamic response = sg.client.mail.send.post(requestBody: mail.Get());
-                    }
-                    catch (Exception e)
-                    {
-                        return Ok(new {e, res});
-                    }
+                   
                 
                 //
                 return Ok(newReservation);
