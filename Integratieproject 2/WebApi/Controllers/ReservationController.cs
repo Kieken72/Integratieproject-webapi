@@ -381,6 +381,28 @@ namespace WebApi.Controllers
             res.Arrived = true;
             res.NoShow = false;
             _reservationService.Change(res);
+
+            //SendMail!!
+
+            var user = Request.GetOwinContext().GetUserManager<AuthService>().FindById(res.UserId);
+            var branch = _branchService.Get(res.BranchId);
+
+            string apiKey = ConfigurationManager.AppSettings["SENDGRID_API"];
+            dynamic sg = new SendGridAPIClient(apiKey);
+
+            Email from = new Email("hello@leisurebooker.me");
+            Email to = new Email(user.Email);
+
+            Content content = new Content(
+                "text/html",
+                $"Beste {user.Name}, Hoe was uw reservatie bij {branch.Name}? Laat u feedback achter op: https://integratieproject.herokuapp.com/booker/review/{res.Id}."
+                );
+            Mail mail = new Mail(from, "Reservatie via Leisurebooker", to, content);
+
+            dynamic response = sg.client.mail.send.post(requestBody: mail.Get());
+
+
+            //
             return Ok();
         }
 

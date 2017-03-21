@@ -176,7 +176,7 @@ namespace WebApi.Controllers.Account
 
             if (result.Succeeded)
             {
-                return Ok();
+                return Ok("Bedant email succesvol gevalideerd.");
             }
             else
             {
